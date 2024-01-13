@@ -1,0 +1,35 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.icons{
+    display: flex;
+    flex-direction: row;
+    
+}
+.container__signature{
+    border: 1px solid black;
+    padding: 1em;
+}
+
+#signature canvas{
+    border: 1px solid #ccc;
+    position: relative;
+    
+}
+
+#signature-canvas {
+    cursor: crosshair;
+}
+
+button {
+    margin-top: 10px;
+}

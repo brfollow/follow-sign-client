@@ -1,0 +1,42 @@
+<div class="container__doc">
+
+    <div class="doc">
+        <div class="doc-info">
+            <h2>{{titleDoc}}</h2>
+            <p>{{descriptionDoc}}</p>
+
+        </div>
+
+        <div class="doc-assinatura">
+            <a routerLink="/assinatura">
+                <p>
+                    clique aqui para assinar o documento
+                </p>
+            </a>
+
+        </div>
+        <div class="doc-cliente">
+
+            <h3>{{userName}} ({{idUser}})</h3>
+            <p>{{userCpf}}</p>
+
+        </div>
+    </div>
+
+
+    <div class="sender">
+        <h2><span>{{senderName}}</span> enviou um documento para você assinar.</h2>
+        <div >
+
+            <input class="button"
+                [ngClass]="{'active-button': isSigned}" 
+                type="button" value="Assinar e concluir">
+        </div>
+
+        <p>Para concluir o processo de assinatura é necessario inserir as informações solicitadas e clicar no botão "Assinar e Concluir"</p>
+    
+    
+    </div>
+    
+</div>
+

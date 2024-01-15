@@ -12,15 +12,19 @@
         <h2>Assine abaixo para validar o documento</h2>
         <div id="signature">
             <div class="icons">
-                <ion-icon name="arrow-back-outline"></ion-icon>
-                <ion-icon name="arrow-back-outline"></ion-icon>
+                <a onclick="changeMode('T')" href="#">T</a>
+                <a onclick="changeMode('D')" href="#">D</a>
             </div>
 
             
-            <canvas id="signature-canvas" width="400" height="200"></canvas>
+            <canvas id="signature-canvas" width="400" height="170"></canvas>
+            <input type="text" id="text-input" class="hidden" />
             
-            <button onclick="clearDrawing()">Limpar</button>
-            <button onclick="undoDrawing()">Desfazer</button>
+            <div class="action-button">
+                <button onclick="clearDrawing()">Limpar</button>
+                <button onclick="undoDrawing()">Desfazer</button>
+            </div>
+
             <div class="save-button">
                 <input type="button" value="Salvar assinatura" >
             </div>

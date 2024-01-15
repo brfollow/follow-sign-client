@@ -1,0 +1,36 @@
+<div class="container__signature">
+    <h2>Assine abaixo para validar o documento</h2>
+    <div id="signature">
+        <div class="icons">
+            <a [ngClass]="{'active': modoAssinatura}" (click)="trocaMode(false)">T</a>
+            <a [ngClass]="{'active': !modoAssinatura}"(click)="trocaMode(true)">D</a>
+        </div>
+
+
+        <div #content >
+            <app-caixa-assinatura-texto
+       
+        *ngIf="modoAssinatura"
+       ></app-caixa-assinatura-texto>
+        </div>
+       
+
+        <div #content >
+             <app-caixa-assinatura
+        
+            *ngIf="!modoAssinatura"
+            alturaCanvas="300"
+            larguraCanvas="600"
+        
+        ></app-caixa-assinatura>
+        </div>
+       
+        
+        
+        
+
+        
+    </div>
+</div>
+
+

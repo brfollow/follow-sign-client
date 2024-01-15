@@ -1,0 +1,6 @@
+.containe__termsCheckbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}

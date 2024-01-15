@@ -1,0 +1,11 @@
+.container__nav-bar{
+    padding: 1em;
+    background-color: rgb(250, 251, 252);
+    margin-bottom: 2em;
+}
+
+.nav-bar__img a img{
+    width: 8em;
+    height: 3em;
+    margin: 10px;
+}

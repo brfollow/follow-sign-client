@@ -1,0 +1,38 @@
+
+
+.container__signature{
+    border: 1px solid black;
+    padding: 2.5em 2em;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.container__signature h2{ 
+    font-size: 30px;
+    margin-bottom: 1em;
+}
+
+.icons{
+    display: flex;
+    flex-direction: row;
+    
+    
+}
+
+.icons a{
+    font-size: 20px;
+    padding: 5px 10px;
+    border: 1px solid #615f5f;
+    cursor: pointer;
+    
+    
+}
+
+.active{
+   border: 1px solid blue; 
+    background-color: rgb(75, 75, 255);
+    color: white;
+}
+
+
+

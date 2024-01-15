@@ -1,0 +1,15 @@
+<div class="container__caixa-assinatura">
+    
+    <canvas id="signature-canvas" #signatureCanvas width="{{larguraCanvas}}" height="{{alturaCanvas}}"></canvas>
+
+    <div class="action-button">
+        <button (click)="clearDrawing()">Limpar</button>
+        <button (click)="undoDrawing()">Desfazer</button>
+    </div>
+
+    <div class="save-button">
+        <input (click)="downloadDrawing()"  type="button" value="Salvar assinatura" >
+    </div>
+    
+
+</div>

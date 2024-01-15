@@ -9,15 +9,43 @@ body {
 *{
     margin: 0;
     padding: 0;
+    
 }
 .icons{
     display: flex;
     flex-direction: row;
     
+    
+}
+
+.icons a{
+   
+    padding: 5px 10px;
+    border: 1px solid black;
+    
 }
 .container__signature{
     border: 1px solid black;
     padding: 1em;
+}
+
+#text-input {
+    border: 1px solid #ccc; /* Adicione uma borda azul ao redor do input */
+    font-size: 16px; /* Defina o tamanho da fonte */
+    
+    
+    
+  }
+  
+  /* Estilize apenas quando o modo "T" estiver ativo */
+  #text-input:not(.hidden) {
+    /* Adicione estilos específicos aqui */
+  }
+
+
+
+.container__signature h2{
+    margin-bottom: 1em;
 }
 
 #signature canvas{
@@ -30,6 +58,28 @@ body {
     cursor: crosshair;
 }
 
-button {
-    margin-top: 10px;
+.action-button {
+    
+    margin-bottom: 1em;
 }
+
+
+.save-button input{ 
+    width: 100%;
+    background-color: blue;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em;
+    color: white;
+    cursor: pointer;
+}
+
+.icons a.selected {
+    background-color: #007bff; /* Cor azul para indicar seleção */
+    color: #fff; /* Cor do texto em branco para melhor contraste */
+  }
+
+  .hidden {
+    display: none;
+  
+  }

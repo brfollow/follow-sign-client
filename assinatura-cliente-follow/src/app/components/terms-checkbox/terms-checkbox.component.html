@@ -1,0 +1,47 @@
+<div class="container__terms">
+    <div class="terms-user-info">
+        <h2 class="terms-user-title">
+            Olá, {{nameUser}} ({{idUser}})
+        </h2>
+        <p class="terms-user-text">
+            Você recebeu, documento <span>{{docName}}</span> para assinar.
+
+        </p>
+
+    </div>
+
+    <div class="terms-sender">
+        <p id="remetente">Remetente</p>
+        <h3>{{senderName}}</h3> 
+        <P>{{senderEmail}}</P> 
+        <p>{{senderPhone}}</p>             
+    </div>
+
+    <div class="terms-use">
+        <div class="terms-use-links">
+
+            <a href="">Termos de uso</a>
+            <a href="">Politica de Privacidade</a>
+
+        </div>
+
+        <div class="terms-use-checkbox">
+            <div class="toggle">
+                <input type="checkbox" id="foo" (click)="TermoAceite()">
+                <label for="foo"></label>
+            </div>
+            <p>Declaro que li e estou de acordo com os documentos citados acima</p>
+        </div>
+        
+        <input 
+            [ngClass]="{'active-button': terms}" 
+            [disabled]="!terms"
+            routerLink="/doc"
+            class="button" 
+            type="button" 
+            value="Rever e Assinar documento">
+
+
+    </div>
+
+</div>

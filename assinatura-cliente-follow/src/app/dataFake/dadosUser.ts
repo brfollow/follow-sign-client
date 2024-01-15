@@ -1,4 +1,4 @@
-export const dados =[
+export const dados =
     {
         "nameUser": "Leonardo Silva",
         "cpfUser":"123.456.789-12",
@@ -37,4 +37,3 @@ export const dados =[
         
 
     }
-]

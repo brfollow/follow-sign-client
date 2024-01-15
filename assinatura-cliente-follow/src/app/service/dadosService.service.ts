@@ -3,7 +3,8 @@ import { SenderModel } from '../model/senderModel';
 import { UserModel } from '../model/userModel';
 import{DocModel} from '../model/docModel'
 import { LogModel } from '../model/LodModel';
-
+import { Observable, of } from 'rxjs';
+import {dados} from '../dataFake/dadosUser'
 
 
 @Injectable({
@@ -11,19 +12,27 @@ import { LogModel } from '../model/LodModel';
 })
 export class DadosService {
 
+
+  getData(): Observable<any> {
+    // Em vez de realizar uma chamada HTTP real, retornamos os dados fictícios
+  
+    return of(dados);
+  }
+
   
   constructor() { }
 
 // Método para converter dados brutos em instância de User
 mapToUser(data: any): UserModel {
-  console.log("service "+ data.nameUser)
+  
+
   return {
     nameUser: data.nameUser,
     cpfUser: data.cpfUser,
     idUser: data.idUser,
-
-    
-  };
+  }
+ 
+     
 }
 
 // Método para converter dados brutos em instância de Sender
@@ -38,6 +47,7 @@ mapToSender(data: any): SenderModel {
 // Método para converter dados brutos em instância de Doc
 mapToDoc(data: any): DocModel {
   const doc = new DocModel();
+  
   doc.docName = data.docName;
   doc.title = data.title;
   doc.descricao = data.descricao;

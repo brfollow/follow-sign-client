@@ -1,8 +1,8 @@
-export type UserModel = {
+export class UserModel  {
     
-    idUser: string,
-    cpfUser: string,
-    nameUser: string
+    idUser: string =''
+    cpfUser: string=""
+    nameUser: string=""
 
 
 }

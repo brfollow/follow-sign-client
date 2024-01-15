@@ -8,8 +8,6 @@ export const dados =[
         "senderName": "ITS TREINAMENTOS E CNSULTORIA LTDA",
         "senderPhone": "(99) 88888-8888",
         "senderEmail":"financeiro@email.com",
-
-       
         "title": "teste geral",
         "descricao": "teste descrição",
         "log":[

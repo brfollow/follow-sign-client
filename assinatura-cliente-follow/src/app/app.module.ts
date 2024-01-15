@@ -12,6 +12,7 @@ import { TelaAssinaturaComponent } from './pages/tela-assinatura/tela-assinatura
 import { CaixaAssinaturaComponent } from './components/caixa-assinatura/caixa-assinatura.component';
 import { CaixaAssinaturaTextoComponent } from './components/caixa-assinatura-texto/caixa-assinatura-texto.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { CaixaAssinaturaTextoComponent } from './components/caixa-assinatura-tex
     PdfEditavelComponent,
     TelaAssinaturaComponent,
     CaixaAssinaturaComponent,
-    CaixaAssinaturaTextoComponent
+    CaixaAssinaturaTextoComponent,
+   
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,73 @@
+@media screen and (min-width: 300px) {
+
+
+
+  .container__terms{
+
+    padding: 2em 1em;
+
+}
+
+  .terms-user-title{
+
+    font-size: 20px;
+}
+.terms-user-text {
+
+  font-size: 16px;
+}
+
+
+#remetente{
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.terms-sender h3 {
+
+  font-size: 18px;
+}
+
+.terms-sender {
+
+  margin-bottom: 3em;
+
+}
+
+
+.terms-use-links a{
+    font-size: 16px;
+
+}
+.terms-use-checkbox p {
+  font-size: 15px;
+}
+
+.button[_ngcontent-ng-c3623806461] {
+
+  font-size: 16px;
+
+}
+.toggle > label {
+
+  height: 25px;
+  width: 46px;
+
+}
+
+.toggle > label:after {
+
+  width: 25px;
+  height: 23px;
+
+}
+
+.toggle > input:checked ~ label:after {
+  left: 20px;
+}
+
+
+
+
+}
+

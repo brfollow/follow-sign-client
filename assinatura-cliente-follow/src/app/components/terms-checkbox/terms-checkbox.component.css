@@ -4,11 +4,11 @@
     padding: 2em;
     background-color: white;
     border-radius: 10px;
-    
-    
+
+
 }
 .terms-user-text span{
-    
+
     font-weight: bold;
 }
 
@@ -61,15 +61,15 @@
 .terms-use-checkbox{
     display: flex;
     flex-direction: row;
-   
+
 }
 
 .terms-use-checkbox {
     display: flex;
     align-items: center;
-    
+
     margin-bottom: 20px;
-    
+
 
 }
 .terms-use-checkbox p{
@@ -155,3 +155,4 @@
 .toggle > input:disabled ~ label:after {
     background-color: rgba(255, 255, 255, 0.3);
 }
+

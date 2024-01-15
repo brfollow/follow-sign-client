@@ -8,7 +8,8 @@ import { DocModel } from 'src/app/model/docModel';
 @Component({
   selector: 'app-terms-checkbox',
   templateUrl: './terms-checkbox.component.html',
-  styleUrls: ['./terms-checkbox.component.css']
+  styleUrls: ['./terms-checkbox.component.css',
+              './terms-checkbox.responsive.component.css']
 })
 export class TermsCheckboxComponent {
 

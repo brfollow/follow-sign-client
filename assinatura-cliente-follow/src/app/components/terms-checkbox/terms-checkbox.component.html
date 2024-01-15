@@ -4,7 +4,7 @@
             Olá, {{user.nameUser}} ({{user.idUser}})
         </h2>
         <p class="terms-user-text">
-            Você recebeu, documento <span>teste</span> para assinar.
+            Você recebeu, documento <span>{{docModel.docName}}</span> para assinar.
 
         </p>
 
@@ -12,9 +12,9 @@
 
     <div class="terms-sender">
         <p id="remetente">Remetente</p>
-        <h3>{{sender.senderName}}</h3> 
-        <P>{{sender.senderEmail}}</P> 
-        <p>{{sender.senderPhone}}</p>             
+        <h3>{{sender.senderName}}</h3>
+        <P>{{sender.senderEmail}}</P>
+        <p>{{sender.senderPhone}}</p>
     </div>
 
     <div class="terms-use">
@@ -32,13 +32,13 @@
             </div>
             <p>Declaro que li e estou de acordo com os documentos citados acima</p>
         </div>
-        
-        <input 
-            [ngClass]="{'active-button': terms}" 
+
+        <input
+            [ngClass]="{'active-button': terms}"
             [disabled]="!terms"
             routerLink="/doc"
-            class="button" 
-            type="button" 
+            class="button"
+            type="button"
             value="Rever e Assinar documento">
 
 

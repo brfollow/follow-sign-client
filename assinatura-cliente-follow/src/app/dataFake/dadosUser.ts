@@ -15,25 +15,28 @@ export const dados =
             {
                 "data": "08/01/2021",
                 "hours":"16:44",
-                "status": "Leonardo Silva assinou o documento",
-                "email":"admin+testes@terezascardua.com.br - 115.726.677-02"
+                "nameUserLog": "Leonardo Silva assinou o documento",
+                "email":"admin+testes@terezascardua.com.br",
+                "cpf": "115.726.677-02"
             },
 
             {
                 "data": "08/01/2021",
                 "hours":"16:42",
-                "status": "Natalia Scardua enviou o documento para o paciente",
-                "email":"admin+testes@terezascardua.com.br - 115.726.677-02"
+                "nameUserLog": "Natalia Scardua enviou o documento para o paciente",
+                "email":"admin+testes@terezascardua.com.br",
+                "cpf": "115.726.677-02"
             },
 
             {
                 "data": "08/01/2021",
                 "hours":"16:41",
-                "status": "Natalia Scardua criou documento",
-                "email":"admin+testes@terezascardua.com.br - 115.726.677-02"
+                "nameUserLog": "Natalia Scardua criou documento",
+                "email":"admin+testes@terezascardua.com.br",
+                "cpf": "115.726.677-02"
             }
         ]
 
-        
+
 
     }

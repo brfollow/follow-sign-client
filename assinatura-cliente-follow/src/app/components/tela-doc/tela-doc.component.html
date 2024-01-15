@@ -2,8 +2,8 @@
 
     <div class="doc">
         <div class="doc-info">
-            <h2>{{titleDoc}}</h2>
-            <p>{{descriptionDoc}}</p>
+            <h2>{{docModel.title}}</h2>
+            <p>{{docModel.descricao}}</p>
 
         </div>
 
@@ -17,26 +17,26 @@
         </div>
         <div class="doc-cliente">
 
-            <h3>{{userName}} ({{idUser}})</h3>
-            <p>{{userCpf}}</p>
+            <h3>{{user.nameUser}} ({{idUser}})</h3>
+            <p>{{user.cpfUser}}</p>
 
         </div>
     </div>
 
 
     <div class="sender">
-        <h2><span>{{senderName}}</span> enviou um documento para você assinar.</h2>
+        <h2><span>{{sender.senderName}}</span> enviou um documento para você assinar.</h2>
         <div >
 
             <input class="button"
-                [ngClass]="{'active-button': isSigned}" 
+                [ngClass]="{'active-button': isSigned}"
                 type="button" value="Assinar e concluir">
         </div>
 
         <p>Para concluir o processo de assinatura é necessario inserir as informações solicitadas e clicar no botão "Assinar e Concluir"</p>
-    
-    
+
+
     </div>
-    
+
 </div>
 

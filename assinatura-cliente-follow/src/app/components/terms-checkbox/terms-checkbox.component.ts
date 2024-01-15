@@ -12,8 +12,8 @@ import { DocModel } from 'src/app/model/docModel';
 })
 export class TermsCheckboxComponent {
 
-  user: UserModel = {} as UserModel;
-  sender: SenderModel= {} as SenderModel;
+  user!: UserModel ;
+  sender!: SenderModel;
   docModel!:DocModel
 
 
@@ -24,22 +24,22 @@ export class TermsCheckboxComponent {
   constructor(private dadosService: DadosService) {}
 
   TermoAceite(){
-    
-    this.terms = !this.terms  
 
-    
-   
+    this.terms = !this.terms
+
+
+
   }
 
   ngOnInit(): void {
 
     this.dadosService.getData().subscribe((dados) => {
-     
+
       this.user = this.dadosService.mapToUser(dados);
       this.sender = this.dadosService.mapToSender(dados);
-       this.docModel = this.dadosService.mapToDoc(dados);
+      this.docModel = this.dadosService.mapToDoc(dados);
 
-  
+
     });
   }
 

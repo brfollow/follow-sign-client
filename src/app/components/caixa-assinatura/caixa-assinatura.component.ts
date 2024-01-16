@@ -114,6 +114,8 @@ export class CaixaAssinaturaComponent {
   downloadDrawing() {
     if (this.paths.length > 0) {
       const dataURL = this.signatureCanvas.nativeElement.toDataURL('image/png');
+      console.log(dataURL)
+
       
       const a = document.createElement('a');
       a.href = dataURL;

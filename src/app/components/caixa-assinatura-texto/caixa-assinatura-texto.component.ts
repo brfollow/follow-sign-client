@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import html2canvas from 'html2canvas';
+import { UserModel } from 'src/app/model/userModel';
+import { DadosService } from 'src/app/service/dadosService.service';
 
 @Component({
   selector: 'app-caixa-assinatura-texto',
@@ -9,12 +11,29 @@ import html2canvas from 'html2canvas';
 })
 export class CaixaAssinaturaTextoComponent {
 
-  assinaturaSalva: string = 'teste'
+
+  user!: UserModel;
+
+  constructor(private dadosService: DadosService) {}
+
+
+
+  assinaturaSalva: string = ''
+  
 
 
 
   limparInput(){
     this.assinaturaSalva = ''
+  }
+
+  ngOnInit(): void {
+
+    this.dadosService.getData().subscribe((dados) => {
+
+      this.user = this.dadosService.mapToUser(dados);
+      this.assinaturaSalva = this.user.nameUser
+    });
   }
   
 

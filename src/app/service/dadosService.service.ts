@@ -16,16 +16,26 @@ export class DadosService {
   private imageDataURLSubject = new BehaviorSubject<string>('');
   imageDataURL$ = this.imageDataURLSubject.asObservable();
 
+  assinaturaTxt:string=''
 
   private doc!: DocModel;
 
 
   setImageDataURL(dataURL: string) {
-   
+
     this.imageDataURLSubject.next(dataURL);
   }
 
 
+
+
+  setAssinaturaTxt(txt: string){
+    this.assinaturaTxt = txt
+  }
+
+  getAssinaturaTxt(){
+    return this.assinaturaTxt
+  }
 
 
   getData(): Observable<any> {

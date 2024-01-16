@@ -19,7 +19,7 @@ export class CaixaAssinaturaTextoComponent {
 
 
   assinaturaSalva: string = ''
-  
+
 
 
 
@@ -29,12 +29,16 @@ export class CaixaAssinaturaTextoComponent {
 
   ngOnInit(): void {
 
-    this.dadosService.getData().subscribe((dados) => {
+ this.dadosService.getData().subscribe((dados) => {
 
       this.user = this.dadosService.mapToUser(dados);
-      this.assinaturaSalva = this.user.nameUser
+    
     });
   }
-  
+
+
+  enviarAssinaturaTxt(){
+    this.dadosService.setAssinaturaTxt(this.assinaturaSalva)
+  }
 
 }

@@ -10,15 +10,15 @@
         <div class="doc-assinatura">
             <a routerLink="/assinatura"
             [ngClass]="{'isSigned': isSigned, 'isNotSigned': !isSigned}"
-            
+
             >
                 <p *ngIf="!isSigned">
                     clique aqui para assinar o documento
                 </p>
 
-                <!-- <p *ngIf="isSigned" id="assianturaTxt">{{docModel.assianturaTxt}}Leonardo</p> -->
-                
-                <img [src]="assinaturaImg$ | async" alt="">
+                <p *ngIf="isSigned" id="assianturaTxt">Leonardo</p>
+
+                <!-- <img [src]="assinaturaImg$ | async" alt="assinatura"> -->
 
 
             </a>

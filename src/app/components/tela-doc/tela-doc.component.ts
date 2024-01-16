@@ -12,7 +12,7 @@ import { DadosService } from 'src/app/service/dadosService.service';
 })
 export class TelaDocComponent {
 
- 
+
 
   user!: UserModel ;
   sender!: SenderModel;
@@ -24,15 +24,12 @@ export class TelaDocComponent {
   isSigned: boolean = true;
 
 
-
-
   constructor(private dadosService: DadosService) {}
 
-
-
   ngOnInit(): void {
-   
 
+    console.log(this.dadosService.getAssinaturaTxt())
+    
     this.dadosService.getData().subscribe((dados) => {
 
       this.user = this.dadosService.mapToUser(dados);

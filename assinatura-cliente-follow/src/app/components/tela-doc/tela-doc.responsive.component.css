@@ -1,0 +1,63 @@
+@media screen and (min-width: 300px) {
+  .container__doc{
+
+    flex-direction: column;
+    padding: 1em;
+
+}
+
+.doc {
+  width: 100%;
+  height: 30em;
+  margin-right: 0;
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.doc-info {
+  margin-bottom: 12em;
+}
+
+.doc-assinatura {
+
+
+  width: 100%;
+  height: 8em;
+
+}
+
+.sender[_ngcontent-ng-c3151669387] {
+  margin-top: 1em;
+  width: auto;
+
+}
+
+.sender h2{
+  font-size: 17px;
+
+}
+
+.button[_ngcontent-ng-c3151669387] {
+
+  padding: 17px;
+
+  font-size: 18px;
+
+}
+
+.doc-assinatura{
+  width: 96%;
+
+}
+
+.sender p {
+  font-size: 16px;
+  
+}
+
+
+
+}

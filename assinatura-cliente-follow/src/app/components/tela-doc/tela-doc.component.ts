@@ -7,7 +7,8 @@ import { DadosService } from 'src/app/service/dadosService.service';
 @Component({
   selector: 'app-tela-doc',
   templateUrl: './tela-doc.component.html',
-  styleUrls: ['./tela-doc.component.css']
+  styleUrls: ['./tela-doc.component.css',
+  './tela-doc.responsive.component.css']
 })
 export class TelaDocComponent {
 

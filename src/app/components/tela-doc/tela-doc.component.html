@@ -8,16 +8,25 @@
         </div>
 
         <div class="doc-assinatura">
-            <a routerLink="/assinatura">
-                <p>
+            <a routerLink="/assinatura"
+            [ngClass]="{'isSigned': isSigned, 'isNotSigned': !isSigned}"
+            
+            >
+                <p *ngIf="!isSigned">
                     clique aqui para assinar o documento
                 </p>
+
+                <!-- <p *ngIf="isSigned" id="assianturaTxt">{{docModel.assianturaTxt}}Leonardo</p> -->
+                
+                <img [src]="assinaturaImg$ | async" alt="">
+
+
             </a>
 
         </div>
         <div class="doc-cliente">
 
-            <h3>{{user.nameUser}} ({{idUser}})</h3>
+            <h3>{{user.nameUser}} ({{user.idUser}})</h3>
             <p>{{user.cpfUser}}</p>
 
         </div>

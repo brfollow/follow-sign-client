@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import { DadosService } from 'src/app/service/dadosService.service';
 
 @Component({
   selector: 'app-caixa-assinatura',
@@ -21,7 +22,7 @@ export class CaixaAssinaturaComponent {
   private undoStack: Array<Array<{ x: number; y: number }>> = [];
   private isDrawing = false;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private dadosService: DadosService) {}
 
   ngAfterViewInit(): void {
     const canvas = this.signatureCanvas.nativeElement;
@@ -116,13 +117,15 @@ export class CaixaAssinaturaComponent {
       const dataURL = this.signatureCanvas.nativeElement.toDataURL('image/png');
       console.log(dataURL)
 
-      
-      const a = document.createElement('a');
-      a.href = dataURL;
-      a.download = 'assinatura.png';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      this.dadosService.setImageDataURL(dataURL);
+
+
+      // const a = document.createElement('a');
+      // a.href = dataURL;
+      // a.download = 'assinatura.png';
+      // document.body.appendChild(a);
+      // a.click();
+      // document.body.removeChild(a);
     } else {
       alert('Nenhum desenho para baixar.');
     }

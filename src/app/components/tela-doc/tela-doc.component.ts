@@ -12,23 +12,16 @@ import { DadosService } from 'src/app/service/dadosService.service';
 })
 export class TelaDocComponent {
 
-  titleDoc:string ='teste geral';
-  descriptionDoc: string ='teste descrição';
-
-  idUser:string ='1234';
-  userName: string = 'Leonardo Silva';
-  userCpf:string = '123.456.789-12';
-
-  senderName:string ='ITS TREINAMENTOS E CONSULTORIA LTDA'
-
+ 
 
   user!: UserModel ;
   sender!: SenderModel;
   docModel!:DocModel;
 
+  assinaturaImg$ = this.dadosService.imageDataURL$;
 
 
-  isSigned: boolean = false;
+  isSigned: boolean = true;
 
 
 
@@ -38,6 +31,7 @@ export class TelaDocComponent {
 
 
   ngOnInit(): void {
+   
 
     this.dadosService.getData().subscribe((dados) => {
 

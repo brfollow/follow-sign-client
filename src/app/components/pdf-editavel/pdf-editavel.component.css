@@ -90,6 +90,11 @@
 .user-signature img{
     height: 8em;
 }
+
+.user-signature h3{
+    font-family: "Alex Brush", cursive;
+    font-size: 30px;
+}
     
     
 

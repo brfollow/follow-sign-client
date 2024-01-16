@@ -14,6 +14,10 @@ export class PdfEditavelComponent {
   sender!: SenderModel;
   docModel!:DocModel;
 
+  
+  assinaturaTxt: string = ''
+
+  assinaturaImg$ = this.dadosService.imageDataURL$;
 
   constructor(private dadosService: DadosService) {}
 
@@ -28,6 +32,10 @@ export class PdfEditavelComponent {
 
 
     });
+
+    
+
+
   }
 
 }

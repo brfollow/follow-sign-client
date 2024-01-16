@@ -3,7 +3,7 @@ import { SenderModel } from '../model/senderModel';
 import { UserModel } from '../model/userModel';
 import{DocModel} from '../model/docModel'
 import { LogModel } from '../model/LodModel';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import {dados} from '../dataFake/dadosUser'
 
 
@@ -11,6 +11,21 @@ import {dados} from '../dataFake/dadosUser'
   providedIn: 'root'
 })
 export class DadosService {
+
+
+  private imageDataURLSubject = new BehaviorSubject<string>('');
+  imageDataURL$ = this.imageDataURLSubject.asObservable();
+
+
+  private doc!: DocModel;
+
+
+  setImageDataURL(dataURL: string) {
+   
+    this.imageDataURLSubject.next(dataURL);
+  }
+
+
 
 
   getData(): Observable<any> {

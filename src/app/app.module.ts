@@ -11,7 +11,7 @@ import { PdfEditavelComponent } from './components/pdf-editavel/pdf-editavel.com
 import { TelaAssinaturaComponent } from './pages/tela-assinatura/tela-assinatura.component';
 import { CaixaAssinaturaComponent } from './components/caixa-assinatura/caixa-assinatura.component';
 import { CaixaAssinaturaTextoComponent } from './components/caixa-assinatura-texto/caixa-assinatura-texto.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { CaixaAssinaturaTextoComponent } from './components/caixa-assinatura-tex
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,4 @@
 
-
-
 .container__pdf{
     padding: 2em;
     width: 794px;
@@ -120,6 +118,7 @@
     display: flex;
     flex-direction: row;
     margin-left: 1em;
+    margin-bottom: 1em;
 }
 
 .data{

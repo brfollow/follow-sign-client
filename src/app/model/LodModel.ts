@@ -5,4 +5,8 @@ export type LogModel= {
     email: string;
     cpf:string
 
+
+
+    
+
   }

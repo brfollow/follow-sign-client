@@ -3,9 +3,10 @@
 
 
     <input
+   
         type="text"
         id="text-input"
-        value="{{assinaturaSalva}}"
+        [(ngModel)]="assinaturaSalva"
 
         />
 
@@ -17,7 +18,7 @@
     </div>
 
     <div class="save-button">
-        <input (click)="enviarAssinaturaTxt()" routerLink="/doc" type="button" value="Salvar assinatura" >
+        <input (click)="enviandoAssinaturaTxt()" routerLink="/doc" type="button" value="Salvar assinatura" >
     </div>
 
 </div>

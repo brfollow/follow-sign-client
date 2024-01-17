@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { isEmpty, tap } from 'rxjs';
 import { DocModel } from 'src/app/model/docModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { UserModel } from 'src/app/model/userModel';
@@ -19,25 +20,30 @@ export class TelaDocComponent {
   docModel!:DocModel;
 
   assinaturaImg$ = this.dadosService.imageDataURL$;
+  assinaturarTxt$ = this.dadosService.text$
 
-
-  isSigned: boolean = true;
-
+  isSigned: boolean = false;
+  resultadoVerificacao: boolean = true;
 
   constructor(private dadosService: DadosService) {}
 
   ngOnInit(): void {
 
-    console.log(this.dadosService.getAssinaturaTxt())
-    
+   
+  
+      console.log(this.resultadoVerificacao)
+
     this.dadosService.getData().subscribe((dados) => {
 
       this.user = this.dadosService.mapToUser(dados);
       this.sender = this.dadosService.mapToSender(dados);
       this.docModel = this.dadosService.mapToDoc(dados);
-
+    
+     
 
     });
+
+    
   }
 
 

@@ -15,12 +15,12 @@
                 <p *ngIf="!isSigned">
                     clique aqui para assinar o documento
                 </p>
+               
+    <p id="assianturaTxt">{{ assinaturarTxt$ | async }}</p>
+     
 
-                <!-- <p *ngIf="isSigned" id="assianturaTxt">Leonardo</p> -->
 
-                <img [src]="assinaturaImg$ | async" alt="assinatura">
-
-
+<img  [src]="assinaturaImg$ | async" alt="assinatura">
             </a>
 
         </div>

@@ -6,6 +6,15 @@
 
 }
 
+.doc-cliente p{
+  font-size: 16px;
+}
+
+#assianturaTxt {
+
+  font-size: 30px;
+}
+
 .doc {
   width: 100%;
   height: 30em;
@@ -13,8 +22,8 @@
   padding: 1em 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 1em 1em;
+
 }
 
 .doc-info {
@@ -29,7 +38,7 @@
 
 }
 
-.sender[_ngcontent-ng-c3151669387] {
+.sender {
   margin-top: 1em;
   width: auto;
 
@@ -40,7 +49,7 @@
 
 }
 
-.button[_ngcontent-ng-c3151669387] {
+.button {
 
   padding: 17px;
 
@@ -68,13 +77,89 @@
 }
 
 
+
+@media screen and (min-width: 500px){
+
+.container__doc {
+
+  align-items: center;
+
+}
+  .doc{
+    width: 30em;
+
+}
+
+.sender{
+  width:27em;
+}
+}
+
+
 @media screen and (min-width: 750px) {
 
-    .container__doc{
+.container__doc{
 
-      flex-direction: row;
-      padding: 1em;
+  flex-direction: row;
+  padding: 1em;
 
-  }
+}
+.container__doc {
+  align-items: flex-start;
+}
 
+.sender {
+  margin-left: 1em;
+  margin-top: 0;
+}
+.sender p {
+
+  margin-bottom: 0;
+}
+
+.button {
+
+  margin-bottom: 1em;
+
+}
+
+
+}
+
+
+@media screen and (min-width: 1000px)
+{
+
+  .doc {
+
+    height: 33em;
+
+}
+
+  .doc-info {
+    margin-bottom: 15em;
+}
+}
+
+
+@media screen and (min-width: 1500px){
+
+
+
+
+.doc {
+  padding: 3em 3em;
+  height: 35em;
+
+}
+
+
+  .doc-info {
+    margin-bottom: 19em;
+}
+
+.doc-cliente {
+
+  margin-bottom: 0;
+}
 }

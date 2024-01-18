@@ -43,6 +43,10 @@
 
 }
 
+.doc-assinatura-sem-borda{
+    border:none;
+}
+
 .doc-assinatura a{
     display: flex;
    

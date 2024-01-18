@@ -7,7 +7,7 @@
 
         </div>
 
-        <div class="doc-assinatura">
+        <div class="doc-assinatura" [ngClass]="{'doc-assinatura-sem-borda':botaoDownload}">
             <a routerLink="/assinatura"
             (click)="limparAssinatura()"
             [ngClass]="{'isSigned': isSigned, 'isNotSigned':!isSigned}"

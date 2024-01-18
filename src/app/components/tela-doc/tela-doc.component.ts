@@ -6,6 +6,8 @@ import { UserModel } from 'src/app/model/userModel';
 import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
 
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-tela-doc',
   templateUrl: './tela-doc.component.html',
@@ -23,7 +25,8 @@ export class TelaDocComponent {
  
 
   isSigned: boolean = false;
-  resultadoVerificacao: boolean = true;
+  
+  botaoDownload: boolean = false;
 
 
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
@@ -37,7 +40,7 @@ export class TelaDocComponent {
     
 
 
-   this.verificarassinatura()
+   this.verificarAssinatura()
 
    this.dadosService.getData().subscribe((dados) => {
 
@@ -49,10 +52,16 @@ export class TelaDocComponent {
 
 });
 
-    
-  }
 
-  verificarassinatura(){
+
+
+    
+}
+
+
+
+
+  verificarAssinatura(){
 
     if(this.assinaturaImg){
       this.isSigned = true
@@ -73,5 +82,22 @@ export class TelaDocComponent {
     
   }
 
+  showDonload(){
+    this.botaoDownload = true
+  }
+
+
+
+  gerarPdf(){
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Documento Assinado",
+      showConfirmButton: false,
+      timer: 3000
+    });
+   
+    this.showDonload()
+  }
 
 }

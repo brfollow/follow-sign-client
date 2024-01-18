@@ -36,13 +36,16 @@ export class CaixaAssinaturaTextoComponent {
 
   ngOnInit(): void {
 
-    console.log(this.assinaturaSalva)
-
- this.dadosService.getData().subscribe((dados) => {
-
-      this.user = this.dadosService.mapToUser(dados);
     
+
+    this.dadosService.getData().subscribe((dados) => {
+
+          this.user = this.dadosService.mapToUser(dados);
+        
     });
+
+
+    this.assinaturaSalva = this.user.nameUser + " ( "+ this.user.idUser+ " )"
   }
 
 

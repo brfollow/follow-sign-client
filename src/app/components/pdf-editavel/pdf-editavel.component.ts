@@ -16,7 +16,8 @@ export class PdfEditavelComponent {
   docModel!:DocModel;
 
   
-  assinaturaTxt: string = ''
+  assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt();
+  assinaturaImg: string= this.assinaturaService.getImageDataURL();
 
   constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService ) {}
 

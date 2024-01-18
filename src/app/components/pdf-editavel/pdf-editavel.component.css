@@ -52,10 +52,31 @@
     justify-content: space-between;
 }
 
+.info-user {
+    width: 50%;
+
+}
+
 .info-user h2{
     margin-bottom: 0.5em; 
 
 }
+.user-signature{
+    width: 50%;
+    text-align: center;
+}
+
+.user-signature img{
+    height: 8em;
+}
+
+.user-signature p{
+    font-family: "Alex Brush", cursive;
+    font-size: 30px;
+}
+    
+    
+
 .container-user-icon{
     display: flex;
     flex-direction: row;
@@ -85,16 +106,7 @@
     color: rgb(63, 61, 61);
 
 }
-.user-signature img{
-    height: 8em;
-}
 
-.user-signature h3{
-    font-family: "Alex Brush", cursive;
-    font-size: 30px;
-}
-    
-    
 
 
 

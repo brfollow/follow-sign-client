@@ -10,10 +10,11 @@
         <div class="doc-assinatura">
             <a routerLink="/assinatura"
             (click)="limparAssinatura()"
-            [ngClass]="{'isSigned': isSigned, 'isNotSigned': !isSigned}"
+            [ngClass]="{'isSigned': isSigned, 'isNotSigned':!isSigned}"
 
             >
-                <p *ngIf="!isSigned">
+                <p *ngIf="!isSigned"
+                >
                     clique aqui para assinar o documento
                 </p>
                
@@ -21,7 +22,7 @@
      
                 
 
-                <img *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
+                <img class="assinaturaImg" *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
             </a>
 
         </div>
@@ -40,7 +41,9 @@
 
             <input class="button"
                 [ngClass]="{'active-button': isSigned}"
-                type="button" value="Assinar e concluir">
+                type="button" value="Assinar e concluir"
+                routerLink="/docAssinado">
+                
         </div>
 
         <p>Para concluir o processo de assinatura é necessario inserir as informações solicitadas e clicar no botão "Assinar e Concluir"</p>

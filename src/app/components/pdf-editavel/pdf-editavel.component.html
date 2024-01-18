@@ -41,8 +41,8 @@
         </div>
 
         <div class="user-signature">
-            <h3 *ngIf="assinaturaTxt">{{assinaturaTxt}}</h3>
-            <!-- <img *ngIf="assinaturaImg$" [src]="assinaturaImg$ | async" alt="assinatura"> -->
+            <p *ngIf="assinaturaTxt">{{assinaturaTxt}}</p>
+            <img *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
         </div>
 
     </div>

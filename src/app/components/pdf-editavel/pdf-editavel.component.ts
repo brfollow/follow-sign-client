@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DocModel } from 'src/app/model/docModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { UserModel } from 'src/app/model/userModel';
+import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
 
 @Component({
@@ -17,9 +18,7 @@ export class PdfEditavelComponent {
   
   assinaturaTxt: string = ''
 
-  assinaturaImg$ = this.dadosService.imageDataURL$;
-
-  constructor(private dadosService: DadosService) {}
+  constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService ) {}
 
 
   ngOnInit(): void {

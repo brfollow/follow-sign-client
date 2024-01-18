@@ -9,6 +9,7 @@
 
         <div class="doc-assinatura">
             <a routerLink="/assinatura"
+            (click)="limparAssinatura()"
             [ngClass]="{'isSigned': isSigned, 'isNotSigned': !isSigned}"
 
             >
@@ -16,11 +17,11 @@
                     clique aqui para assinar o documento
                 </p>
                
-    <p id="assianturaTxt">{{ assinaturarTxt$ | async }}</p>
+                <p *ngIf="assinaturaTxt"  id="assianturaTxt">{{ assinaturaTxt }}</p>
      
+                
 
-
-<img  [src]="assinaturaImg$ | async" alt="assinatura">
+                <img *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
             </a>
 
         </div>

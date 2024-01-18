@@ -13,27 +13,6 @@ import {dados} from '../dataFake/dadosUser'
 export class DadosService {
 
 
-  private imageDataURLSubject = new BehaviorSubject<string>('');
-  imageDataURL$ = this.imageDataURLSubject.asObservable();
-
-  private assinaturaSubject = new BehaviorSubject<string>('');
-  text$ = this.assinaturaSubject.asObservable();
-
-  private doc!: DocModel;
-
-
-  setImageDataURL(dataURL: string) {
-
-    this.imageDataURLSubject.next(dataURL);
-  }
-
-  setText(text: string) {
-    this.assinaturaSubject.next(text);
-  }
-
-
-
-
 
 
   getData(): Observable<any> {

@@ -3,6 +3,7 @@ import { isEmpty, tap } from 'rxjs';
 import { DocModel } from 'src/app/model/docModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { UserModel } from 'src/app/model/userModel';
+import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
 
 @Component({
@@ -19,30 +20,56 @@ export class TelaDocComponent {
   sender!: SenderModel;
   docModel!:DocModel;
 
-  assinaturaImg$ = this.dadosService.imageDataURL$;
-  assinaturarTxt$ = this.dadosService.text$
+ 
 
   isSigned: boolean = false;
   resultadoVerificacao: boolean = true;
 
-  constructor(private dadosService: DadosService) {}
+
+  assinaturaImg: string = this.assinaturaService.getImageDataURL()
+  assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt()
+
+  constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService) {}
 
   ngOnInit(): void {
 
-   
   
-      console.log(this.resultadoVerificacao)
+    
 
-    this.dadosService.getData().subscribe((dados) => {
 
-      this.user = this.dadosService.mapToUser(dados);
-      this.sender = this.dadosService.mapToSender(dados);
-      this.docModel = this.dadosService.mapToDoc(dados);
+   this.verificarassinatura()
+
+   this.dadosService.getData().subscribe((dados) => {
+
+    this.user = this.dadosService.mapToUser(dados);
+    this.sender = this.dadosService.mapToSender(dados);
+    this.docModel = this.dadosService.mapToDoc(dados);
     
      
 
-    });
+});
 
+    
+  }
+
+  verificarassinatura(){
+
+    if(this.assinaturaImg){
+      this.isSigned = true
+      this.assinaturaTxt = ''
+            
+    }else if(this.assinaturaTxt){
+      this.isSigned = true
+      this.assinaturaImg = ''
+    
+    }
+  }
+
+
+  limparAssinatura(){
+    this.assinaturaService.setImageDataURL('')
+    this.assinaturaService.setAssinaturaTxt('')
+ 
     
   }
 

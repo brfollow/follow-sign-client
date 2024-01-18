@@ -3,6 +3,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import html2canvas from 'html2canvas';
 import { DocModel } from 'src/app/model/docModel';
 import { UserModel } from 'src/app/model/userModel';
+import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
 
 
@@ -18,7 +19,7 @@ export class CaixaAssinaturaTextoComponent {
   user!: UserModel;
   docModel!: DocModel
 
-  constructor(private dadosService: DadosService) {}
+  constructor(private dadosService: DadosService, private assinaturaService: AssinaturaService) {}
 
 
 
@@ -49,7 +50,7 @@ export class CaixaAssinaturaTextoComponent {
     // Lógica para obter ou definir seu texto
 
     // Armazene o texto no serviço
-    this.dadosService.setText(this.assinaturaSalva);
+    this.assinaturaService.setAssinaturaTxt(this.assinaturaSalva);
   }
 
 }

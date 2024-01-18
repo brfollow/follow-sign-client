@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class CaixaAssinaturaComponent {
   private undoStack: Array<Array<{ x: number; y: number }>> = [];
   private isDrawing = false;
 
-  constructor(private renderer: Renderer2, private dadosService: DadosService) {}
+  constructor(private renderer: Renderer2, private dadosService: DadosService, private assinaturaService: AssinaturaService) {}
 
   ngAfterViewInit(): void {
     const canvas = this.signatureCanvas.nativeElement;
@@ -115,11 +116,13 @@ export class CaixaAssinaturaComponent {
   downloadDrawing() {
     if (this.paths.length > 0) {
       const dataURL = this.signatureCanvas.nativeElement.toDataURL('image/png');
-      console.log(dataURL)
+    
+     
+      
+      this.assinaturaService.setImageDataURL(dataURL);
 
-      this.dadosService.setImageDataURL(dataURL);
-
-
+     
+      
       // const a = document.createElement('a');
       // a.href = dataURL;
       // a.download = 'assinatura.png';

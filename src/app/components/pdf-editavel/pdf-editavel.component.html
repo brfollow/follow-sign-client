@@ -2,7 +2,7 @@
 
 
 
-<div class="container__pdf">
+<div class="container__pdf"  #conteudoParaPDF>
     <div class="pdf-logo">
         <img src="../assets/img/logo_follow_sistema.png" alt="">
         <div class="info-log">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="user-signature">
-            <p *ngIf="assinaturaTxt">{{assinaturaTxt}}</p>
+            <p  *ngIf="assinaturaTxt">{{assinaturaTxt}}</p>
             <img *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
         </div>
 
@@ -68,3 +68,6 @@
     </div>
     <hr>
 </div>
+
+
+<button (click)="teste">baixar</button>

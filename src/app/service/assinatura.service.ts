@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DadosService } from './dadosService.service';
-import { BehaviorSubject } from 'rxjs';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,10 @@ export class AssinaturaService {
 
 
   setImageDataURL(dataURL: string) {
-
+   
+    
     this.assinaturaImg = dataURL;
-
+ 
    
   }
 
@@ -35,7 +38,7 @@ export class AssinaturaService {
   setAssinaturaTxt(txt: string) {
 
     this.assinaturaTxt = txt;
-
+    console.log(this.assinaturaTxt );
    
   }
 
@@ -45,6 +48,7 @@ export class AssinaturaService {
 
    
   }
+
 
 
 

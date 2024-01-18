@@ -18,7 +18,7 @@
                     clique aqui para assinar o documento
                 </p>
                
-                <p *ngIf="assinaturaTxt"  id="assianturaTxt">{{ assinaturaTxt }}</p>
+                <img class="assinaturaImg" *ngIf="assinaturaTxt" [src]="assinaturaTxt" alt="assinatura">
      
                 
 
@@ -69,7 +69,7 @@
             <input class="button-download"
                 [ngClass]="{'active-button': isSigned}"
                 type="button" value="Baixar documento"
-                
+                routerLink="/docAssinado"
                
                 
                 >

@@ -7,6 +7,8 @@
         type="text"
         id="text-input"
         [(ngModel)]="assinaturaSalva"
+        #assinaturaTxt
+       
 
         />
 
@@ -18,7 +20,7 @@
     </div>
 
     <div class="save-button">
-        <input (click)="enviandoAssinaturaTxt()" routerLink="/doc" type="button" value="Salvar assinatura" >
+        <input (click)="gerarImagem()" routerLink="/doc" type="button" value="Salvar assinatura" >
     </div>
 
 </div>

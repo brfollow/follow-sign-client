@@ -1,7 +1,7 @@
 
 .container__pdf{
     padding: 2em;
-    width: 794px;
+    width: 530px;
     /* height: 1000px; */
     border: 1px solid black;
 
@@ -18,15 +18,15 @@
 }
 
 .pdf-logo img{
-    width: 8em;
-    height: 3em;
+    width: 6em;
+    height: 2em;
 
 }
 
 .pdf-logo p{
-    font-size: 18px;
+    font-size: 12px;
     color: rgb(63, 61, 61);
-    line-height: 30px;
+    line-height: 20px;
 
 }
 .pdf-body{
@@ -36,11 +36,11 @@
 
 .pdf-body h2{
     margin-bottom: 5px;
-    font-size: 30px;
+    font-size: 25px;
     
 }
 .pdf-body p{
-    font-size: 20px;
+    font-size: 15px;
    
     
 }
@@ -53,7 +53,7 @@
 }
 
 .info-user {
-    width: 50%;
+    width: 60%;
 
 }
 
@@ -62,7 +62,7 @@
 
 }
 .user-signature{
-    width: 50%;
+    width: 40%;
     text-align: center;
 }
 
@@ -72,7 +72,7 @@
 
 .user-signature p{
     font-family: "Alex Brush", cursive;
-    font-size: 30px;
+    font-size: 20px;
 }
     
     
@@ -90,19 +90,20 @@
     margin-top: 5px;
 }
 .container-user-info{
-    line-height: 25px;
+    line-height: 20px;
 
 }
 
 .container-user-info h4{
 
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 10px;
 
 }
 
 .container-user-info p{
 
-    font-size: 18px;
+    font-size: 13px;
     color: rgb(63, 61, 61);
 
 }
@@ -119,7 +120,7 @@
 
 .pdf-logs h2{
 
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 1em;
    
 
@@ -134,13 +135,13 @@
 }
 
 .data{
-    margin-right: 4em;
-    font-size: 20px;
+    margin-right: 2em;
+    font-size: 15px;
     color: rgb(145, 144, 144);
 }
 
 .assinante{
-    font-size: 20px;
+    font-size: 15px;
 }
 
 

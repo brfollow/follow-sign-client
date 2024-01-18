@@ -32,12 +32,15 @@ export class TelaDocComponent {
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
   assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt()
 
+  
+
   constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService) {}
 
   ngOnInit(): void {
 
   
-    
+  console.log("img "+this.assinaturaImg);
+  console.log("txt "+this.assinaturaTxt);
 
 
    this.verificarAssinatura()
@@ -99,5 +102,26 @@ export class TelaDocComponent {
    
     this.showDonload()
   }
+
+
+  // gerarPDF() {
+  //   const options = {
+  //     margin: 10,
+  //     filename: 'documento.pdf',
+  //     image: { type: 'jpeg', quality: 0.98 },
+  //     html2canvas: { scale: 2 },
+  //     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  //   };
+
+  //   const conteudo = this.conteudoHTML.nativeElement;
+
+  //   html2pdf()
+  //     .from(conteudo)
+  //     .set(options)
+  //     .outputPdf(pdf => {
+  //       // Aqui você pode salvar o PDF ou enviar para algum serviço, por exemplo.
+  //       console.log('PDF gerado:', pdf);
+  //     });
+  // }
 
 }

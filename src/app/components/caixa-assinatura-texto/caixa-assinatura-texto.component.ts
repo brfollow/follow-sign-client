@@ -15,9 +15,6 @@ import { DadosService } from 'src/app/service/dadosService.service';
 })
 export class CaixaAssinaturaTextoComponent {
 
-  
-  @ViewChild('assinaturaTxt', { static: true }) signatureCanvas!: ElementRef<HTMLInputElement>;
-
   user!: UserModel;
   docModel!: DocModel
 
@@ -26,8 +23,6 @@ export class CaixaAssinaturaTextoComponent {
 
 
   assinaturaSalva: string = ''
-
-  imagemGerada:string =''
 
 
 
@@ -57,17 +52,7 @@ export class CaixaAssinaturaTextoComponent {
     // Lógica para obter ou definir seu texto
 
     // Armazene o texto no serviço
-    this.assinaturaService.setAssinaturaTxt(this.imagemGerada);
+    this.assinaturaService.setAssinaturaTxt(this.assinaturaSalva);
   }
 
-  gerarImagem() {
-    html2canvas(this.signatureCanvas.nativeElement).then(canvas => {
-      this.imagemGerada = canvas.toDataURL('image/png');
-   
-      this.enviandoAssinaturaTxt()
-      
-    });
-
-
-  }
 }

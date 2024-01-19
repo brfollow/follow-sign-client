@@ -28,45 +28,53 @@ export class CaixaAssinaturaComponent {
   ngAfterViewInit(): void {
     const canvas = this.signatureCanvas.nativeElement;
     this.context = canvas.getContext('2d') as CanvasRenderingContext2D;
-
+  
     if (!this.context) {
       console.error('Erro ao obter o contexto 2D do canvas.');
     }
-
-    canvas.addEventListener('touchstart', this.handleTouchStart.bind(this));
+  
+    canvas.addEventListener('mousedown', this.handleStart.bind(this));
+    canvas.addEventListener('touchstart', this.handleStart.bind(this));
+  
+    canvas.addEventListener('mouseup', this.stopDrawing.bind(this));
+    canvas.addEventListener('mouseleave', this.stopDrawing.bind(this));
     canvas.addEventListener('touchend', this.stopDrawing.bind(this));
-    canvas.addEventListener('touchmove', this.handleTouchMove.bind(this));
-   canvas.addEventListener('mouseleave', this.stopDrawing.bind(this));
+    canvas.addEventListener('touchcancel', this.stopDrawing.bind(this));
+  
+    canvas.addEventListener('mousemove', this.handleMove.bind(this));
+    canvas.addEventListener('touchmove', this.handleMove.bind(this));
   }
+  
+  handleStart(e: MouseEvent | TouchEvent): void {
+    e.preventDefault();
+  
+    const event = e instanceof TouchEvent ? (e.touches[0] || e.changedTouches[0]) : e;
+    this.isDrawing = true;
+    this.paths.push([]);
+    this.draw(event);
+  }
+  
+  handleMove(e: MouseEvent | TouchEvent): void {
+    e.preventDefault();
+  
+    if (this.isDrawing) {
+      const event = e instanceof TouchEvent ? (e.touches[0] || e.changedTouches[0]) : e;
+      this.draw(event);
+    }
+  }
+
+
 
   stopDrawing(): void {
     this.isDrawing = false;
   }
-
-  handleTouchStart(e: TouchEvent): void {
-    e.preventDefault();
-  
-    const touch = e.touches[0];
-    this.isDrawing = true;
-    this.paths.push([]);
-    this.draw(touch);
-  }
-
-  handleTouchMove(e: TouchEvent): void {
-    e.preventDefault();
-  
-    if (this.isDrawing) {
-      const touch = e.touches[0];
-      this.draw(touch);
-    }
-  }
- draw(e: MouseEvent | Touch): void {
+  draw(e: MouseEvent | Touch): void {
     const currentPath = this.paths[this.paths.length - 1];
   
     this.context.lineWidth = 2;
     this.context.lineCap = 'round';
     this.context.strokeStyle = '#000';
-  
+    
     currentPath.push({ x: e.clientX - this.signatureCanvas.nativeElement.getBoundingClientRect().left, y: e.clientY - this.signatureCanvas.nativeElement.getBoundingClientRect().top });
   
     this.context.clearRect(0, 0, this.signatureCanvas.nativeElement.width, this.signatureCanvas.nativeElement.height);

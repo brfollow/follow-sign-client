@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DocModel } from 'src/app/model/docModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { UserModel } from 'src/app/model/userModel';
 import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
-
+import html2canvas from 'html2canvas';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -14,7 +14,7 @@ import Swal from 'sweetalert2'
   './tela-doc.responsive.component.css']
 })
 export class TelaDocComponent {
-
+  @ViewChild('paragrafo') paragrafo!: ElementRef;
 
 
   user!: UserModel ;
@@ -41,7 +41,7 @@ export class TelaDocComponent {
 
 
    this.verificarAssinatura()
-
+  
    this.dadosService.getData().subscribe((dados) => {
 
     this.user = this.dadosService.mapToUser(dados);
@@ -98,8 +98,19 @@ export class TelaDocComponent {
     });
    
     this.showDonload()
+    this.gerarImagemTxt()
   }
 
+  imagemGerada: string | null = null;
+
+  gerarImagemTxt() {
+    html2canvas(this.paragrafo.nativeElement).then((canvas) => {
+      this.imagemGerada = canvas.toDataURL();
+      this.assinaturaService.setAssinaturaTxt(this.imagemGerada)
+      
+      
+    });
+  }
 
 
 }

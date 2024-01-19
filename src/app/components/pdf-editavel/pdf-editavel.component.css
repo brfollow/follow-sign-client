@@ -68,6 +68,12 @@
 
 .user-signature img{
     height: 8em;
+    height: auto;
+}
+
+
+#user-signature-txt{
+    width: 100%;
 }
 
 .user-signature p{

@@ -6,6 +6,7 @@ import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
 import html2canvas from 'html2canvas';
 import Swal from 'sweetalert2'
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-tela-doc',
@@ -15,7 +16,7 @@ import Swal from 'sweetalert2'
 })
 export class TelaDocComponent {
   @ViewChild('paragrafo') paragrafo!: ElementRef;
-
+  @ViewChild('conteudoParaPDF') conteudoParaPDF!: ElementRef;
 
   user!: UserModel ;
   sender!: SenderModel;
@@ -37,10 +38,6 @@ export class TelaDocComponent {
 
   ngOnInit(): void {
 
-
-
-
-   this.verificarAssinatura()
   
    this.dadosService.getData().subscribe((dados) => {
 
@@ -53,6 +50,8 @@ export class TelaDocComponent {
 });
 
 
+
+ this.verificarAssinatura()
 
 
     
@@ -69,7 +68,10 @@ export class TelaDocComponent {
             
     }else if(this.assinaturaTxt){
       this.isSigned = true
+     
       this.assinaturaImg = ''
+
+      
     
     }
   }
@@ -82,13 +84,27 @@ export class TelaDocComponent {
     
   }
 
-  showDonload(){
+  showDawnload(){
     this.botaoDownload = true
   }
 
 
 
-  gerarPdf(){
+  imagemGerada: string ='';
+
+
+  //gerar uma imagem da assinatura que foi feita em txt
+  gerarImagemTxt() {
+    html2canvas(this.paragrafo.nativeElement).then((canvas) => {
+      this.imagemGerada = canvas.toDataURL();
+   
+      
+    });
+  }
+
+
+
+  concluirAssinatura(){
     Swal.fire({
       position: "center",
       icon: "success",
@@ -96,20 +112,28 @@ export class TelaDocComponent {
       showConfirmButton: false,
       timer: 3000
     });
-   
-    this.showDonload()
-    this.gerarImagemTxt()
+
+
+    if(this.assinaturaTxt){
+      this.gerarImagemTxt()
+    }
+    
+    this.showDawnload()
   }
 
-  imagemGerada: string | null = null;
 
-  gerarImagemTxt() {
-    html2canvas(this.paragrafo.nativeElement).then((canvas) => {
-      this.imagemGerada = canvas.toDataURL();
-      this.assinaturaService.setAssinaturaTxt(this.imagemGerada)
-      
-      
-    });
+  gerarPDF() {
+
+    let pdfTeste = new jsPDF('p', 'pt', 'a4');
+
+
+    pdfTeste.html(this.conteudoParaPDF.nativeElement,{
+      callback:(pdfTeste) =>{
+        pdfTeste.save('documento.pdf');
+      }
+    })
+
+ 
   }
 
 

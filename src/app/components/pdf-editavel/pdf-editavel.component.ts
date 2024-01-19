@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import { DocModel } from 'src/app/model/docModel';
 import { SenderModel } from 'src/app/model/senderModel';
@@ -17,7 +17,7 @@ import { DadosService } from 'src/app/service/dadosService.service';
 export class PdfEditavelComponent implements OnInit {
 
 
-  @ViewChild('conteudoParaPDF') conteudoParaPDF!: ElementRef;
+ 
 
 
   user!: UserModel;
@@ -25,8 +25,13 @@ export class PdfEditavelComponent implements OnInit {
   docModel!:DocModel;
 
   
-  assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt();
-  assinaturaImg: string= this.assinaturaService.getImageDataURL();
+  // assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt();
+  // assinaturaImg: string= this.assinaturaService.getImageDataURL();
+
+  @Input()
+  assinaturaTxt: string = '';
+  @Input()
+  assinaturaImg: string= '';
 
   constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService ) {}
 
@@ -41,38 +46,19 @@ export class PdfEditavelComponent implements OnInit {
 
 
     });
-    
-
-    
-    
 
   }
+
+  
  
-  ngAfterViewInit() {
-    // Agora, é seguro acessar nativeElement
-    const conteudo = this.conteudoParaPDF.nativeElement;
+  // ngAfterViewInit() {
+  //   // Agora, é seguro acessar nativeElement
+  //   const conteudo = this.conteudoParaPDF.nativeElement;
    
-  }
+  // }
 
-  teste(){
-    this. gerarPDF();
-  }
-
-  gerarPDF() {
-
-    let pdfTeste = new jsPDF('p', 'pt', 'a4');
-
-
-    pdfTeste.html(this.conteudoParaPDF.nativeElement,{
-      callback:(pdfTeste) =>{
-        pdfTeste.save('documento.pdf');
-      }
-    })
-
+  
  
-  }
-  
 
-  
 
 }

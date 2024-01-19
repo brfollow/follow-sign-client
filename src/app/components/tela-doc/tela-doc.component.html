@@ -8,10 +8,11 @@
         </div>
 
         <div class="doc-assinatura" [ngClass]="{'doc-assinatura-sem-borda':botaoDownload}">
-            <a routerLink="/assinatura"
+            <a 
+            [routerLink]="!isSigned ? '/assinatura' : null"
             (click)="limparAssinatura()"
             [ngClass]="{'isSigned': isSigned, 'isNotSigned':!isSigned}"
-
+          
             >
                 <p *ngIf="!isSigned"
                 >
@@ -45,7 +46,9 @@
                 [ngClass]="{'active-button': isSigned}"
                 type="button" value="Assinar e concluir"
                 [disabled]="!isSigned"
-                (click)="gerarPdf()"
+                (click)="concluirAssinatura()"
+               
+                
                 
                 >
                
@@ -69,7 +72,8 @@
             <input class="button-download"
                 [ngClass]="{'active-button': isSigned}"
                 type="button" value="Baixar documento"
-                routerLink="/docAssinado"
+                
+                (click)=" gerarPDF()"
                
                 
                 >
@@ -82,4 +86,21 @@
 
 </div>
 
-<!-- <button (click)="gerarImagem()">teste</button> -->
+
+
+<div style="display: none;">
+
+    <div #conteudoParaPDF>
+    
+    <app-pdf-editavel
+        
+        assinaturaImg="{{assinaturaImg}}"
+        assinaturaTxt="{{imagemGerada}}"
+       
+    
+        ></app-pdf-editavel>
+    
+    </div>
+</div>
+
+

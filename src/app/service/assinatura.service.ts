@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DadosService } from './dadosService.service';
 
-
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -50,6 +50,22 @@ export class AssinaturaService {
   }
 
 
+
+  private conteudoParaPDFSource = new BehaviorSubject<string>('');
+  conteudoParaPDF$ = this.conteudoParaPDFSource.asObservable();
+  private pdfTemporario: string | null = null;
+
+  setConteudoParaPDF(conteudo: string): void {
+    this.conteudoParaPDFSource.next(conteudo);
+  }
+
+  salvarPDFTemporariamente(pdf: string): void {
+    this.pdfTemporario = pdf;
+  }
+
+  obterPDFTemporario(): string | null {
+    return this.pdfTemporario;
+  }
 
 
 

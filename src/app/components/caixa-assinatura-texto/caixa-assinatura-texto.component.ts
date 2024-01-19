@@ -44,7 +44,7 @@ export class CaixaAssinaturaTextoComponent {
     });
 
 
-    this.assinaturaSalva = this.user.nameUser + " ( "+ this.user.idUser+ " )"
+    this.assinaturaSalva = this.user.nameUser + " ("+ this.user.idUser+ ")"
   }
 
 

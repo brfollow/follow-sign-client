@@ -71,3 +71,19 @@
 
 }
 
+@media screen and (min-width: 1500px){
+  .container__terms {
+    padding: 3em 2em;
+}
+
+.terms-user-text{
+  font-size: 15px;
+}
+.terms-sender{
+  margin-bottom: 5em;
+}
+.terms-sender p{
+  font-size: 15px;
+  line-height: 21px;
+}
+}

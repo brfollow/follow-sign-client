@@ -38,7 +38,7 @@ export class AssinaturaService {
   setAssinaturaTxt(txt: string) {
 
     this.assinaturaTxt = txt;
-    console.log(this.assinaturaTxt );
+   
    
   }
 

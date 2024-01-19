@@ -13,6 +13,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "sweetalert2",
+              "html2canvas",
+              "canvg",
+              "jspdf",
+              "core-js",
+              "raf",
+              "rgbcolor",
+              "dompurify"
+               
+           ],
+            
             "outputPath": "dist/assinatura-cliente-follow",
             "index": "src/index.html",
             "main": "src/main.ts",

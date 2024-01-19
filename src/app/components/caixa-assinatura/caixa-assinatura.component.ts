@@ -33,57 +33,55 @@ export class CaixaAssinaturaComponent {
       console.error('Erro ao obter o contexto 2D do canvas.');
     }
 
-    canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
-    canvas.addEventListener('mouseup', this.stopDrawing.bind(this));
-    canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
-    canvas.addEventListener('mouseleave', this.stopDrawing.bind(this));
-  }
-
-  handleMouseDown(e: MouseEvent): void {
-    // Evita o comportamento padrão do navegador (evita duplo clique)
-    e.preventDefault();
-
-    this.isDrawing = true;
-    this.paths.push([]);
-    this.draw(e);
+    canvas.addEventListener('touchstart', this.handleTouchStart.bind(this));
+    canvas.addEventListener('touchend', this.stopDrawing.bind(this));
+    canvas.addEventListener('touchmove', this.handleTouchMove.bind(this));
+   canvas.addEventListener('mouseleave', this.stopDrawing.bind(this));
   }
 
   stopDrawing(): void {
     this.isDrawing = false;
   }
 
-  handleMouseMove(e: MouseEvent): void {
-    if (!this.isDrawing) return;
-
-    // Evita o comportamento padrão do navegador (evita seleção de texto ao arrastar)
+  handleTouchStart(e: TouchEvent): void {
     e.preventDefault();
-
-    this.draw(e);
+  
+    const touch = e.touches[0];
+    this.isDrawing = true;
+    this.paths.push([]);
+    this.draw(touch);
   }
 
-  draw(e: MouseEvent): void {
+  handleTouchMove(e: TouchEvent): void {
+    e.preventDefault();
+  
+    if (this.isDrawing) {
+      const touch = e.touches[0];
+      this.draw(touch);
+    }
+  }
+ draw(e: MouseEvent | Touch): void {
     const currentPath = this.paths[this.paths.length - 1];
-
+  
     this.context.lineWidth = 2;
     this.context.lineCap = 'round';
     this.context.strokeStyle = '#000';
-
+  
     currentPath.push({ x: e.clientX - this.signatureCanvas.nativeElement.getBoundingClientRect().left, y: e.clientY - this.signatureCanvas.nativeElement.getBoundingClientRect().top });
-
+  
     this.context.clearRect(0, 0, this.signatureCanvas.nativeElement.width, this.signatureCanvas.nativeElement.height);
-
+  
     this.paths.forEach(path => {
       this.context.beginPath();
       this.context.moveTo(path[0].x, path[0].y);
-
+  
       path.forEach(point => {
         this.context.lineTo(point.x, point.y);
       });
-
+  
       this.context.stroke();
     });
   }
-
   undoDrawing(): void {
     if (this.paths.length > 0) {
       const undonePath = this.paths.pop() || [];

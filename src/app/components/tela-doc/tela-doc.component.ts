@@ -28,6 +28,8 @@ export class TelaDocComponent {
   
   botaoDownload: boolean = false;
 
+  assinaturaConcluida: boolean = false
+
 
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
   assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt()
@@ -119,6 +121,7 @@ export class TelaDocComponent {
     }
     
     this.showDawnload()
+    this.assinaturaConcluida = true
   }
 
 

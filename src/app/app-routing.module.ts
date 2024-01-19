@@ -18,9 +18,6 @@ const routes: Routes = [
 },
 {
   path:'assinatura',component:TelaAssinaturaComponent
-},
-{
-  path:'docAssinado',component:PdfEditavelComponent
 }
 
 

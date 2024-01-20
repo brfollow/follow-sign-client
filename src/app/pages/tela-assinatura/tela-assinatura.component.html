@@ -11,6 +11,7 @@
             <app-caixa-assinatura-texto
        
         *ngIf="modoAssinatura"
+        
        ></app-caixa-assinatura-texto>
         </div>
        
@@ -20,7 +21,7 @@
         
             *ngIf="!modoAssinatura"
             alturaCanvas="300"
-            larguraCanvas="600"
+            larguraCanvas="{{larguraDaTela}}"
         
         ></app-caixa-assinatura>
         </div>

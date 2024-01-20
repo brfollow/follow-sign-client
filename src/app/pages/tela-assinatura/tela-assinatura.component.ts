@@ -1,5 +1,5 @@
 // tela-assinatura.component.ts
-import { Component, ElementRef, ViewChild} from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
@@ -10,13 +10,15 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-tela-assinatura',
   templateUrl: './tela-assinatura.component.html',
-  styleUrls: ['./tela-assinatura.component.css'],
+  styleUrls: ['./tela-assinatura.component.css',
+  './tela-assinatura.responsive.component.css'],
 })
 export class TelaAssinaturaComponent{
 
  
   modoAssinatura: boolean = true
-
+  larguraDaTela: number = 0;
+  alturaDaTela: number = 0;
 
 
 
@@ -24,6 +26,36 @@ export class TelaAssinaturaComponent{
     
     this.modoAssinatura = !estadoAtual 
    
+  }
+
+  ngOnInit() {
+    // Inicializar os valores ao carregar o componente
+    this.atualizarTamanhoDaTela();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    // Atualizar os valores quando a janela for redimensionada
+    this.atualizarTamanhoDaTela();
+  }
+
+  private atualizarTamanhoDaTela() {
+    // Obter o tamanho da tela
+    this.larguraDaTela =  window.innerWidth ;
+    if(this.larguraDaTela < 600){
+
+      this.larguraDaTela =  window.innerWidth - 30;
+    }
+    
+    
+    else
+    
+    {
+      this.larguraDaTela = 600
+    }
+    
+
+    console.log(this.larguraDaTela )
   }
 
  

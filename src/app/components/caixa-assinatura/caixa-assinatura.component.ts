@@ -5,7 +5,9 @@ import { DadosService } from 'src/app/service/dadosService.service';
 @Component({
   selector: 'app-caixa-assinatura',
   templateUrl: './caixa-assinatura.component.html',
-  styleUrls: ['./caixa-assinatura.component.css']
+  styleUrls: ['./caixa-assinatura.component.css',
+  './caixa-assinatura.responsive.component.css'
+]
 })
 export class CaixaAssinaturaComponent {
 

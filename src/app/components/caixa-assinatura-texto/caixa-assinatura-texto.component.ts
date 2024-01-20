@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import html2canvas from 'html2canvas';
 import { DocModel } from 'src/app/model/docModel';
@@ -11,7 +11,8 @@ import { DadosService } from 'src/app/service/dadosService.service';
 @Component({
   selector: 'app-caixa-assinatura-texto',
   templateUrl: './caixa-assinatura-texto.component.html',
-  styleUrls: ['./caixa-assinatura-texto.component.css']
+  styleUrls: ['./caixa-assinatura-texto.component.css',
+  './caixa-assinatura-texto.responsive.component.css']
 })
 export class CaixaAssinaturaTextoComponent {
 
@@ -23,8 +24,6 @@ export class CaixaAssinaturaTextoComponent {
 
 
   assinaturaSalva: string = ''
-
-
 
 
   limparInput(){

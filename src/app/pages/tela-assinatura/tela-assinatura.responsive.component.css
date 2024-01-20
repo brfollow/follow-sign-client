@@ -1,0 +1,10 @@
+@media screen and (min-width: 300px){
+
+    .container__signature {
+        padding: 0.5em 1em;
+    }
+    .container__signature h2 {
+        font-size: 19px;
+        padding: 2.5em 1em;
+    }
+}

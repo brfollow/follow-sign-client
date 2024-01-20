@@ -75,9 +75,11 @@
   .container__terms {
     padding: 3em 2em;
 }
-
+.terms-user-title {
+  font-size: 22px;
+}
 .terms-user-text{
-  font-size: 15px;
+  font-size: 17px;
 }
 .terms-sender{
   margin-bottom: 5em;

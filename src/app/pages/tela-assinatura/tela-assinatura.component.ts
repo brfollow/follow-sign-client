@@ -42,14 +42,13 @@ export class TelaAssinaturaComponent{
   private atualizarTamanhoDaTela() {
     // Obter o tamanho da tela
     this.larguraDaTela =  window.innerWidth ;
-    if(this.larguraDaTela < 600){
+    if(this.larguraDaTela < 455){
 
       this.larguraDaTela =  window.innerWidth - 30;
+    }else if(window.innerWidth >= 455 && window.innerWidth <700){
+      this.larguraDaTela = 417.516
     }
-    
-    
-    else
-    
+    else   
     {
       this.larguraDaTela = 600
     }

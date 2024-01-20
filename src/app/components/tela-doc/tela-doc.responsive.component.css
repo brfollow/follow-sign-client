@@ -39,6 +39,11 @@
 
 }
 
+.doc-assinatura a p{
+  font-size: 18px;
+  padding: 13px;
+}
+
 .sender {
   margin-top: 1em;
   width: auto;

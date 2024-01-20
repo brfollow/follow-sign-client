@@ -54,7 +54,7 @@ export class TelaAssinaturaComponent{
     }
     
 
-    console.log(this.larguraDaTela )
+ 
   }
 
  

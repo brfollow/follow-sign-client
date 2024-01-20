@@ -1,22 +1,37 @@
 
 #signature-canvas {
     border: 1px solid #1f1d1d;
-    border-radius: 5px;
+    
     cursor: crosshair;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 
 
 .action-button { 
     margin-top: 1em;
+    display: flex;
+    flex-direction: row;
 }
 
-.action-button button{ 
-    padding: 10px;
+.action-button a{ 
+    padding: 5px 8px;
     cursor: pointer;
-    font-size: 25px;
-    margin-right: 15px;
+    font-size: 15px;
     border-radius: 8px;
+    display: flex;
+    width: fit-content;
+    border: 1px solid black;
+    align-items: center;
+    margin-right: 1em;
+}
+.action-button a img{
+    width: 2em;
+    height: 2em;
+   margin-right: 5px;
+
 }
 
 .active{

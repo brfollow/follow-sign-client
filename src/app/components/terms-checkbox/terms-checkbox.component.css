@@ -79,18 +79,18 @@
 
 
 .button{
-    background-color: rgb(141, 141, 209);
+   border: 1px solid #2d6dfb;
     color: white;
     padding: 1em;
-    border: none;
+    color: #2d6dfb;
     font-size: 20px;
     border-radius: 10px;
     width: 100%;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .active-button{
-    background-color: blue;
+    background-color: #2d6dfb;
     color: white;
     padding: 1em;
     border: none;

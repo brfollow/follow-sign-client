@@ -21,8 +21,11 @@
         
     </div>
 
-    <div class="save-button">
-        <input (click)="enviandoAssinaturaTxt()" routerLink="/doc" type="button" value="Salvar assinatura" >
+    <div class="container-save-button">
+        <input class="save-button"
+        [ngClass]="{'save-button-active': assinaturaSalva}"
+        [disabled]="!assinaturaSalva"
+        (click)="enviandoAssinaturaTxt()" routerLink="/doc" type="button" value="Salvar assinatura" >
     </div>
 
 </div>

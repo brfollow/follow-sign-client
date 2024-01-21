@@ -16,6 +16,8 @@ export class CaixaAssinaturaComponent {
   @Input()
   larguraCanvas:string =''
 
+  statusAssinatura: boolean = false
+
 
 
   @ViewChild('signatureCanvas', { static: true }) signatureCanvas!: ElementRef<HTMLCanvasElement>;
@@ -71,6 +73,7 @@ export class CaixaAssinaturaComponent {
     this.isDrawing = false;
   }
   draw(e: MouseEvent | Touch): void {
+    this.statusAssinatura =true
     const currentPath = this.paths[this.paths.length - 1];
   
     this.context.lineWidth = 2;
@@ -110,12 +113,18 @@ export class CaixaAssinaturaComponent {
         this.context.stroke();
       });
     }
+
+    if(this.paths.length == 0){
+      this.statusAssinatura =false
+    }
   }
 
  
   clearDrawing(): void {
     this.context.clearRect(0, 0, this.signatureCanvas.nativeElement.width, this.signatureCanvas.nativeElement.height);
     this.paths.length = 0;
+
+    this.statusAssinatura =false
   }
 
 
@@ -129,16 +138,13 @@ export class CaixaAssinaturaComponent {
       
       this.assinaturaService.setImageDataURL(dataURL);
 
+    
+
      
-      
-      // const a = document.createElement('a');
-      // a.href = dataURL;
-      // a.download = 'assinatura.png';
-      // document.body.appendChild(a);
-      // a.click();
-      // document.body.removeChild(a);
+    
     } else {
-      alert('Nenhum desenho para baixar.');
+   
+      alert('Sem assinatura.');
     }
   }
 

@@ -47,17 +47,30 @@
      color: white;
  }
  
- .save-button {
+ .container-save-button{
      margin-top: 1em;
+     display: flex;
+     justify-content: center;
  }
- .save-button input{ 
-     width: 100%;
-     background-color: blue;
-     border: none;
+ .save-button{ 
+     width: 80%;
+     background-color: white;
+     border: 1px solid blue;
      border-radius: 10px;
      padding: 0.5em;
-     color: white;
-     cursor: pointer;
+     color: blue;
+     cursor: default;
      font-size: 25px;
      font-weight: bold;
+     transition: 0.5s;
  }
+
+ .save-button-active{ 
+   
+    background-color: blue;
+   
+   
+    color: white;
+    cursor: pointer;
+
+}

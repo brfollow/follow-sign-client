@@ -19,6 +19,9 @@ export class CaixaAssinaturaTextoComponent {
   user!: UserModel;
   docModel!: DocModel
 
+
+  statusAssinatura:boolean = false
+
   constructor(private dadosService: DadosService, private assinaturaService: AssinaturaService) {}
 
 
@@ -34,7 +37,7 @@ export class CaixaAssinaturaTextoComponent {
 
   ngOnInit(): void {
 
-    
+   
 
     this.dadosService.getData().subscribe((dados) => {
 
@@ -43,7 +46,8 @@ export class CaixaAssinaturaTextoComponent {
     });
 
 
-    this.assinaturaSalva = this.user.nameUser + " ("+ this.user.idUser+ ")"
+    this.assinaturaSalva = this.user.nameUser + " ("+ this.user.idUser+ ")" 
+    this.estadoAssinatura()
   }
 
 
@@ -53,5 +57,16 @@ export class CaixaAssinaturaTextoComponent {
     // Armazene o texto no serviço
     this.assinaturaService.setAssinaturaTxt(this.assinaturaSalva);
   }
+
+  estadoAssinatura(){
+    if(this.assinaturaSalva == ''){
+      console.log(this.statusAssinatura )
+      this.statusAssinatura = false
+    }else{
+      console.log(this.statusAssinatura )
+      this.statusAssinatura = true
+    }
+  }
+
 
 }

@@ -132,26 +132,20 @@
 
 
 .button{
-    background-color: rgb(141, 141, 209);
-    border: none;
+    background-color: white;
+    border: 1px solid #2d6dfb;
     width: 100%;
     padding: 20px ;
     font-weight: bold;
     font-size: 22px;
-    color: white;
+    color: #2d6dfb;
     cursor: pointer;
     border-radius: 10px;
     margin-bottom: 2em;
     cursor: default;
 }
 
-.active-button{
 
-    background-color: blue;
-    cursor: pointer;
-
-
-}
 
 
 .sender p{
@@ -196,18 +190,32 @@
     
     margin-bottom: 1em;
   }
-  
-  
-  .button-download input{
-    background-color: blue;
-    width: 100%;
-    padding: 20px ;
-    font-weight: bold;
-    font-size: 19px;
-    color: white;
-    cursor: pointer;
-    border-radius: 10px;
-    border: none;
-   
+
+  .button-download a img {
+    width: 2em;
+    height: 2em;
+    margin: 0;
+    margin-right: 0.5em;
   }
+  
+  
+  .button-download a{
+    background-color: #2d6dfb;
+    padding: 1em;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+  }
+
+  .active-button{
+
+    
+    cursor: pointer;
+    background-color: #2d6dfb;
+    color: white;
+
+}
   

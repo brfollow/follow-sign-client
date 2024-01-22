@@ -1,6 +1,7 @@
-import { LogModel } from "./LodModel"
+import { LogModel } from "./LogModel"
 
 export class DocModel  {
+  [x: string]: any
 
     docName: string =''
     title: string =''
@@ -8,6 +9,8 @@ export class DocModel  {
     assianturaTxt: string =''
     assianturaImg: string =''
     logs: LogModel[] = []
+  doc: any
+ 
 
 
 

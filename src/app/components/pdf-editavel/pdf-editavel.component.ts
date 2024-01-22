@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { jsPDF } from 'jspdf';
+import { LogModel } from 'src/app/model/LogModel';
 import { DocModel } from 'src/app/model/docModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { UserModel } from 'src/app/model/userModel';
@@ -16,13 +17,15 @@ import { DadosService } from 'src/app/service/dadosService.service';
 })
 export class PdfEditavelComponent implements OnInit {
 
-
+  dataAtual: string ='';
+  hora:string =''
  
 
 
   user: UserModel | undefined;
   sender: SenderModel | undefined;
   docModel:DocModel | undefined;
+  lods!: LogModel  ;
 
   
   // assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt();
@@ -33,32 +36,52 @@ export class PdfEditavelComponent implements OnInit {
   @Input()
   assinaturaImg: string= '';
 
-  constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService ) {}
+  constructor(private dadosService: DadosService ) {
+
+    const hoje = new Date();
+
+    // Obtém o dia, mês e ano
+    const dia = hoje.getDate();
+    const mes = hoje.getMonth() + 1; // Mês começa do zero, então adicionamos 1
+    const ano = hoje.getFullYear();
+    const horas = hoje.getHours();
+    const minutos = hoje.getMinutes();
+
+    // Formata a data no formato desejado (dd/mm/yyyy)
+    this.dataAtual = `${this.formatarNumero(dia)}/${this.formatarNumero(mes)}/${ano}`;
+    this.hora = `${horas}:${minutos}`;
+
+
+  }
+
+  private formatarNumero(numero: number): string {
+    // Adiciona um zero à esquerda se o número for menor que 10
+    return numero < 10 ? `0${numero}` : `${numero}`;
+  }
 
 
   ngOnInit(): void {
 
-    this.dadosService.getData().subscribe((dados) => {
+   console.log(this.hora);
+   
+
+    this.dadosService.getData().subscribe(async (dados) => {
 
       this.user = this.dadosService.mapToUser(dados);
       this.sender = this.dadosService.mapToSender(dados);
-      this.docModel = this.dadosService.mapToDoc(dados);
+      try{
+
+        this.docModel = await this.dadosService.mapToDoc(dados);
+        console.log(dados.id);
+        
+      }catch (error) {
+        console.error('Erro ao carregar dados no componente:', error);
+        // Lida com erros aqui, se necessário
+      }
 
 
     });
 
   }
-
-  
- 
-  // ngAfterViewInit() {
-  //   // Agora, é seguro acessar nativeElement
-  //   const conteudo = this.conteudoParaPDF.nativeElement;
-   
-  // }
-
-  
- 
-
 
 }

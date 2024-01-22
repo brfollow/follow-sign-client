@@ -20,9 +20,9 @@ export class PdfEditavelComponent implements OnInit {
  
 
 
-  user!: UserModel;
-  sender!: SenderModel;
-  docModel!:DocModel;
+  user: UserModel | undefined;
+  sender: SenderModel | undefined;
+  docModel:DocModel | undefined;
 
   
   // assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt();

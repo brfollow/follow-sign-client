@@ -18,9 +18,9 @@ export class TelaDocComponent {
   @ViewChild('paragrafo') paragrafo!: ElementRef;
   @ViewChild('conteudoParaPDF') conteudoParaPDF!: ElementRef;
 
-  user!: UserModel ;
-  sender!: SenderModel;
-  docModel!:DocModel;
+  user: UserModel | undefined ;
+  sender: SenderModel | undefined;
+  docModel:DocModel | undefined;
 
  
 
@@ -127,12 +127,12 @@ export class TelaDocComponent {
 
   gerarPDF() {
 
-    let pdfTeste = new jsPDF('p', 'pt', 'a4');
+    let pdf = new jsPDF('p', 'pt', 'a4');
 
 
-    pdfTeste.html(this.conteudoParaPDF.nativeElement,{
-      callback:(pdfTeste) =>{
-        pdfTeste.save('documento.pdf');
+    pdf.html(this.conteudoParaPDF.nativeElement,{
+      callback:(pdf) =>{
+        pdf.save('documento.pdf');
       }
     })
 

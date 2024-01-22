@@ -5,29 +5,31 @@ import{DocModel} from '../model/docModel'
 import { LogModel } from '../model/LodModel';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import {dados} from '../dataFake/dadosUser'
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DadosService {
-
-
-
+data:any
+  private apiUrl = 'http://localhost:3000/api'; 
+ constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
-    // Em vez de realizar uma chamada HTTP real, retornamos os dados fictícios
-
-    return of(dados);
+   
+    
+    this.data = this.http.get<any>(`${this.apiUrl}/dados/5678`);
+ 
+    return this.data
+    
   }
+ 
 
-
-  constructor() { }
 
 // Método para converter dados brutos em instância de User
 mapToUser(data: any): UserModel {
-
-
+ 
   return {
     nameUser: data.nameUser,
     cpfUser: data.cpfUser,
@@ -53,7 +55,7 @@ mapToDoc(data: any): DocModel {
   doc.docName = data.docName;
   doc.title = data.title;
   doc.descricao = data.descricao;
-  doc.logs = data.log.map((logEntry: any) => this.mapToLogEntry(logEntry));
+ 
   return doc;
 }
 

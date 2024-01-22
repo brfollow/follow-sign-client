@@ -4,6 +4,7 @@ import { DadosService } from 'src/app/service/dadosService.service';
 import { UserModel } from 'src/app/model/userModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { DocModel } from 'src/app/model/docModel';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-terms-checkbox',
@@ -13,16 +14,16 @@ import { DocModel } from 'src/app/model/docModel';
 })
 export class TermsCheckboxComponent {
 
-  user!: UserModel ;
-  sender!: SenderModel;
-  docModel!:DocModel
-
+  user: UserModel | undefined ;
+  sender: SenderModel | undefined;
+  docModel:DocModel | undefined
+  data:any
 
 
   terms: boolean = false
 
 
-  constructor(private dadosService: DadosService) {}
+  constructor(private dadosService: DadosService, private http: HttpClient) {}
 
   TermoAceite(){
 
@@ -34,14 +35,23 @@ export class TermsCheckboxComponent {
 
   ngOnInit(): void {
 
-    this.dadosService.getData().subscribe((dados) => {
+      this.dadosService.getData().subscribe((dados) => {
 
-      this.user = this.dadosService.mapToUser(dados);
-      this.sender = this.dadosService.mapToSender(dados);
-      this.docModel = this.dadosService.mapToDoc(dados);
+        this.user = this.dadosService.mapToUser(dados);
+       
+        this.sender = this.dadosService.mapToSender(dados);
+        
+        this.docModel = this.dadosService.mapToDoc(dados);
+       
 
+      },
+      (error) => {
+        console.error('Erro ao obter dados no componente:', error);
+      }
+      
+      );
 
-    });
+    
   }
 
 

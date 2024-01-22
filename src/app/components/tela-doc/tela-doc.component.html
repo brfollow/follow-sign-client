@@ -2,8 +2,8 @@
 
     <div class="doc">
         <div class="doc-info">
-            <h2>{{docModel.title}}</h2>
-            <p>{{docModel.descricao}}</p>
+            <h2>{{docModel?.title}}</h2>
+            <p>{{docModel?.descricao}}</p>
 
         </div>
 
@@ -29,8 +29,8 @@
         </div>
         <div class="doc-cliente">
 
-            <h3>{{user.nameUser}} ({{user.idUser}})</h3>
-            <p>{{user.cpfUser}}</p>
+            <h3>{{user?.nameUser}} ({{user?.idUser}})</h3>
+            <p>{{user?.cpfUser}}</p>
 
         </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="sender"
     *ngIf="!botaoDownload"
     >
-        <h2><span>{{sender.senderName}}</span> enviou um documento para você assinar.</h2>
+        <h2><span>{{sender?.senderName}}</span> enviou um documento para você assinar.</h2>
         <div >
 
             <input class="button"
@@ -66,7 +66,7 @@
 
         <img src="https://gifs.eco.br/wp-content/uploads/2023/11/imagens-de-verificado-instagram-png-15.png" alt="">
         <h2>O documento foi assinado com sucesso</h2>
-        <p>Enviamos sua resposta para {{sender.senderName}}.</p>
+        <p>Enviamos sua resposta para {{sender?.senderName}}.</p>
         <div class="button-download">
 
             <a 

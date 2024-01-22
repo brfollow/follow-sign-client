@@ -12,7 +12,7 @@ import { TelaAssinaturaComponent } from './pages/tela-assinatura/tela-assinatura
 import { CaixaAssinaturaComponent } from './components/caixa-assinatura/caixa-assinatura.component';
 import { CaixaAssinaturaTextoComponent } from './components/caixa-assinatura-texto/caixa-assinatura-texto.component';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

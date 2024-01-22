@@ -4,7 +4,7 @@ export type LogModel= {
     nameUserLog: string;
     email: string;
     cpf:string
-
+    dados_id:string
 
 
     

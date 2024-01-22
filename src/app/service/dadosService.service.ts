@@ -12,9 +12,36 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DadosService {
-data:any
+
+
+  data:any
   private apiUrl = 'http://localhost:3000/api'; 
- constructor(private http: HttpClient) {}
+
+  dataAtual: string ='';
+  hora:string =''
+ 
+
+
+
+  
+  
+  constructor(private http: HttpClient) {
+
+
+  const hoje = new Date();
+
+  // Obtém o dia, mês e ano
+  const dia = hoje.getDate();
+  const mes = hoje.getMonth() + 1; // Mês começa do zero, então adicionamos 1
+  const ano = hoje.getFullYear();
+  const horas = hoje.getHours();
+  const minutos = hoje.getMinutes();
+
+   // Formata a data no formato desejado (dd/mm/yyyy)
+   this.dataAtual = `${this.formatarNumero(dia)}/${this.formatarNumero(mes)}/${ano}`;
+   this.hora = `${horas}:${minutos}`;
+
+  }
 
 
  logs: LogModel[] = []
@@ -22,7 +49,7 @@ data:any
   getData(): Observable<any> {
    
     
-    this.data = this.http.get<any>(`${this.apiUrl}/dados/5678`);
+    this.data = this.http.get<any>(`${this.apiUrl}/dados/1`);
  
     return this.data
     
@@ -36,7 +63,19 @@ data:any
   }
 
 
-  postDataLog(logData: any): Observable<any> {
+  postDataLog(): Observable<any> {
+    console.log("salvando log");
+    
+    const logData = {
+      dados_id: this.data.id,
+      data: this.dataAtual,
+      hours: this.hora,
+      nameUserLog:` ${this.data.nameUser} assinou o documento` ,
+      email: this.data.emailUser,
+      cpf: this.data.cpfUser,
+    }
+
+
     return this.http.post<any>(`${this.apiUrl}/logs`, logData);
   }
 
@@ -51,6 +90,7 @@ mapToUser(data: any): UserModel {
     nameUser: data.nameUser,
     cpfUser: data.cpfUser,
     idUser: data.idUser,
+    emailUser:data.emailUser
   }
 
 
@@ -98,9 +138,14 @@ private mapToLogEntry(data: any): LogModel {
     hours: data.hours,
     nameUserLog: data.nameUserLog,
     email: data.email,
-    cpf: data.cpf
+    cpf: data.cpf,
+    dados_id:data.dados_id
   };
 }
 
+private formatarNumero(numero: number): string {
+  // Adiciona um zero à esquerda se o número for menor que 10
+  return numero < 10 ? `0${numero}` : `${numero}`;
+}
 
 }

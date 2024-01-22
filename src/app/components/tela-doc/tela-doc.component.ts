@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DocModel } from 'src/app/model/docModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { UserModel } from 'src/app/model/userModel';
+import { LogModel } from 'src/app/model/LogModel';
+
 import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
 import html2canvas from 'html2canvas';
@@ -21,6 +23,8 @@ export class TelaDocComponent {
   user: UserModel | undefined ;
   sender: SenderModel | undefined;
   docModel:DocModel | undefined;
+
+  log: LogModel | undefined;
 
  
 
@@ -107,6 +111,18 @@ export class TelaDocComponent {
 
 
   concluirAssinatura(){
+    this.dadosService.postDataLog().subscribe(
+      (response) => {
+        console.log('Log postado com sucesso:', response);
+        // Lógica adicional, se necessário
+      },
+      (error) => {
+        console.error('Erro ao postar o log:', error);
+        // Lida com erros aqui, se necessário
+      }
+      );
+    
+  
     Swal.fire({
       position: "center",
       icon: "success",
@@ -138,6 +154,9 @@ export class TelaDocComponent {
 
  
   }
+
+
+  
 
 
 }

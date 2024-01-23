@@ -186,6 +186,11 @@
   margin-bottom: 1em;
 }
 
+.sender h2 {
+  font-size: 23px;
+}
+
+
 .doc-enviado{
     
   padding: 2em;

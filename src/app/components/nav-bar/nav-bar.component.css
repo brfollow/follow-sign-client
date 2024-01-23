@@ -1,11 +1,19 @@
 .container__nav-bar{
-    padding: 1em;
+   
     background-color: rgb(250, 251, 252);
     margin-bottom: 2em;
+    height: 50px;
+    padding: 0.5em 1em;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+    display: flex;
+    align-items: center;
 }
 
+
+
 .nav-bar__img a img{
-    width: 7em;
-    height: 2.3em;
-    margin: 10px;
+    width: 85px;
+    height: 30px;   
+    margin: 15px 20px;
 }

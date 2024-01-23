@@ -6,6 +6,7 @@
     border-radius: 10px;
    
     border: 1px solid rgba(0,0,0,.125);
+    box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
 
 }
 .terms-user-text span{
@@ -27,7 +28,8 @@
    
     padding: 1em;
     margin-bottom: 4em;
-    box-shadow: 1px 1px 3px rgb(134, 132, 132);
+    border: 1px solid rgba(0,0,0,.125);
+    box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
     border-radius: 5px;
 }
 

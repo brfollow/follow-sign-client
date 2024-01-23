@@ -5,6 +5,8 @@
     padding: 2.5em 2em;
     background-color: white;
     border-radius: 10px;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
 }
 
 .container__signature h2{ 

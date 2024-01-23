@@ -17,7 +17,7 @@
 .icons{
     display: flex;
     flex-direction: row;
-     border: 1px solid #615f5f;
+    border: 1px solid var(--fc-border-color, #ddd);
      width: fit-content;
      border-top-right-radius: 11px;
      border-top-left-radius: 11px;
@@ -48,11 +48,11 @@
    border-left: none;
    background-color: rgb(0 0 255 / 14%);
    border-top-right-radius: 10px;
-   border: 1px solid blue; 
+   border: 2px solid blue; 
 }
 .active-left-button{
     border-right: none;
-    border: 1px solid blue; 
+    border: 2px solid blue; 
     background-color: rgb(0 0 255 / 14%);
     border-top-left-radius: 10px;
  }

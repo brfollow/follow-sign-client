@@ -14,6 +14,8 @@ import { HttpClient } from '@angular/common/http';
 export class DadosService {
 
 
+  private idUsuario: string | null =null;
+
   data:any
   private apiUrl = 'http://localhost:3000/api'; 
 
@@ -46,11 +48,34 @@ export class DadosService {
 
  logs: LogModel[] = []
 
+
+
+
+
+
+ getIdUsuario(): string | null{
+  if (!this.idUsuario) {
+    this.idUsuario = localStorage.getItem('userId');
+  }
+  return this.idUsuario;
+}
+ 
+
+
+ setIdUsuario(idUsuario: string){
+   this.idUsuario = idUsuario
+   localStorage.setItem('userId', idUsuario);
+ }
+
+
+
+
   getData(): Observable<any> {
    
+    const idAtual = this.getIdUsuario()
+    this.data = this.http.get<any>(`${this.apiUrl}/dados/${idAtual}`);
+    console.log(this.data);
     
-    this.data = this.http.get<any>(`${this.apiUrl}/dados/1`);
- 
     return this.data
     
   }

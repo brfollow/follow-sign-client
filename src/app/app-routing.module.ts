@@ -7,11 +7,9 @@ import { PdfEditavelComponent } from './components/pdf-editavel/pdf-editavel.com
 
 const routes: Routes = [
 
+
 {
-  path:'', redirectTo:'/', pathMatch: 'full', title:'assinatura'
-},
-{
-  path:'',component:HomeComponent
+  path:'user/:user',component:HomeComponent, title:'assinatura'
 },
 {
   path:'doc',component:TelaDocComponent

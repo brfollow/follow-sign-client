@@ -10,7 +10,8 @@
 }
 
 .container__signature h2{ 
-    font-size: 30px;
+    text-align: center;
+    font-size: 22px;
     margin-bottom: 1em;
 }
 

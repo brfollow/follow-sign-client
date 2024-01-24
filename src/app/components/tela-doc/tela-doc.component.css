@@ -23,13 +23,13 @@
 }
 
 .doc-info h2{
-    font-size: 25px;
+    font-size: 22px;
     margin-bottom: 0.1em;
 
 }
 
 .doc-info p{
-    font-size: 18px;
+    font-size: 17px;
 
 
 }
@@ -54,7 +54,7 @@
 .doc-assinatura a{
     display: flex;
    
-    font-size: 19px;
+    font-size: 17px;
     text-decoration: none;
     
     width: 100%;
@@ -101,11 +101,11 @@
 }
 
 .doc-cliente h3{
-    font-size: 20px;
+    font-size: 17px;
 
 }
 .doc-cliente p{
-    font-size: 20px;
+    font-size: 17px;
 
 }
 
@@ -126,7 +126,7 @@
 
 
 .sender h2{
-   font-size: 30px;
+   font-size: 22px;
    margin-bottom: 1em;
    font-weight: 400;
  }
@@ -189,7 +189,7 @@
   
   .doc-enviado p{
     margin-bottom: 0.5em;
-    font-size: 16px;
+    font-size: 17px;
     width: 80%;
    
   }

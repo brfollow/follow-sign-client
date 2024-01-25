@@ -50,9 +50,9 @@
 
 
 
-.action-button-txt a img{
-    width: 2em;
-    height: 2em;
+.action-button-txt a svg {
+    width: 1.5em;
+    height: 1.5em;
    margin-right: 5px;
 
 }

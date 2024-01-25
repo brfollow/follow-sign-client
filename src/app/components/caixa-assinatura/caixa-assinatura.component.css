@@ -39,8 +39,8 @@
 }
 
 
-.action-button a img{
-    width: 2em;
+.action-button a svg{
+    width: 1.5em;
     height: 2em;
    margin-right: 5px;
 

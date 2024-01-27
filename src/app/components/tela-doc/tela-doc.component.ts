@@ -22,11 +22,13 @@ export class TelaDocComponent {
 
   user: UserModel | undefined ;
   sender: SenderModel | undefined;
-  docModel:DocModel | undefined;
+  docModel:DocModel[]=[];
 
   log: LogModel | undefined;
 
- 
+  urls = ['https://appfollow.com.br/assets/termo.pdf',
+
+        '../../../assets/termo.pdf']
 
   isSigned: boolean = false;
   

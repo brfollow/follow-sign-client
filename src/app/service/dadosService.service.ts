@@ -14,10 +14,13 @@ import { HttpClient } from '@angular/common/http';
 export class DadosService {
 
 
-  private idUsuario: string | null =null;
+ 
 
   data:any
-  private apiUrl = 'https://appfollow.com.br/api/sign/contract/MTE2XzI1NzU3X1siNjQiXQ=='; 
+  private apiUrl = 'https://appfollow.com.br/api/sign/contract/'; 
+ private hashUsuario: string | null =null;
+
+
 
   dataAtual: string ='';
   hora:string =''
@@ -53,18 +56,18 @@ export class DadosService {
 
 
 
- getIdUsuario(): string | null{
-  if (!this.idUsuario) {
-    this.idUsuario = localStorage.getItem('userId');
+ getHashUsuario(): string | null{
+  if (!this.hashUsuario) {
+    this.hashUsuario = localStorage.getItem('hashUsuario');
   }
-  return this.idUsuario;
+  return this.hashUsuario;
 }
  
 
 
- setIdUsuario(idUsuario: string){
-   this.idUsuario = idUsuario
-   localStorage.setItem('userId', idUsuario);
+ setHashUsuario(hashUsuario: string){
+   this.hashUsuario = hashUsuario
+   localStorage.setItem('hashUsuario', hashUsuario);
  }
 
 
@@ -72,8 +75,9 @@ export class DadosService {
 
   getData(): Observable<any> {
    
-    const idAtual = this.getIdUsuario()
-    this.data = this.http.get<any>(`${this.apiUrl}`);
+    const hashAtual = this.getHashUsuario()
+    this.data = this.http.get<any>(`${this.apiUrl}${hashAtual}`);
+   
    
     
     return this.data

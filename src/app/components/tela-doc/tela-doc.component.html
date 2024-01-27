@@ -1,12 +1,13 @@
 <div class="container__doc">
 
     <div class="doc">
-        <div class="doc-info">
-            <h2>{{docModel?.title}}</h2>
+        <div class="doc-info" >
+            <h2 >Teste</h2>
             <!-- <p>{{docModel?.descricao}}</p> -->
+            
+            <!-- <ngx-doc-viewer  [url]="urls[pagina]"></ngx-doc-viewer> -->
 
         </div>
-
         <div class="doc-assinatura" [ngClass]="{'doc-assinatura-sem-borda':botaoDownload}">
             <a 
             [routerLink]="!assinaturaConcluida ? '/assinatura' : null"

@@ -3,8 +3,8 @@
 
 
   .container__terms{
-
-    padding: 2em 1em;
+    width: 90%;
+    padding: 3em 1em;
 
 }
 
@@ -33,7 +33,10 @@
   margin-bottom: 3em;
 
 }
-
+.terms-sender p {
+  font-size: 15px;
+  
+}
 
 .terms-use-links a{
     font-size: 16px;
@@ -69,15 +72,35 @@
 
 
 
+
+
+
 }
+
+
+
+@media screen and (min-width: 650px) {
+  .container__terms{
+    width: 35em;
+    padding: 3em 2em;
+
+}
+}
+
 
 @media screen and (min-width: 1500px){
   .container__terms {
     padding: 3em 2em;
+    width: 35em;
 }
 .terms-user-title {
   font-size: 22px;
 }
+
+.terms-user-text{
+  width: 80%;
+}
+
 .terms-user-text{
   font-size: 17px;
 }

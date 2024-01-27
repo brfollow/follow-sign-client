@@ -4,7 +4,8 @@
     padding: 2em;
     background-color: white;
     border-radius: 10px;
-   
+    width: 35em;
+    padding: 3em 2em;
     border: 1px solid rgba(0,0,0,.125);
     box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
 

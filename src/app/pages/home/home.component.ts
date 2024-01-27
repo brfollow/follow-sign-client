@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserModel } from 'src/app/model/userModel';
 import { DadosService } from 'src/app/service/dadosService.service';
 
 @Component({
@@ -8,8 +9,8 @@ import { DadosService } from 'src/app/service/dadosService.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
-  user: string =''
+  userModel: UserModel | undefined ;
+  hashUser: string =''
 
 
   constructor(private route: ActivatedRoute,private dadosService: DadosService) { 
@@ -17,19 +18,34 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.user = this.route.snapshot.params['user'];
+    this.hashUser = this.route.snapshot.params['user'];
     // Agora, 'suaVariavel' contém o valor passado na rota
 
- 
- console.log(this.user);
-    this.dadosService.setIdUsuario(this.user)
+
+    this.dadosService.setHashUsuario(this.hashUser)
    
-    console.log(this.user);
+    this.dadosService.getData().subscribe(async (dados) => {
+ 
+    
+
+      this.userModel= this.dadosService.mapToUser(dados);
+      
+      
+       
+  
+  });
 
 
     
     
   }
+
+
+  // isValidHash(){
+  //   if(this.userModel.){
+
+  //   }
+  // }
   
 
 }

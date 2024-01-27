@@ -13,6 +13,10 @@ import { CaixaAssinaturaComponent } from './components/caixa-assinatura/caixa-as
 import { CaixaAssinaturaTextoComponent } from './components/caixa-assinatura-texto/caixa-assinatura-texto.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { AlertPageComponent } from './components/alert-page/alert-page.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,13 +28,16 @@ import { HttpClientModule } from '@angular/common/http';
     TelaAssinaturaComponent,
     CaixaAssinaturaComponent,
     CaixaAssinaturaTextoComponent,
+    AlertPageComponent,
+    
    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

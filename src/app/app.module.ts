@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { AlertPageComponent } from './components/alert-page/alert-page.component';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer'; 
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { AlertPageComponent } from './components/alert-page/alert-page.component
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    PdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,6 +9,9 @@ import { DadosService } from 'src/app/service/dadosService.service';
 import html2canvas from 'html2canvas';
 import Swal from 'sweetalert2'
 import jsPDF from 'jspdf';
+import { PDFDocument, rgb } from 'pdf-lib';
+import { PdfStorageService } from 'src/app/service/pdf-storage.service';
+
 
 @Component({
   selector: 'app-tela-doc',
@@ -26,7 +29,7 @@ export class TelaDocComponent {
 
   log: LogModel | undefined;
 
-  urls = ['https://appfollow.com.br/assets/termo.pdf',
+  urls = ['../../../assets/termo.pdf',
 
         '../../../assets/termo.pdf']
 
@@ -40,13 +43,16 @@ export class TelaDocComponent {
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
   assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt()
 
-  
+  pdfBytes!: Uint8Array ; 
 
-  constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService) {}
+  constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService, private pdfStorageService:PdfStorageService) {}
 
   ngOnInit(): void {
 
-  
+
+    this.mergePDFs(this.urls)
+    this.pdfBytes = this.pdfStorageService.getMergedPdf()
+    
    this.dadosService.getData().subscribe(async (dados) => {
  
     
@@ -159,6 +165,25 @@ export class TelaDocComponent {
  
   }
 
+  async mergePDFs(pdfUrls: string[]): Promise<void> {
+    const mergedPdf = await PDFDocument.create();
+
+    for (const pdfUrl of pdfUrls) {
+      const pdfBytes = await this.fetchPDF(pdfUrl);
+      const pdfDoc = await PDFDocument.load(pdfBytes);
+
+      const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
+      copiedPages.forEach((page) => mergedPdf.addPage(page));
+    }
+
+    this.pdfBytes = await mergedPdf.save();
+    this.pdfStorageService.setMergedPdf(this.pdfBytes);
+  }
+
+  private async fetchPDF(url: string): Promise<Uint8Array> {
+    const response = await fetch(url);
+    return new Uint8Array(await response.arrayBuffer());
+  }
 
   
 

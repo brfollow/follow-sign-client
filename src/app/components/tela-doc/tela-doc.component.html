@@ -7,6 +7,22 @@
             
             <!-- <ngx-doc-viewer  [url]="urls[pagina]"></ngx-doc-viewer> -->
 
+            <pdf-viewer
+            [src]="pdfBytes"
+            [rotation]="0"
+            [original-size]="false"
+            [show-all]="true"
+            [fit-to-page]="false"
+            [zoom]="1"
+            [zoom-scale]="'page-width'"
+            [stick-to-page]="false"
+            [render-text]="true"
+            [external-link-target]="'blank'"
+            [autoresize]="true"
+            [show-borders]="false"
+            style="width: 100%; height: 20em;"
+          ></pdf-viewer>
+
         </div>
         <div class="doc-assinatura" [ngClass]="{'doc-assinatura-sem-borda':botaoDownload}">
             <a 
@@ -106,4 +122,5 @@
     </div>
 </div>
 
+<button (click)="mergePDFs(urls)">teste</button>
 

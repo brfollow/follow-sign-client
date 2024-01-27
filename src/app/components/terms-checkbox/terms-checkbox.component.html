@@ -4,7 +4,7 @@
             Olá, {{user?.nameUser}} ({{user?.idUser}})
         </h2>
         <p class="terms-user-text">
-            Você recebeu, documento <span>{{docModel?.docName}}</span> para assinar.
+            Você recebeu, documento <span *ngFor="let doc of docModel">{{doc.title}} </span> para assinar.
 
         </p>
 

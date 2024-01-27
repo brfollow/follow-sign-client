@@ -46,6 +46,8 @@ export class TelaDocComponent {
 
   
    this.dadosService.getData().subscribe(async (dados) => {
+ 
+    
 
     this.user = this.dadosService.mapToUser(dados);
     this.sender = this.dadosService.mapToSender(dados);

@@ -16,7 +16,7 @@ export class TermsCheckboxComponent {
 
   user: UserModel | undefined ;
   sender: SenderModel | undefined;
-  docModel:DocModel | undefined
+  docModel: DocModel[] = []
   data:any
 
 
@@ -37,13 +37,19 @@ export class TermsCheckboxComponent {
 
       this.dadosService.getData().subscribe(async (dados) => {
 
+      
+        
+
         this.user = this.dadosService.mapToUser(dados);
        
         this.sender = this.dadosService.mapToSender(dados);
-        
+        console.log(this.sender)
+
+
+
         this.docModel = await this.dadosService.mapToDoc(dados);
        
-
+ console.log(this.docModel)
       },
       (error) => {
         console.error('Erro ao obter dados no componente:', error);

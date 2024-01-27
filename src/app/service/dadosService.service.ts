@@ -17,7 +17,7 @@ export class DadosService {
   private idUsuario: string | null =null;
 
   data:any
-  private apiUrl = 'http://localhost:3000/api'; 
+  private apiUrl = 'https://appfollow.com.br/api/sign/contract/MTE2XzI1NzU3X1siNjQiXQ=='; 
 
   dataAtual: string ='';
   hora:string =''
@@ -73,8 +73,8 @@ export class DadosService {
   getData(): Observable<any> {
    
     const idAtual = this.getIdUsuario()
-    this.data = this.http.get<any>(`${this.apiUrl}/dados/${idAtual}`);
-    console.log(this.data);
+    this.data = this.http.get<any>(`${this.apiUrl}`);
+   
     
     return this.data
     
@@ -108,48 +108,51 @@ export class DadosService {
 
 
 // Método para converter dados brutos em instância de User
-mapToUser(data: any): UserModel {
+mapToUser(user: any): UserModel {
  
   return {
-    id: data.id,
-    nameUser: data.nameUser,
-    cpfUser: data.cpfUser,
-    idUser: data.idUser,
-    emailUser:data.emailUser
+    id: user.id,
+    nameUser: user.data.patient_name,
+    cpfUser: user.data.patient_cpf,
+    idUser: user.data.patient_id,
+    emailUser:user
   }
 
 
 }
 
 // Método para converter dados brutos em instância de Sender
-mapToSender(data: any): SenderModel {
+mapToSender(sender: any): SenderModel {
   return {
-    senderName: data.senderName,
-    senderPhone: data.senderPhone,
-    senderEmail: data.senderEmail,
+    senderName: sender.data.razao_social,
+    senderPhone: sender.data.contact_phone,
+    senderEmail: sender.data.contact_email,
   };
 }
 
 // Método para converter dados brutos em instância de Doc
-async mapToDoc(data: any): Promise<DocModel> {
-  const doc = new DocModel();
+ mapToDoc(document: any) {
 
-  doc.docName = data.docName;
-  doc.title = data.title;
-  doc.descricao = data.descricao;
+ return document.data.contracts
+  
 
-  try {
-    // Chama o método getDataLogs para obter os logs do endpoint
-    const logsData = await this.getDataLogs(data.id).toPromise();
-    doc.logs = logsData.map((logEntry: any) => this.mapToLogEntry(logEntry));
-    console.log(doc.logs);
+  
+//const doc = new DocModel();
+  
+  // doc.descricao = document.data.contracts.title;
+
+  // try {
+  //   // Chama o método getDataLogs para obter os logs do endpoint
+  //   const logsData = await this.getDataLogs(data.id).toPromise();
+  //   doc.logs = logsData.map((logEntry: any) => this.mapToLogEntry(logEntry));
+  //   console.log(doc.logs);
     
-    return doc;
-  } catch (error) {
-    // Lida com erros aqui, se necessário
-    console.error('Erro ao obter logs:', error);
-    throw error;
-  }
+  //   return doc;
+  // } catch (error) {
+  //   // Lida com erros aqui, se necessário
+  //   console.error('Erro ao obter logs:', error);
+  //   throw error;
+  // }
 }
 
 

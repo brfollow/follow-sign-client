@@ -24,17 +24,17 @@ export class NavBarComponent {
     this.dadosService.getData().subscribe(async (dados) => {
  
     
-
+      console.log("aqui")
      
       this.isValidHash(dados.status)
-      
+      console.log(dados)
        
   
     });
   }
 
   isValidHash(status: string){
-    if(status == "success"){
+    if(status === "success"){
 
     }else{
       this.router.navigate(['/error']);

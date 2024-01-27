@@ -41,11 +41,6 @@ export class HomeComponent {
   }
 
 
-  // isValidHash(){
-  //   if(this.userModel.){
-
-  //   }
-  // }
   
 
 }

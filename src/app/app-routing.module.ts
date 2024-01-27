@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { TelaDocComponent } from './components/tela-doc/tela-doc.component';
 import { TelaAssinaturaComponent } from './pages/tela-assinatura/tela-assinatura.component';
 import { PdfEditavelComponent } from './components/pdf-editavel/pdf-editavel.component';
+import { AlertPageComponent } from './components/alert-page/alert-page.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,9 @@ const routes: Routes = [
 },
 {
   path:'assinatura',component:TelaAssinaturaComponent
+},
+{
+  path:'error',component:AlertPageComponent
 }
 
 

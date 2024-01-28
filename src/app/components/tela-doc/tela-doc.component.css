@@ -6,6 +6,11 @@
 
 }
 
+.container__contrato-pdf{
+    width: 100%;
+    height: 22em;
+}
+
 .doc{
     width: 35%;
     height: 42em;
@@ -19,7 +24,7 @@
 }
 
 .doc-info{
-    margin-bottom: 24em;
+    margin-bottom: 2em;
 }
 
 .doc-info h2{

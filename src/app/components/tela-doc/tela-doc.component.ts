@@ -11,6 +11,7 @@ import Swal from 'sweetalert2'
 import jsPDF from 'jspdf';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { PdfStorageService } from 'src/app/service/pdf-storage.service';
+import { EmailService } from 'src/app/service/email.service';
 
 
 @Component({
@@ -41,12 +42,19 @@ export class TelaDocComponent {
   assinaturaConcluida: boolean = false
 
 
+
+  
+
+
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
   assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt()
 
   pdfBytes!: Uint8Array ; 
 
-  constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService, private pdfStorageService:PdfStorageService) {}
+  constructor(private dadosService: DadosService,
+     private assinaturaService:AssinaturaService, 
+     private pdfStorageService:PdfStorageService,
+     private emailService:EmailService) {}
 
   ngOnInit(): void {
 
@@ -187,6 +195,18 @@ export class TelaDocComponent {
   }
 
   
+
+  dados = {
+    toEmail: 'leonardosilva01107@gmail.com',
+    message: 'Olá, isso é um teste!',
+    // Adicione outros campos conforme necessário
+  };
+
+  enviarEmail() {
+    // Lógica para enviar e-mail usando os dados
+    console.log("enviando email")
+    this.emailService.sendEmail(this.dados)
+  }
 
 
 }

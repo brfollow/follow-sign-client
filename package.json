@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "emailjs": "^4.0.3",
+    "emailjs-com": "^3.2.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "ng2-pdf-viewer": "^10.0.0",

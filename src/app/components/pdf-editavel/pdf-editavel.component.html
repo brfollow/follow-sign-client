@@ -13,8 +13,8 @@
     <hr class="linhas">
 
     <div class="pdf-body">
-        <h2>{{docModel?.title}}</h2>
-        <p>Criado por • 08 jan 2024</p>
+        <h2 *ngFor="let doc of docModel" >{{doc.title}}</h2>
+        <p>Criado por • {{dataAtual}}</p>
     </div>
     <hr class="linhas">
 
@@ -31,7 +31,7 @@
             <div class="container-user-info">
                 <h4>{{user?.nameUser}} ({{user?.idUser}})</h4>
                 <p>CPF: {{user?.cpfUser}}</p>
-                <p>Assinou como paciente em 08 jan 2024</p>
+                <p>Assinou como paciente em {{dataAtual}}</p>
             </div>
 
 
@@ -41,7 +41,7 @@
         </div>
 
         <div class="user-signature">
-            <!-- <p  *ngIf="assinaturaTxt">{{assinaturaTxt}}</p> -->
+          
             <img id="user-signature-txt" *ngIf="assinaturaTxt" [src]="assinaturaTxt" alt="assinatura">
             <img *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
         </div>
@@ -72,4 +72,3 @@
 
 
 
-<!-- <button (click)="gerarPDF()">baixar</button> -->

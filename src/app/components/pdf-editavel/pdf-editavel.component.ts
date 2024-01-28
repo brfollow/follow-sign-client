@@ -24,7 +24,7 @@ export class PdfEditavelComponent implements OnInit {
 
   user: UserModel | undefined;
   sender: SenderModel | undefined;
-  docModel:DocModel | undefined;
+  docModel:DocModel[] = [] ;
   lods!: LogModel  ;
 
   
@@ -62,17 +62,15 @@ export class PdfEditavelComponent implements OnInit {
 
   ngOnInit(): void {
 
-   console.log(this.hora);
    
-
     this.dadosService.getData().subscribe(async (dados) => {
-
+ try{ console.log(dados.id);
       this.user = this.dadosService.mapToUser(dados);
       this.sender = this.dadosService.mapToSender(dados);
-      try{
+     
 
         this.docModel = await this.dadosService.mapToDoc(dados);
-        console.log(dados.id);
+       
         
       }catch (error) {
         console.error('Erro ao carregar dados no componente:', error);

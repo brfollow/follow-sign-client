@@ -17,19 +17,12 @@ export class NavBarComponent {
 
   ngOnInit(): void {
    
-
-
   
-   
     this.dadosService.getData().subscribe(async (dados) => {
  
-    
-      
-     
       this.isValidHash(dados.status)
       console.log(dados)
        
-  
     });
   }
 

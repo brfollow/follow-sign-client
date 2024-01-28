@@ -23,7 +23,7 @@ export class TermsCheckboxComponent {
   terms: boolean = false
 
 
-  constructor(private dadosService: DadosService, private http: HttpClient) {}
+  constructor(private dadosService: DadosService) {}
 
   TermoAceite(){
 

@@ -13,7 +13,6 @@ import { CaixaAssinaturaComponent } from './components/caixa-assinatura/caixa-as
 import { CaixaAssinaturaTextoComponent } from './components/caixa-assinatura-texto/caixa-assinatura-texto.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { AlertPageComponent } from './components/alert-page/alert-page.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer'; 
 
@@ -37,7 +36,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxExtendedPdfViewerModule,
     PdfViewerModule
   ],
   providers: [],

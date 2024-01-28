@@ -27,9 +27,6 @@ export class PdfEditavelComponent implements OnInit {
   docModel:DocModel[] = [] ;
   lods!: LogModel  ;
 
-  
-  // assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt();
-  // assinaturaImg: string= this.assinaturaService.getImageDataURL();
 
   @Input()
   assinaturaTxt: string = '';

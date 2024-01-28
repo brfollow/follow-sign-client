@@ -6,16 +6,12 @@
     font-family: "Alex Brush", cursive;
     font-weight: 400;
     padding-left: 5px;
-  
-
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
  
   
 }
-
-
 
 .action-button-txt { 
     margin-top: 1em;
@@ -33,12 +29,9 @@
     align-items: center; 
     border-radius: 8px;
     color: #24292e !important;
-
 }
 
 .action-button-txt a:hover{ 
-   
-
     background-position: -0.5em;
     background-color: #e6ebf1 !important;
     background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%) !important;
@@ -46,14 +39,10 @@
 
 }
 
-
-
-
-
 .action-button-txt a svg {
     width: 1.5em;
     height: 1.5em;
-   margin-right: 5px;
+    margin-right: 5px;
 
 }
 
@@ -84,8 +73,6 @@
  .save-button-active{ 
    
     background-color: #2d6dfb;;
-   
-   
     color: white;
     cursor: pointer;
 

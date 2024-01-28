@@ -1,7 +1,6 @@
 
 #signature-canvas {
     border: 1px solid  #ddd;
-    
     cursor: crosshair;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -42,7 +41,7 @@
 .action-button a svg{
     width: 1.5em;
     height: 2em;
-   margin-right: 5px;
+    margin-right: 5px;
 
 }
 
@@ -73,9 +72,6 @@
  .save-button-active{ 
    
     background-color: #2d6dfb;;
-   
-   
     color: white;
     cursor: pointer;
-
 }

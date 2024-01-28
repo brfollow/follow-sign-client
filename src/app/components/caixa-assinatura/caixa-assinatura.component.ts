@@ -27,7 +27,7 @@ export class CaixaAssinaturaComponent {
   private undoStack: Array<Array<{ x: number; y: number }>> = [];
   private isDrawing = false;
 
-  constructor(private renderer: Renderer2, private dadosService: DadosService, private assinaturaService: AssinaturaService) {}
+  constructor( private assinaturaService: AssinaturaService) {}
 
   ngAfterViewInit(): void {
     const canvas = this.signatureCanvas.nativeElement;
@@ -66,8 +66,6 @@ export class CaixaAssinaturaComponent {
       this.draw(event);
     }
   }
-
-
 
   stopDrawing(): void {
     this.isDrawing = false;

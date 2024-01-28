@@ -1,4 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import html2canvas from 'html2canvas';
 import { DocModel } from 'src/app/model/docModel';
 import { UserModel } from 'src/app/model/userModel';
 import { AssinaturaService } from 'src/app/service/assinatura.service';
@@ -17,11 +19,15 @@ export class CaixaAssinaturaTextoComponent {
   user!: UserModel;
   docModel!: DocModel
 
+
   statusAssinatura:boolean = false
 
   constructor(private dadosService: DadosService, private assinaturaService: AssinaturaService) {}
 
+
+
   assinaturaSalva: string = ''
+
 
   limparInput(){
     this.assinaturaSalva = ''

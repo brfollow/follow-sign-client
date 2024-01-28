@@ -18,7 +18,7 @@ export class DadosService {
 
   data:any
   private apiUrl = 'https://appfollow.com.br/api/sign/contract/'; 
- private hashUsuario: string | null =null;
+  private hashUsuario: string | null =null;
 
 
 
@@ -26,10 +26,6 @@ export class DadosService {
   hora:string =''
  
 
-
-
-  
-  
   constructor(private http: HttpClient) {
 
 
@@ -78,8 +74,7 @@ export class DadosService {
     const hashAtual = this.getHashUsuario()
     this.data = this.http.get<any>(`${this.apiUrl}${hashAtual}`);
    
-   
-    
+      
     return this.data
     
   }
@@ -92,20 +87,20 @@ export class DadosService {
   }
 
 
-  postDataLog(): Observable<any> {
-    console.log("salvando log");
+  postDataLog(userModel:UserModel | any ): Observable<any> {
+    const urlAssinaturaAPi = "http://localhost:3000/api/"
+   
     
     const logData = {
-      dados_id: this.data.id,
-      data: this.dataAtual,
-      hours: this.hora,
-      nameUserLog:` ${this.data.nameUser} assinou o documento` ,
-      email: this.data.emailUser,
-      cpf: this.data.cpfUser,
+      dados_id: userModel.idUser,
+      nameUserLog:userModel.nameUser,
+      email: "teste@gmail.com",
+      cpf: userModel.cpfUser,
+      status: "assinou o documento"
     }
 
 
-    return this.http.post<any>(`${this.apiUrl}/logs`, logData);
+    return this.http.post<any>(`${urlAssinaturaAPi}logs`, logData);
   }
 
  

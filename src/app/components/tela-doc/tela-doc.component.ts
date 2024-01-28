@@ -10,7 +10,7 @@ import html2canvas from 'html2canvas';
 import Swal from 'sweetalert2'
 import jsPDF from 'jspdf';
 import { PDFDocument, rgb } from 'pdf-lib';
-import { PdfStorageService } from 'src/app/service/pdf-storage.service';
+import { PdfStorageService } from 'src/app/service/pdf.service';
 import { EmailService } from 'src/app/service/email.service';
 
 
@@ -25,7 +25,7 @@ export class TelaDocComponent {
   @ViewChild('paragrafo') paragrafo!: ElementRef;
   @ViewChild('conteudoParaPDF') conteudoParaPDF!: ElementRef;
 
-  user: UserModel | undefined ;
+  user!: UserModel | undefined;;
   sender: SenderModel | undefined;
   docModel:DocModel[]=[];
 
@@ -58,7 +58,7 @@ export class TelaDocComponent {
 
   ngOnInit(): void {
 
-
+    //metodo que junta os pdfs que foram recebido pela api follow
     this.mergePDFs(this.urls)
     this.pdfBytes = this.pdfStorageService.getMergedPdf()
     
@@ -130,8 +130,14 @@ export class TelaDocComponent {
 
 
   concluirAssinatura(){
-    this.dadosService.postDataLog().subscribe(
+    this.dadosService.postDataLog(this.user).subscribe(
       (response) => {
+
+        //gera o pdf assinatura
+        this.gerarPDF()
+        
+        this.enviarEmail()
+
         console.log('Log postado com sucesso:', response);
         // Lógica adicional, se necessário
       },
@@ -141,7 +147,10 @@ export class TelaDocComponent {
       }
       );
     
-  
+   if(this.assinaturaTxt){
+      this.gerarImagemTxt()
+    }
+    
     Swal.fire({
       position: "center",
       icon: "success",
@@ -151,26 +160,40 @@ export class TelaDocComponent {
     });
 
 
-    if(this.assinaturaTxt){
-      this.gerarImagemTxt()
-    }
-    
+   
     this.showDawnload()
     this.assinaturaConcluida = true
   }
 
-
+  //esse metodo faz o pdf da assinatura e envia os dois pdfs para a api follow assinatura
   gerarPDF() {
 
     let pdf = new jsPDF('p', 'pt', 'a4');
 
-
-    pdf.html(this.conteudoParaPDF.nativeElement,{
-      callback:(pdf) =>{
-        pdf.save('documento.pdf');
-      }
-    })
-
+    pdf.html(this.conteudoParaPDF.nativeElement, {
+      callback: async (pdf) => {
+        const blob = await pdf.output('blob');
+        const arrayBuffer = await new Response(blob).arrayBuffer();
+        this.pdfStorageService.setPdfBytesAssinatura(arrayBuffer);
+  
+        console.log(this.user?.idUser);
+  
+        // Esperar até que o conteúdo do PDF seja totalmente gerado antes de chamar enviarPDFsParaAPI
+        await new Promise(resolve => setTimeout(resolve, 0));
+  
+        this.pdfStorageService.enviarPDFsParaAPI(this.user?.idUser).subscribe(
+          
+          response => {
+            // Lide com a resposta da API aqui
+            console.log('Resposta da API:', response);
+          },
+          error => {
+            // Lide com erros aqui
+            console.error('Erro ao enviar PDFs para a API:', error);
+          }
+        );
+      },
+    });
  
   }
 
@@ -203,8 +226,7 @@ export class TelaDocComponent {
   };
 
   enviarEmail() {
-    // Lógica para enviar e-mail usando os dados
-    console.log("enviando email")
+    
     this.emailService.sendEmail(this.dados)
   }
 

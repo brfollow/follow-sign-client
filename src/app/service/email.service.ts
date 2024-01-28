@@ -7,8 +7,6 @@ import * as emailjs from 'emailjs-com';
 })
 export class EmailService {
 
-   private emailjsServiceId = 'SEU_SERVICE_ID'; // Substitua pelo seu Service ID
-  private emailjsUserId = 'SEU_USER_ID'; // Substitua pelo seu User ID
 
   constructor() {}
 
@@ -20,7 +18,7 @@ export class EmailService {
     const templateParams = {
       subject: "teste",
       from_name: "teste",
-      link: "www.google.com",
+      link: data.url_doc,
       to_email: data.toEmail,
       message: data.message,
       // ... adicione outros parâmetros conforme necessário

@@ -1,14 +1,29 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as emailjs from 'emailjs-com';
-
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmailService {
 
+  apiUrl:string = "http://localhost:3000/api"
 
-  constructor() {}
+  urlDawnload:any
+
+ constructor(private http: HttpClient) {}
+
+  getUrlPdfAssinatura(idUser:string | undefined): Observable<any> {
+   
+    
+    this.urlDawnload = this.http.get<any>(`${this.apiUrl}/download-pdf/${idUser}`);
+   
+      console.log(this.urlDawnload )
+    return this.urlDawnload
+    
+  }
+ 
 
   sendEmail(data: any) {
     
@@ -20,7 +35,7 @@ export class EmailService {
       from_name: "teste",
       link: data.url_doc,
       to_email: data.toEmail,
-      message: data.message,
+     
       // ... adicione outros parâmetros conforme necessário
     };
     

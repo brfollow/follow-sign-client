@@ -138,7 +138,7 @@ export class TelaDocComponent {
         
         this.enviarEmail()
 
-        console.log('Log postado com sucesso:', response);
+     
         // Lógica adicional, se necessário
       },
       (error) => {
@@ -176,7 +176,7 @@ export class TelaDocComponent {
         const arrayBuffer = await new Response(blob).arrayBuffer();
         this.pdfStorageService.setPdfBytesAssinatura(arrayBuffer);
   
-        console.log(this.user?.idUser);
+     
   
         // Esperar até que o conteúdo do PDF seja totalmente gerado antes de chamar enviarPDFsParaAPI
         await new Promise(resolve => setTimeout(resolve, 0));
@@ -219,15 +219,27 @@ export class TelaDocComponent {
 
   
 
-  dados = {
-    toEmail: 'leonardosilva01107@gmail.com',
-    message: 'Olá, isso é um teste!',
-    // Adicione outros campos conforme necessário
-  };
+  
 
   enviarEmail() {
-    
-    this.emailService.sendEmail(this.dados)
+
+ this.emailService.getUrlPdfAssinatura(this.user?.idUser).subscribe(async (infoUrl) => {
+ 
+    console.log( infoUrl.url)
+
+    const dados = {
+    toEmail: 'leonardosilva01107@gmail.com',
+    url_doc: infoUrl.url,
+    user_name: this.user?.nameUser
+    // Adicione outros campos conforme necessário
+  }; 
+
+  this.emailService.sendEmail(dados)
+});
+  
+
+
+   
   }
 
 

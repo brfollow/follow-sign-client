@@ -17,7 +17,8 @@ import { PdfStorageService } from 'src/app/service/pdf-storage.service';
   selector: 'app-tela-doc',
   templateUrl: './tela-doc.component.html',
   styleUrls: ['./tela-doc.component.css',
-  './tela-doc.responsive.component.css']
+            './tela-doc.responsive.component.css',
+            './tela-doc-sender.component.css']
 })
 export class TelaDocComponent {
   @ViewChild('paragrafo') paragrafo!: ElementRef;

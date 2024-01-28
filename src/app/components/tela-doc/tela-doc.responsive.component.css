@@ -172,6 +172,10 @@
 }
 
 
+.sender{
+   
+  width: 35%;
+}
 .sender p {
   font-size: 15px;
   line-height: 22px;

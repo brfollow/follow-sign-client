@@ -21,7 +21,10 @@
               "core-js",
               "raf",
               "rgbcolor",
-              "dompurify"
+              "dompurify",
+              "pako",
+              "pdfjs-dist/web/pdf_viewer",
+              "pdfjs-dist"
                
            ],
             

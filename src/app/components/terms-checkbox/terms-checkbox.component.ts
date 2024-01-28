@@ -4,7 +4,7 @@ import { DadosService } from 'src/app/service/dadosService.service';
 import { UserModel } from 'src/app/model/userModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { DocModel } from 'src/app/model/docModel';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-terms-checkbox',

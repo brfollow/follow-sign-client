@@ -19,7 +19,7 @@ export class EmailService {
     
     this.urlDawnload = this.http.get<any>(`${this.apiUrl}/download-pdf/${idUser}`);
    
-      console.log(this.urlDawnload )
+    
     return this.urlDawnload
     
   }
@@ -31,11 +31,11 @@ export class EmailService {
     emailjs.init('mr07jmLF5hmIJV5WW');
     
     const templateParams = {
-      subject: "teste",
-      from_name: "teste",
+      subject: "Documento assinado",
+      from_name: "Equipe Follow",
       link: data.url_doc,
       to_email: data.toEmail,
-     
+      user_name:data.user_name
       // ... adicione outros parâmetros conforme necessário
     };
     

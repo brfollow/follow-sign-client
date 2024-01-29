@@ -21,7 +21,11 @@ import { EmailService } from 'src/app/service/email.service';
             './tela-doc.responsive.component.css',
             './tela-doc-sender.component.css']
 })
+
+
 export class TelaDocComponent {
+
+
   @ViewChild('paragrafo') paragrafo!: ElementRef;
   @ViewChild('conteudoParaPDF') conteudoParaPDF!: ElementRef;
 
@@ -47,7 +51,7 @@ export class TelaDocComponent {
 
 
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
-  assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt()
+  assinaturaTxt: string = ""
 
   pdfBytes!: Uint8Array ; 
 
@@ -74,10 +78,12 @@ export class TelaDocComponent {
 
 });
 
-
+  this.assinaturaTxt = this.assinaturaService.getAssinaturaTxt()
 
  this.verificarAssinatura()
 
+ 
+ 
 
     
 }
@@ -85,23 +91,29 @@ export class TelaDocComponent {
 
 
 
-  verificarAssinatura(){
+  async verificarAssinatura(){
 
-    if(this.assinaturaImg){
-      this.isSigned = true
-      this.assinaturaTxt = ''
-            
-    }else if(this.assinaturaTxt){
-      this.isSigned = true
-     
-      this.assinaturaImg = ''
-
-      
-    
+    if (this.assinaturaImg) {
+      this.isSigned = true;
+      this.assinaturaTxt = '';
+    } else if (this.assinaturaTxt) {
+      this.isSigned = true;
+      this.assinaturaImg = '';
+  
+      console.log("aqui 2");
+  
+      // Adiciona um atraso de  0,1 segundos antes de chamar a função gerarImagemTxt
+      await this.delay(100);
+  
+      this.gerarImagemTxt();
     }
   }
-
-
+  
+  // Função para criar um atraso/ OBS: atraso necessario para criar a img de assinatura Txt
+   delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+ 
   limparAssinatura(){
     this.assinaturaService.setImageDataURL('')
     this.assinaturaService.setAssinaturaTxt('')
@@ -120,6 +132,7 @@ export class TelaDocComponent {
 
   //gerar uma imagem da assinatura que foi feita em txt
   gerarImagemTxt() {
+
     html2canvas(this.paragrafo.nativeElement).then((canvas) => {
       this.imagemGerada = canvas.toDataURL();
    
@@ -130,16 +143,21 @@ export class TelaDocComponent {
 
 
   concluirAssinatura(){
+
+   
+    
+    
     this.dadosService.postDataLog(this.user).subscribe(
       (response) => {
 
+   
+    
         //gera o pdf assinatura
-        this.gerarPDF()
+       this.gerarPDF()
         
-        this.enviarEmail()
+       this.enviarEmail()
 
-     
-        // Lógica adicional, se necessário
+    
       },
       (error) => {
         console.error('Erro ao postar o log:', error);
@@ -147,10 +165,7 @@ export class TelaDocComponent {
       }
       );
     
-   if(this.assinaturaTxt){
-      this.gerarImagemTxt()
-    }
-    
+   
     Swal.fire({
       position: "center",
       icon: "success",
@@ -167,11 +182,15 @@ export class TelaDocComponent {
 
   //esse metodo faz o pdf da assinatura e envia os dois pdfs para a api follow assinatura
   gerarPDF() {
+    
 
     let pdf = new jsPDF('p', 'pt', 'a4');
 
     pdf.html(this.conteudoParaPDF.nativeElement, {
+
+
       callback: async (pdf) => {
+
         const blob = await pdf.output('blob');
         const arrayBuffer = await new Response(blob).arrayBuffer();
         this.pdfStorageService.setPdfBytesAssinatura(arrayBuffer);

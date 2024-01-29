@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 })
 export class EmailService {
 
-  apiUrl:string = "http://localhost:3000/api"
+  private apiUrl:string = "http://localhost:3000/api"
 
   urlDawnload:any
 

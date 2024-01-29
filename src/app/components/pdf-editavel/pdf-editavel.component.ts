@@ -61,7 +61,9 @@ export class PdfEditavelComponent implements OnInit {
 
    
     this.dadosService.getData().subscribe(async (dados) => {
- try{ console.log(dados.id);
+ try{ 
+  
+  
       this.user = this.dadosService.mapToUser(dados);
       this.sender = this.dadosService.mapToSender(dados);
      

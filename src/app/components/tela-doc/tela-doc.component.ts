@@ -45,6 +45,7 @@ export class TelaDocComponent {
 
   assinaturaConcluida: boolean = false
 
+  urlDawnloadDoc: string = ''
 
 
   
@@ -243,8 +244,7 @@ export class TelaDocComponent {
   enviarEmail() {
 
  this.emailService.getUrlPdfAssinatura(this.user?.idUser).subscribe(async (infoUrl) => {
- 
-    console.log( infoUrl.url)
+  this.urlDawnloadDoc = infoUrl.url
 
     const dados = {
     toEmail: 'leonardosilva01107@gmail.com',
@@ -256,10 +256,9 @@ export class TelaDocComponent {
   this.emailService.sendEmail(dados)
 });
   
+}
 
 
-   
-  }
 
 
 }

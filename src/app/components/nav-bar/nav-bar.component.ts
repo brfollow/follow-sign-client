@@ -21,7 +21,6 @@ export class NavBarComponent {
     this.dadosService.getData().subscribe(async (dados) => {
  
       this.isValidHash(dados.status)
-      console.log(dados)
        
     });
   }

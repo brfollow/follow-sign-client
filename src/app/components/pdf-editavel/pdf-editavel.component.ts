@@ -58,10 +58,10 @@ export class PdfEditavelComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
 
    
-    this.dadosService.getData().subscribe(async (dados) => {
+    (await this.dadosService.getData()).subscribe(async (dados) => {
  try{ 
   
   

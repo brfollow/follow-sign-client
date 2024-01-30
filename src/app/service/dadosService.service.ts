@@ -69,7 +69,7 @@ export class DadosService {
 
 
 
-  getData(): Observable<any> {
+  async getData(): Promise<Observable<any>> {
    
     const hashAtual = this.getHashUsuario()
     this.data = this.http.get<any>(`${this.apiUrl}${hashAtual}`);
@@ -87,21 +87,21 @@ export class DadosService {
   }
 
 
-  postDataLog(userModel:UserModel | any ): Observable<any> {
-    const urlAssinaturaAPi = "http://localhost:3000/api/"
+  // postDataLog(userModel:UserModel | any ): Observable<any> {
+  //   const urlAssinaturaAPi = "http://localhost:3000/api/"
    
     
-    const logData = {
-      dados_id: userModel.idUser,
-      nameUserLog:userModel.nameUser,
-      email: "teste@gmail.com",
-      cpf: userModel.cpfUser,
-      status: "assinou o documento"
-    }
+  //   const logData = {
+  //     dados_id: userModel.idUser,
+  //     nameUserLog:userModel.nameUser,
+  //     email: "teste@gmail.com",
+  //     cpf: userModel.cpfUser,
+  //     status: "assinou o documento"
+  //   }
 
 
-    return this.http.post<any>(`${urlAssinaturaAPi}logs`, logData);
-  }
+  //   return this.http.post<any>(`${urlAssinaturaAPi}logs`, logData);
+  // }
 
  
 
@@ -114,7 +114,8 @@ mapToUser(user: any): UserModel {
     nameUser: user.data.patient_name,
     cpfUser: user.data.patient_cpf,
     idUser: user.data.patient_id,
-    emailUser:user
+    emailUser:user.data.patient_email
+
   }
 
 

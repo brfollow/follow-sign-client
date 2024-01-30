@@ -37,48 +37,43 @@ export class CaixaAssinaturaComponent {
       console.error('Erro ao obter o contexto 2D do canvas.');
     }
   
-    canvas.addEventListener('mousedown', this.handleStart.bind(this));
-    canvas.addEventListener('touchstart', this.handleStart.bind(this));
+    canvas.addEventListener('pointerdown', this.handleStart.bind(this));
+    canvas.addEventListener('pointermove', this.handleMove.bind(this));
+    canvas.addEventListener('pointerup', this.stopDrawing.bind(this));
+    canvas.addEventListener('pointercancel', this.stopDrawing.bind(this));
+  }  
   
-    canvas.addEventListener('mouseup', this.stopDrawing.bind(this));
-    canvas.addEventListener('mouseleave', this.stopDrawing.bind(this));
-    canvas.addEventListener('touchend', this.stopDrawing.bind(this));
-    canvas.addEventListener('touchcancel', this.stopDrawing.bind(this));
-  
-    canvas.addEventListener('mousemove', this.handleMove.bind(this));
-    canvas.addEventListener('touchmove', this.handleMove.bind(this));
-  }
-  
-  handleStart(e: MouseEvent | TouchEvent): void {
+  handleStart(e: PointerEvent): void {
     e.preventDefault();
   
-    const event = e instanceof TouchEvent ? (e.touches[0] || e.changedTouches[0]) : e;
     this.isDrawing = true;
     this.paths.push([]);
-    this.draw(event);
+    this.draw(e);
   }
   
-  handleMove(e: MouseEvent | TouchEvent): void {
+  handleMove(e: PointerEvent): void {
     e.preventDefault();
   
     if (this.isDrawing) {
-      const event = e instanceof TouchEvent ? (e.touches[0] || e.changedTouches[0]) : e;
-      this.draw(event);
+      this.draw(e);
     }
   }
 
   stopDrawing(): void {
     this.isDrawing = false;
   }
-  draw(e: MouseEvent | Touch): void {
-    this.statusAssinatura =true
+  draw(e: PointerEvent): void {
+    this.statusAssinatura = true;
     const currentPath = this.paths[this.paths.length - 1];
   
     this.context.lineWidth = 2;
     this.context.lineCap = 'round';
     this.context.strokeStyle = '#000';
-    
-    currentPath.push({ x: e.clientX - this.signatureCanvas.nativeElement.getBoundingClientRect().left, y: e.clientY - this.signatureCanvas.nativeElement.getBoundingClientRect().top });
+  
+    const offsetX = e.offsetX !== undefined ? e.offsetX : (e.pageX - this.signatureCanvas.nativeElement.getBoundingClientRect().left);
+    const offsetY = e.offsetY !== undefined ? e.offsetY : (e.pageY - this.signatureCanvas.nativeElement.getBoundingClientRect().top);
+  
+    currentPath.push({ x: offsetX, y: offsetY });
   
     this.context.clearRect(0, 0, this.signatureCanvas.nativeElement.width, this.signatureCanvas.nativeElement.height);
   

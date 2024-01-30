@@ -35,11 +35,11 @@ export class CaixaAssinaturaTextoComponent {
 
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
 
    
 
-    this.dadosService.getData().subscribe((dados) => {
+    (await this.dadosService.getData()).subscribe((dados) => {
 
           this.user = this.dadosService.mapToUser(dados);
       

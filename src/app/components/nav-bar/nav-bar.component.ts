@@ -15,10 +15,10 @@ export class NavBarComponent {
   }
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
    
   
-    this.dadosService.getData().subscribe(async (dados) => {
+    (await this.dadosService.getData()).subscribe(async (dados) => {
  
       this.isValidHash(dados.status)
        

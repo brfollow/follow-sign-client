@@ -35,7 +35,7 @@ export class TelaDocComponent {
 
   log: LogModel | undefined;
 
-  urls = ['https://appfollow.com.br/assets/termo.pdf',
+  urls = ['../../../assets/termo.pdf',
 
         '../../../assets/termo.pdf']
 
@@ -61,20 +61,19 @@ export class TelaDocComponent {
      private pdfStorageService:PdfStorageService,
      private emailService:EmailService) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
 
     //metodo que junta os pdfs que foram recebido pela api follow
     this.mergePDFs(this.urls)
     this.pdfBytes = this.pdfStorageService.getMergedPdf()
     
-   this.dadosService.getData().subscribe(async (dados) => {
+   ;(await this.dadosService.getData()).subscribe(async (dados) => {
  
     
 
     this.user = this.dadosService.mapToUser(dados);
     this.sender = this.dadosService.mapToSender(dados);
     this.docModel = await this.dadosService.mapToDoc(dados);
-    console.log(this.docModel[0].pdf_url)
      
 
 });
@@ -145,26 +144,16 @@ export class TelaDocComponent {
 
   concluirAssinatura(){
 
-   
-    
-    
-    this.dadosService.postDataLog(this.user).subscribe(
-      (response) => {
+  
+      //gera o pdf assinatura
+    this.gerarPDF()
 
-   
-    
-        //gera o pdf assinatura
-       this.gerarPDF()
-        
+    if(this.user?.emailUser){
        this.enviarEmail()
+    }
+   
 
     
-      },
-      (error) => {
-        console.error('Erro ao postar o log:', error);
-        // Lida com erros aqui, se necessário
-      }
-      );
     
    
     Swal.fire({

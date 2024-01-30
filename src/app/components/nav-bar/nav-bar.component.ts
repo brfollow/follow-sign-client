@@ -10,7 +10,7 @@ import { DadosService } from 'src/app/service/dadosService.service';
 export class NavBarComponent {
 
 
-  constructor(private dadosService: DadosService,private router: Router) { 
+  constructor(private dadosService: DadosService, private router: Router) { 
 
   }
 
@@ -29,6 +29,8 @@ export class NavBarComponent {
     if(status === "success"){
 
     }else{
+      console.log(status);
+      
       this.router.navigate(['/error']);
     }
   }

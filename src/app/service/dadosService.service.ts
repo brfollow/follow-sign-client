@@ -135,39 +135,13 @@ mapToSender(sender: any): SenderModel {
  return document.data.contracts
   
 
-  
-//const doc = new DocModel();
-  
-  // doc.descricao = document.data.contracts.title;
-
-  // try {
-  //   // Chama o método getDataLogs para obter os logs do endpoint
-  //   const logsData = await this.getDataLogs(data.id).toPromise();
-  //   doc.logs = logsData.map((logEntry: any) => this.mapToLogEntry(logEntry));
-  //   console.log(doc.logs);
-    
-  //   return doc;
-  // } catch (error) {
-  //   // Lida com erros aqui, se necessário
-  //   console.error('Erro ao obter logs:', error);
-  //   throw error;
-  // }
 }
 
-
-
 // Método para converter dados brutos em instância de LogEntry
-private mapToLogEntry(data: any): LogModel {
+ mapToLogEntry(document: any) {
 
  
-  return {
-    data: data.data,
-    hours: data.hours,
-    nameUserLog: data.nameUserLog,
-    email: data.email,
-    cpf: data.cpf,
-    dados_id:data.dados_id
-  };
+  return document.data.logs
 }
 
 private formatarNumero(numero: number): string {

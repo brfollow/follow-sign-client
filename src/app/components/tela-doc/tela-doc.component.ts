@@ -196,10 +196,6 @@ export class TelaDocComponent {
         const arrayBuffer = await new Response(blob).arrayBuffer();
         this.pdfStorageService.setPdfBytesAssinatura(arrayBuffer);
   
-     
-  
-        // Esperar até que o conteúdo do PDF seja totalmente gerado antes de chamar enviarPDFsParaAPI
-        await new Promise(resolve => setTimeout(resolve, 0));
   
         this.pdfStorageService.enviarPDFsParaAPI(this.user?.idUser).subscribe(
           

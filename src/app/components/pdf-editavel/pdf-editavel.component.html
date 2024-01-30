@@ -49,17 +49,17 @@
         <h2>Logs do documento</h2>
         <div
         >
-          <!-- <div *ngFor="let log of docModel?.logs" class="logs">
-            <div class="data">
-                <p>{{log.data}}</p>
-                <p>{{log.hours}}</p>
+          <div *ngFor="let log of logs" class="logs">
+            <div class="data" >
+                <p>{{obterDataFormatada(log.created_at)}} </p>
+                <p>{{obterHoraFormatada(log.created_at)}}</p>
             </div>
 
             <div class="assinante">
-                <p>{{log.nameUserLog}} (3643) </p>
-                <p>{{log.email}} - {{log.cpf}}</p>
+                <p>{{log.user_name}} <span>{{log.action}}</span></p>
+                <p>{{log.user_email}} - {{log.user_cpf}}</p>
             </div>
-        </div> -->
+        </div>
 
 
         </div>

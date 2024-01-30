@@ -6,6 +6,13 @@
 
 }
 
+.container__contrato-pdf{
+
+  height: 18em;
+ 
+}
+
+
 .doc-cliente p{
   font-size: 16px;
 }
@@ -94,6 +101,7 @@
 
 }
 
+
 .sender{
   width:27em;
 }
@@ -156,7 +164,12 @@
 
 @media screen and (min-width: 1500px){
 
+  .container__contrato-pdf{
 
+    height: 21em;
+   
+  }
+  
 
 
 .doc {

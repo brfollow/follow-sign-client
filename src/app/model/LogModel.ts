@@ -1,10 +1,9 @@
 export type LogModel= {
-    data: string
-    hours: string;
-    nameUserLog: string;
-    email: string;
-    cpf:string
-    dados_id:string
+    created_at: string
+    user_name: string;
+    user_email: string;
+    user_cpf:string
+    action:string
 
 
     

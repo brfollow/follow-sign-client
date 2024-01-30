@@ -6,7 +6,8 @@ import { SenderModel } from 'src/app/model/senderModel';
 import { UserModel } from 'src/app/model/userModel';
 import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
-
+import { format } from 'date-fns';
+import { Data } from '@angular/router';
 
 
 
@@ -25,7 +26,7 @@ export class PdfEditavelComponent implements OnInit {
   user: UserModel | undefined;
   sender: SenderModel | undefined;
   docModel:DocModel[] = [] ;
-  lods!: LogModel  ;
+  logs: LogModel[] = [];
 
 
   @Input()
@@ -66,11 +67,10 @@ export class PdfEditavelComponent implements OnInit {
   
       this.user = this.dadosService.mapToUser(dados);
       this.sender = this.dadosService.mapToSender(dados);
+      this.docModel = await this.dadosService.mapToDoc(dados);
+      this.logs = this.dadosService.mapToLogEntry(dados)
      
-
-        this.docModel = await this.dadosService.mapToDoc(dados);
-       
-        
+      
       }catch (error) {
         console.error('Erro ao carregar dados no componente:', error);
         // Lida com erros aqui, se necessário
@@ -80,5 +80,19 @@ export class PdfEditavelComponent implements OnInit {
     });
 
   }
+
+  
+
+  obterDataFormatada(data: string) {
+    return format(new Date(data), 'dd/MM/yy');
+   
+   
+  }
+
+  obterHoraFormatada(data: string) {
+   
+    return format(new Date(data), 'HH:mm');
+  }
+
 
 }

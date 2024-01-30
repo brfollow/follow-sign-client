@@ -118,6 +118,9 @@
     margin: 1em 0;
 
 }
+.pdf-logs div p span { 
+    font-weight: bold;
+}
 
 .pdf-logs h2{
 

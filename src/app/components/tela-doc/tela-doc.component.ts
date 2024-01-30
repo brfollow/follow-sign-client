@@ -35,7 +35,7 @@ export class TelaDocComponent {
 
   log: LogModel | undefined;
 
-  urls = ['../../../assets/termo.pdf',
+  urls = ['https://appfollow.com.br/assets/termo.pdf',
 
         '../../../assets/termo.pdf']
 
@@ -74,7 +74,7 @@ export class TelaDocComponent {
     this.user = this.dadosService.mapToUser(dados);
     this.sender = this.dadosService.mapToSender(dados);
     this.docModel = await this.dadosService.mapToDoc(dados);
-    
+    console.log(this.docModel[0].pdf_url)
      
 
 });

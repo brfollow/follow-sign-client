@@ -47,10 +47,6 @@ export class TelaDocComponent {
 
   urlDawnloadDoc: string = ''
 
-
-  
-
-
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
   assinaturaTxt: string = ""
 
@@ -72,6 +68,7 @@ export class TelaDocComponent {
     
 
     this.user = this.dadosService.mapToUser(dados);
+    
     this.sender = this.dadosService.mapToSender(dados);
     this.docModel = await this.dadosService.mapToDoc(dados);
      
@@ -81,9 +78,6 @@ export class TelaDocComponent {
   this.assinaturaTxt = this.assinaturaService.getAssinaturaTxt()
 
  this.verificarAssinatura()
-
- 
- 
 
     
 }
@@ -149,13 +143,12 @@ export class TelaDocComponent {
     this.gerarPDF()
 
     if(this.user?.emailUser){
+      console.log("enviou o email");
+      
        this.enviarEmail()
     }
    
 
-    
-    
-   
     Swal.fire({
       position: "center",
       icon: "success",
@@ -232,7 +225,7 @@ export class TelaDocComponent {
   this.urlDawnloadDoc = infoUrl.url
 
     const dados = {
-    toEmail: 'leonardosilva01107@gmail.com',
+    toEmail: this.user?.emailUser,
     url_doc: infoUrl.url,
     user_name: this.user?.nameUser
     // Adicione outros campos conforme necessário

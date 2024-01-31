@@ -10,7 +10,7 @@ export class PdfStorageService {
 
   constructor(private http: HttpClient) {}
 
-  apiUrl: string = 'http://localhost:3000/api/';
+  apiUrl: string = 'https://followw-assinatura.onrender.com/api/';
 
   private mergedPdfBytes!: Uint8Array ;
   private PdfBytesAssinatura!: ArrayBuffer ;
@@ -32,15 +32,13 @@ export class PdfStorageService {
   }
 
   enviarPDFsParaAPI(userId: string | undefined): Observable<any> {
-    const apiUrl = 'http://localhost:3000/api/upload-pdfs/';
-    console.log("aqui")
-   
+      
 
     const formData = new FormData();
     formData.append('pdfFile1', new Blob([this.mergedPdfBytes], { type: 'application/pdf' }), 'arquivo1.pdf');
     formData.append('pdfFile2', new Blob([this.PdfBytesAssinatura], { type: 'application/pdf' }), 'arquivo2.pdf');
 
-    return this.http.post(`${this.apiUrl}/upload-pdfs/${userId}`, formData);
+    return this.http.post(`${this.apiUrl}upload-pdfs/${userId}`, formData);
   }
 
 }

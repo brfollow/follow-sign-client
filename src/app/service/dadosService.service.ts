@@ -87,23 +87,6 @@ export class DadosService {
   }
 
 
-  // postDataLog(userModel:UserModel | any ): Observable<any> {
-  //   const urlAssinaturaAPi = "http://localhost:3000/api/"
-   
-    
-  //   const logData = {
-  //     dados_id: userModel.idUser,
-  //     nameUserLog:userModel.nameUser,
-  //     email: "teste@gmail.com",
-  //     cpf: userModel.cpfUser,
-  //     status: "assinou o documento"
-  //   }
-
-
-  //   return this.http.post<any>(`${urlAssinaturaAPi}logs`, logData);
-  // }
-
- 
 
 
 // Método para converter dados brutos em instância de User
@@ -117,8 +100,6 @@ mapToUser(user: any): UserModel {
     emailUser:user.data.patient_email
 
   }
-
-
 }
 
 // Método para converter dados brutos em instância de Sender
@@ -132,10 +113,8 @@ mapToSender(sender: any): SenderModel {
 
 // Método para converter dados brutos em instância de Doc
  mapToDoc(document: any) {
-
  return document.data.contracts
   
-
 }
 
 // Método para converter dados brutos em instância de LogEntry

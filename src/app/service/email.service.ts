@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 })
 export class EmailService {
 
-  private apiUrl:string = "http://localhost:3000/api"
+  private apiUrl:string = "https://followw-assinatura.onrender.com/api/"
 
   urlDawnload:any
 
@@ -17,7 +17,7 @@ export class EmailService {
   getUrlPdfAssinatura(idUser:string | undefined): Observable<any> {
    
     
-    this.urlDawnload = this.http.get<any>(`${this.apiUrl}/download-pdf/${idUser}`);
+    this.urlDawnload = this.http.get<any>(`${this.apiUrl}download-pdf/${idUser}`);
    
     
     return this.urlDawnload

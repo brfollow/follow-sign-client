@@ -94,7 +94,7 @@ export class TelaDocComponent {
       this.isSigned = true;
       this.assinaturaImg = '';
   
-      console.log("aqui 2");
+     
   
       // Adiciona um atraso de  0,1 segundos antes de chamar a função gerarImagemTxt
       await this.delay(100);
@@ -138,7 +138,7 @@ export class TelaDocComponent {
 
   concluirAssinatura(){
 
-  
+ 
       //gera o pdf assinatura
     this.gerarPDF()
 
@@ -147,8 +147,8 @@ export class TelaDocComponent {
        this.enviarEmail()
     }
    
-
-    Swal.fire({
+ Swal.fire({
+    
       position: "center",
       icon: "success",
       title: "Documento Assinado",

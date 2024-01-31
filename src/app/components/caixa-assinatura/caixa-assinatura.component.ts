@@ -27,7 +27,7 @@ export class CaixaAssinaturaComponent {
   private undoStack: Array<Array<{ x: number; y: number }>> = [];
   private isDrawing = false;
 
-  constructor( private assinaturaService: AssinaturaService) {}
+  constructor(private renderer: Renderer2, private dadosService: DadosService, private assinaturaService: AssinaturaService) {}
 
   ngAfterViewInit(): void {
     const canvas = this.signatureCanvas.nativeElement;
@@ -37,43 +37,50 @@ export class CaixaAssinaturaComponent {
       console.error('Erro ao obter o contexto 2D do canvas.');
     }
   
-    canvas.addEventListener('pointerdown', this.handleStart.bind(this));
-    canvas.addEventListener('pointermove', this.handleMove.bind(this));
-    canvas.addEventListener('pointerup', this.stopDrawing.bind(this));
-    canvas.addEventListener('pointercancel', this.stopDrawing.bind(this));
-  }  
+    canvas.addEventListener('mousedown', this.handleStart.bind(this));
+    canvas.addEventListener('touchstart', this.handleStart.bind(this));
   
-  handleStart(e: PointerEvent): void {
-    e.preventDefault();
+    canvas.addEventListener('mouseup', this.stopDrawing.bind(this));
+    canvas.addEventListener('mouseleave', this.stopDrawing.bind(this));
+    canvas.addEventListener('touchend', this.stopDrawing.bind(this));
+    canvas.addEventListener('touchcancel', this.stopDrawing.bind(this));
   
-    this.isDrawing = true;
-    this.paths.push([]);
-    this.draw(e);
+    canvas.addEventListener('mousemove', this.handleMove.bind(this));
+    canvas.addEventListener('touchmove', this.handleMove.bind(this));
   }
   
-  handleMove(e: PointerEvent): void {
+  handleStart(e: MouseEvent | TouchEvent): void {
+    e.preventDefault();
+  
+    const event = e instanceof TouchEvent ? (e.touches[0] || e.changedTouches[0]) : e;
+    this.isDrawing = true;
+    this.paths.push([]);
+    this.draw(event);
+  }
+  
+  handleMove(e: MouseEvent | TouchEvent): void {
     e.preventDefault();
   
     if (this.isDrawing) {
-      this.draw(e);
+      const event = e instanceof TouchEvent ? (e.touches[0] || e.changedTouches[0]) : e;
+      this.draw(event);
     }
   }
+
+
 
   stopDrawing(): void {
     this.isDrawing = false;
   }
-  draw(e: PointerEvent): void {
-    this.statusAssinatura = true;
+  draw(e: MouseEvent | Touch): void {
+    this.statusAssinatura =true
     const currentPath = this.paths[this.paths.length - 1];
   
     this.context.lineWidth = 2;
     this.context.lineCap = 'round';
     this.context.strokeStyle = '#000';
-  
-    const offsetX = e.offsetX !== undefined ? e.offsetX : (e.pageX - this.signatureCanvas.nativeElement.getBoundingClientRect().left);
-    const offsetY = e.offsetY !== undefined ? e.offsetY : (e.pageY - this.signatureCanvas.nativeElement.getBoundingClientRect().top);
-  
-    currentPath.push({ x: offsetX, y: offsetY });
+    
+    currentPath.push({ x: e.clientX - this.signatureCanvas.nativeElement.getBoundingClientRect().left, y: e.clientY - this.signatureCanvas.nativeElement.getBoundingClientRect().top });
   
     this.context.clearRect(0, 0, this.signatureCanvas.nativeElement.width, this.signatureCanvas.nativeElement.height);
   
@@ -140,8 +147,6 @@ export class CaixaAssinaturaComponent {
       alert('Sem assinatura.');
     }
   }
-
-
 
 
  

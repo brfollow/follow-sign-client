@@ -40,9 +40,10 @@
 
 
   width: 100%;
-  height: 8em;
+  height: 6em;
 
 }
+
 
 .doc-assinatura a p{
   font-size: 18px;
@@ -68,10 +69,7 @@
 
 }
 
-.doc-assinatura{
-  width: 96%;
 
-}
 
 .sender p {
   font-size: 16px;

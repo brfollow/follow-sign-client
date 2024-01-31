@@ -6,6 +6,7 @@ import { LogModel } from '../model/LogModel';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import {dados} from '../dataFake/dadosUser'
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -26,7 +27,7 @@ export class DadosService {
   hora:string =''
  
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
 
 
   const hoje = new Date();
@@ -127,6 +128,18 @@ mapToSender(sender: any): SenderModel {
 private formatarNumero(numero: number): string {
   // Adiciona um zero à esquerda se o número for menor que 10
   return numero < 10 ? `0${numero}` : `${numero}`;
+}
+
+
+
+isValidHash(status: string){
+  if(status === "success"){
+
+  }else{
+    console.log(status);
+    
+    this.router.navigate(['/error']);
+  }
 }
 
 }

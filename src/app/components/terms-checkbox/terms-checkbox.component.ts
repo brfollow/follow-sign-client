@@ -4,6 +4,7 @@ import { DadosService } from 'src/app/service/dadosService.service';
 import { UserModel } from 'src/app/model/userModel';
 import { SenderModel } from 'src/app/model/senderModel';
 import { DocModel } from 'src/app/model/docModel';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -45,6 +46,12 @@ export class TermsCheckboxComponent {
         this.sender = this.dadosService.mapToSender(dados);
         
         this.docModel = await this.dadosService.mapToDoc(dados);
+
+        (await this.dadosService.getData()).subscribe(async (dados) => {
+ 
+          this.dadosService.isValidHash(dados.status)
+           
+        });
        
 
       },
@@ -58,5 +65,8 @@ export class TermsCheckboxComponent {
   }
 
 
+
+  
+  
 
 }

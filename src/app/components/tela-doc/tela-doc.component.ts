@@ -58,14 +58,13 @@ export class TelaDocComponent {
      private emailService:EmailService) {}
 
   async ngOnInit(): Promise<void> {
-
+   
     //metodo que junta os pdfs que foram recebido pela api follow
-    this.mergePDFs(this.urls)
-    this.pdfBytes = this.pdfStorageService.getMergedPdf()
+  
     
    ;(await this.dadosService.getData()).subscribe(async (dados) => {
  
-    
+    this.dadosService.isValidHash(dados.status)
 
     this.user = this.dadosService.mapToUser(dados);
     
@@ -74,7 +73,8 @@ export class TelaDocComponent {
      
 
 });
-
+  this.mergePDFs(this.urls)
+  this.pdfBytes = this.pdfStorageService.getMergedPdf()
   this.assinaturaTxt = this.assinaturaService.getAssinaturaTxt()
 
  this.verificarAssinatura()

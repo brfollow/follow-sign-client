@@ -143,8 +143,7 @@ export class TelaDocComponent {
     this.gerarPDF()
 
     if(this.user?.emailUser){
-      console.log("enviou o email");
-      
+     
        this.enviarEmail()
     }
    

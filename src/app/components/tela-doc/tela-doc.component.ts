@@ -35,9 +35,9 @@ export class TelaDocComponent {
 
   log: LogModel | undefined;
 
-  urls = ['../../../assets/termo.pdf',
+  urls = ['https://appfollow.com.br/assets/termo.pdf',
 
-        '../../../assets/termo.pdf']
+        'https://appfollow.com.br/assets/termo.pdf']
 
   isSigned: boolean = false;
   

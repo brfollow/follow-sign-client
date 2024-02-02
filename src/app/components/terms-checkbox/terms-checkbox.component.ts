@@ -38,20 +38,19 @@ export class TermsCheckboxComponent {
 
       (await this.dadosService.getData()).subscribe(async (dados) => {
 
-      
-        
+       this.dadosService.isValidHash(dados.status)
+         
 
         this.user = this.dadosService.mapToUser(dados);
        
         this.sender = this.dadosService.mapToSender(dados);
         
         this.docModel = await this.dadosService.mapToDoc(dados);
-
-        (await this.dadosService.getData()).subscribe(async (dados) => {
- 
-          this.dadosService.isValidHash(dados.status)
+      
+        
+       
            
-        });
+   
        
 
       },

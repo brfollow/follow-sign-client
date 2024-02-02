@@ -14,10 +14,5 @@ constructor(private dadosService:DadosService){}
 hash:string  | null= this.dadosService.getHashUsuario()
 
 
- ngOnInit(): void {
 
-   console.log(this.hash)
-
-  
-}
 }

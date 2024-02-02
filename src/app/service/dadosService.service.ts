@@ -133,6 +133,8 @@ private formatarNumero(numero: number): string {
 
 
 isValidHash(status: string){
+  console.log(status);
+  
   if(status === "success"){
 
   }else{

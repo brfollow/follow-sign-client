@@ -14,6 +14,9 @@ export class PdfStorageService {
 
   private mergedPdfBytes!: ArrayBuffer ;
   private PdfBytesAssinatura!: ArrayBuffer ;
+  private contratoPdfMerged!: ArrayBuffer ;
+
+
 
   setMergedPdf(bytes: ArrayBuffer): void {
     this.mergedPdfBytes = bytes;
@@ -55,5 +58,26 @@ export class PdfStorageService {
   revokePdfLink(url: string): void {
     URL.revokeObjectURL(url);
   }
+
+
+
+
+ 
+
+  setContratoPdfMerged (bytes: ArrayBuffer): void {
+    this.contratoPdfMerged = bytes;
+  }
+
+  getContratoPdfMerged(): ArrayBuffer  {
+    return this.contratoPdfMerged;
+  }
+
+
+
+
+
+
+
+
 }
 

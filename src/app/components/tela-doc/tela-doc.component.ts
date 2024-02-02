@@ -237,18 +237,26 @@ pdfSubscription:any
 pdfLink:any
 
 enviarLinks(): void {
- this.loading = true
-  this.pdfSubscription = this.pdfStorageService.enviarLinksPDF(this.urls).subscribe(
-    generatedPdfLink => {
-
-      this.pdfLink = generatedPdfLink;
-      this.pdfStorageService.setMergedPdf(this.pdfLink)
-      this.loading = false
-    },
-    error => {
-      console.error('Erro ao mesclar PDFs:', error);
-    }
-  );
+  //no primeiro acesso e salvo o "PDF" arraybuffer no setContratoPdfMerged
+  if(this.pdfStorageService.getContratoPdfMerged()){
+   
+    this.pdfLink = this.pdfStorageService.getMergedPdf()
+  }else{
+   
+    this.loading = true
+     this.pdfSubscription = this.pdfStorageService.enviarLinksPDF(this.urls).subscribe(
+       generatedPdfLink => {
+    
+         this.pdfLink = generatedPdfLink;
+         this.pdfStorageService.setContratoPdfMerged(this.pdfLink)
+         this.pdfStorageService.setMergedPdf(this.pdfLink)
+         this.loading = false
+       },
+       error => {
+         console.error('Erro ao mesclar PDFs:', error);
+       }
+     );
+  }
 }
 
 

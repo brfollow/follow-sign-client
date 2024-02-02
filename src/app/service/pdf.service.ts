@@ -10,7 +10,7 @@ export class PdfStorageService {
 
   constructor(private http: HttpClient) {}
 
-  apiUrl: string = 'https://followw-assinatura.onrender.com/api/';
+  apiUrl: string = 'http://localhost:3000/api/';
 
   private mergedPdfBytes!: Uint8Array ;
   private PdfBytesAssinatura!: ArrayBuffer ;
@@ -41,5 +41,19 @@ export class PdfStorageService {
     return this.http.post(`${this.apiUrl}upload-pdfs/${userId}`, formData);
   }
 
+
+  enviarLinksPDF(pdfLinks: string[]): Observable<ArrayBuffer> {
+    return this.http.post(`${this.apiUrl}mesclar-pdfs`, { pdfLinks }, { responseType: 'arraybuffer' });
+  }
+
+  generatePdfLink(arrayBuffer: ArrayBuffer, fileName: string): string {
+    const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    return url;
+  }
+
+  revokePdfLink(url: string): void {
+    URL.revokeObjectURL(url);
+  }
 }
 

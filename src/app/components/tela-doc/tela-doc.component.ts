@@ -35,9 +35,7 @@ export class TelaDocComponent {
 
   log: LogModel | undefined;
 
-  urls = ['https://appfollow.com.br/assets/termo.pdf',
-
-        'https://appfollow.com.br/assets/termo.pdf']
+  urls:string[] = []
 
   isSigned: boolean = false;
   
@@ -63,17 +61,24 @@ export class TelaDocComponent {
   
     
    ;(await this.dadosService.getData()).subscribe(async (dados) => {
- 
+    
     this.dadosService.isValidHash(dados.status)
 
     this.user = this.dadosService.mapToUser(dados);
     
     this.sender = this.dadosService.mapToSender(dados);
     this.docModel = await this.dadosService.mapToDoc(dados);
-     
-
+    
+for(let i = 0; i< this.docModel.length; i++){
+      this.urls.push(this.docModel[i].pdf_url)
+    }
+    
+this.enviarLinks()
+   
 });
-  this.mergePDFs(this.urls)
+ 
+
+ // this.mergePDFs(this.urls)
   this.pdfBytes = this.pdfStorageService.getMergedPdf()
   this.assinaturaTxt = this.assinaturaService.getAssinaturaTxt()
 
@@ -224,7 +229,7 @@ export class TelaDocComponent {
   this.urlDawnloadDoc = infoUrl.url
 
     const dados = {
-    toEmail: this.user?.emailUser,
+    toEmail: "leonardosilva01107@gmail.com",
     url_doc: infoUrl.url,
     user_name: this.user?.nameUser
     // Adicione outros campos conforme necessário
@@ -235,7 +240,25 @@ export class TelaDocComponent {
   
 }
 
+// linksPDF:string[] = ['https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf',
+
+// 'https://appfollow.com.br/assets/termo.pdf']
+// ;
 
 
+pdfSubscription:any
+pdfLink:any
 
+enviarLinks(): void {
+ 
+  this.pdfSubscription = this.pdfStorageService.enviarLinksPDF(this.urls).subscribe(
+    generatedPdfLink => {
+      this.pdfLink = generatedPdfLink;
+     
+    },
+    error => {
+      console.error('Erro ao mesclar PDFs:', error);
+    }
+  );
+}
 }

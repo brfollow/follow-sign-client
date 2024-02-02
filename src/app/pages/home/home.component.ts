@@ -19,7 +19,7 @@ export class HomeComponent {
 
   async ngOnInit(): Promise<void> {
     this.hashUser = this.route.snapshot.params['user'];
-    // Agora, 'suaVariavel' contém o valor passado na rota
+    
 
 
     this.dadosService.setHashUsuario(this.hashUser)

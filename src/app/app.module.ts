@@ -14,7 +14,9 @@ import { CaixaAssinaturaTextoComponent } from './components/caixa-assinatura-tex
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertPageComponent } from './components/alert-page/alert-page.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer'; 
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { TermsUseComponent } from './pages/terms-use/terms-use.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component'; 
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     CaixaAssinaturaComponent,
     CaixaAssinaturaTextoComponent,
     AlertPageComponent,
+    TermsUseComponent,
+    PrivacyPolicyComponent,
     
    
   ],

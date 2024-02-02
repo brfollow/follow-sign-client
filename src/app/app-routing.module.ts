@@ -5,6 +5,8 @@ import { TelaDocComponent } from './components/tela-doc/tela-doc.component';
 import { TelaAssinaturaComponent } from './pages/tela-assinatura/tela-assinatura.component';
 import { PdfEditavelComponent } from './components/pdf-editavel/pdf-editavel.component';
 import { AlertPageComponent } from './components/alert-page/alert-page.component';
+import { TermsUseComponent } from './pages/terms-use/terms-use.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
 
@@ -20,7 +22,14 @@ const routes: Routes = [
 },
 {
   path:'error',component:AlertPageComponent
+},
+{
+  path:'termos-de-uso',component:TermsUseComponent
+},
+{
+  path:'politica-de-privacidade',component:PrivacyPolicyComponent
 }
+
 
 
 

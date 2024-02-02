@@ -12,14 +12,14 @@ export class PdfStorageService {
 
   apiUrl: string = 'http://localhost:3000/api/';
 
-  private mergedPdfBytes!: Uint8Array ;
+  private mergedPdfBytes!: ArrayBuffer ;
   private PdfBytesAssinatura!: ArrayBuffer ;
 
-  setMergedPdf(bytes: Uint8Array): void {
+  setMergedPdf(bytes: ArrayBuffer): void {
     this.mergedPdfBytes = bytes;
   }
 
-  getMergedPdf(): Uint8Array  {
+  getMergedPdf(): ArrayBuffer  {
     return this.mergedPdfBytes;
   }
 

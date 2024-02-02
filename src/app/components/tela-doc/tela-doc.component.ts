@@ -48,7 +48,7 @@ export class TelaDocComponent {
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
   assinaturaTxt: string = ""
 
-  pdfBytes!: Uint8Array ; 
+  pdfBytes!: ArrayBuffer ; 
 
   constructor(private dadosService: DadosService,
      private assinaturaService:AssinaturaService, 
@@ -199,29 +199,7 @@ this.enviarLinks()
  
   }
 
-  async mergePDFs(pdfUrls: string[]): Promise<void> {
-    const mergedPdf = await PDFDocument.create();
-
-    for (const pdfUrl of pdfUrls) {
-      const pdfBytes = await this.fetchPDF(pdfUrl);
-      const pdfDoc = await PDFDocument.load(pdfBytes);
-
-      const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
-      copiedPages.forEach((page) => mergedPdf.addPage(page));
-    }
-
-    this.pdfBytes = await mergedPdf.save();
-    this.pdfStorageService.setMergedPdf(this.pdfBytes);
-  }
-
-  private async fetchPDF(url: string): Promise<Uint8Array> {
-    const response = await fetch(url);
-    return new Uint8Array(await response.arrayBuffer());
-  }
-
-  
-
-  
+  //Metodo responsavel por enviar o email
 
   enviarEmail() {
 
@@ -240,10 +218,6 @@ this.enviarLinks()
   
 }
 
-// linksPDF:string[] = ['https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf',
-
-// 'https://appfollow.com.br/assets/termo.pdf']
-// ;
 
 
 pdfSubscription:any
@@ -253,7 +227,9 @@ enviarLinks(): void {
  
   this.pdfSubscription = this.pdfStorageService.enviarLinksPDF(this.urls).subscribe(
     generatedPdfLink => {
+
       this.pdfLink = generatedPdfLink;
+      this.pdfStorageService.setMergedPdf(this.pdfLink )
      
     },
     error => {

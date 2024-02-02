@@ -9,8 +9,15 @@ import { DadosService } from 'src/app/service/dadosService.service';
 })
 export class NavBarComponent {
 
+constructor(private dadosService:DadosService){}
+
+hash:string  | null= this.dadosService.getHashUsuario()
 
 
+ ngOnInit(): void {
 
+   console.log(this.hash)
 
+  
+}
 }

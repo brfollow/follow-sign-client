@@ -38,7 +38,7 @@ export class TelaDocComponent {
   urls:string[] = []
 
   isSigned: boolean = false;
-  
+
   botaoDownload: boolean = false;
 
   assinaturaConcluida: boolean = false
@@ -48,35 +48,35 @@ export class TelaDocComponent {
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
   assinaturaTxt: string = ""
 
-  pdfBytes!: ArrayBuffer ; 
+  pdfBytes!: ArrayBuffer ;
 
   constructor(private dadosService: DadosService,
-     private assinaturaService:AssinaturaService, 
+     private assinaturaService:AssinaturaService,
      private pdfStorageService:PdfStorageService,
      private emailService:EmailService) {}
 
   async ngOnInit(): Promise<void> {
-   
+
     //metodo que junta os pdfs que foram recebido pela api follow
-  
-    
+
+
    ;(await this.dadosService.getData()).subscribe(async (dados) => {
-    
+
     this.dadosService.isValidHash(dados.status)
 
     this.user = this.dadosService.mapToUser(dados);
-    
+
     this.sender = this.dadosService.mapToSender(dados);
     this.docModel = await this.dadosService.mapToDoc(dados);
-    
+
 for(let i = 0; i< this.docModel.length; i++){
       this.urls.push(this.docModel[i].pdf_url)
     }
-    
+
 this.enviarLinks()
-   
+
 });
- 
+
 
  // this.mergePDFs(this.urls)
   this.pdfBytes = this.pdfStorageService.getMergedPdf()
@@ -84,7 +84,7 @@ this.enviarLinks()
 
  this.verificarAssinatura()
 
-    
+
 }
 
 
@@ -98,26 +98,26 @@ this.enviarLinks()
     } else if (this.assinaturaTxt) {
       this.isSigned = true;
       this.assinaturaImg = '';
-  
-     
-  
+
+
+
       // Adiciona um atraso de  0,1 segundos antes de chamar a função gerarImagemTxt
       await this.delay(100);
-  
+
       this.gerarImagemTxt();
     }
   }
-  
+
   // Função para criar um atraso/ OBS: atraso necessario para criar a img de assinatura Txt
    delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
- 
+
   limparAssinatura(){
     this.assinaturaService.setImageDataURL('')
     this.assinaturaService.setAssinaturaTxt('')
- 
-    
+
+
   }
 
   showDawnload(){
@@ -134,8 +134,8 @@ this.enviarLinks()
 
     html2canvas(this.paragrafo.nativeElement).then((canvas) => {
       this.imagemGerada = canvas.toDataURL();
-   
-      
+
+
     });
   }
 
@@ -143,21 +143,21 @@ this.enviarLinks()
 
   concluirAssinatura(){
     this.loading = true
- 
+
       //gera o pdf assinatura
     this.gerarPDF()
 
-   
 
 
-   
-   
-    
+
+
+
+
   }
 
   //esse metodo faz o pdf da assinatura e envia os dois pdfs para a api follow assinatura
   gerarPDF() {
-    
+
 
     let pdf = new jsPDF('p', 'pt', 'a4');
 
@@ -169,28 +169,28 @@ this.enviarLinks()
         const blob = await pdf.output('blob');
         const arrayBuffer = await new Response(blob).arrayBuffer();
         this.pdfStorageService.setPdfBytesAssinatura(arrayBuffer);
-  
-  
+
+
         this.pdfStorageService.enviarPDFsParaAPI(this.user?.idUser).subscribe(
-          
+
           response => {
             // Lide com a resposta da API aqui
             //console.log('Resposta da API:', response);
 
 
             //enviar o email
-            if(this.user?.emailUser){
-     
-              this.enviarEmail()
-           }
-           
+          //   if(this.user?.emailUser){
+
+          //     this.enviarEmail()
+          //  }
+
 
            //deixa o loading carregando
         this.loading = false
-          
+
         //pop up  de concluido
         Swal.fire({
-           
+
              position: "center",
              icon: "success",
              title: "Documento Assinado",
@@ -209,7 +209,7 @@ this.enviarLinks()
         );
       },
     });
- 
+
   }
 
   //Metodo responsavel por enviar o email
@@ -220,15 +220,15 @@ this.enviarLinks()
   this.urlDawnloadDoc = infoUrl.url
 
     const dados = {
-    toEmail: "leonardosilva01107@gmail.com",
+    toEmail: this.user?.emailUser,
     url_doc: infoUrl.url,
     user_name: this.user?.nameUser
     // Adicione outros campos conforme necessário
-  }; 
+  };
 
   this.emailService.sendEmail(dados)
 });
-  
+
 }
 
 

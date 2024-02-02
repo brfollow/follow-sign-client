@@ -9,7 +9,7 @@
 .container__contrato-pdf{
 
   height: 18em;
- 
+
 }
 
 
@@ -138,9 +138,9 @@
 }
 
 .doc-enviado{
-  
+
   margin-top: 0;
- 
+
 }
 
 
@@ -165,9 +165,9 @@
   .container__contrato-pdf{
 
     height: 21em;
-   
+
   }
-  
+
 
 
 .doc {
@@ -184,12 +184,12 @@
 
 
 .doc-assinatura {
- 
+
   height: 8em;
 }
 
 .sender{
-   
+
   width: 30%;
 }
 .sender p {
@@ -204,20 +204,20 @@
 
 
 .doc-enviado{
-    
+
   padding: 2em;
   width: 30em;
 
 }
 
 .doc-enviado h2{
-
+  font-size: 20px;
   margin-bottom: 0.7em;
 }
 
 .button-download{
   width: 95%;
-   margin-bottom: 4em; 
+   margin-bottom: 4em;
 }
 
 

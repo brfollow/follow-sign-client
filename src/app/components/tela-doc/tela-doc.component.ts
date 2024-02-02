@@ -32,7 +32,7 @@ export class TelaDocComponent {
   user!: UserModel | undefined;;
   sender: SenderModel | undefined;
   docModel:DocModel[]=[];
-
+  loading: boolean = false;
   log: LogModel | undefined;
 
   urls:string[] = []
@@ -142,29 +142,17 @@ this.enviarLinks()
 
 
   concluirAssinatura(){
-
+    this.loading = true
  
       //gera o pdf assinatura
     this.gerarPDF()
 
-    if(this.user?.emailUser){
-     
-       this.enviarEmail()
-    }
    
- Swal.fire({
+
+
+   
+   
     
-      position: "center",
-      icon: "success",
-      title: "Documento Assinado",
-      showConfirmButton: false,
-      timer: 3000
-    });
-
-
-   
-    this.showDawnload()
-    this.assinaturaConcluida = true
   }
 
   //esse metodo faz o pdf da assinatura e envia os dois pdfs para a api follow assinatura
@@ -187,7 +175,32 @@ this.enviarLinks()
           
           response => {
             // Lide com a resposta da API aqui
-            console.log('Resposta da API:', response);
+            //console.log('Resposta da API:', response);
+
+
+            //enviar o email
+            if(this.user?.emailUser){
+     
+              this.enviarEmail()
+           }
+           
+
+           //deixa o loading carregando
+        this.loading = false
+          
+        //pop up  de concluido
+        Swal.fire({
+           
+             position: "center",
+             icon: "success",
+             title: "Documento Assinado",
+             showConfirmButton: false,
+             timer: 3000
+           });
+
+
+           this.showDawnload()
+           this.assinaturaConcluida = true
           },
           error => {
             // Lide com erros aqui
@@ -224,17 +237,31 @@ pdfSubscription:any
 pdfLink:any
 
 enviarLinks(): void {
- 
+ this.loading = true
   this.pdfSubscription = this.pdfStorageService.enviarLinksPDF(this.urls).subscribe(
     generatedPdfLink => {
 
       this.pdfLink = generatedPdfLink;
-      this.pdfStorageService.setMergedPdf(this.pdfLink )
-     
+      this.pdfStorageService.setMergedPdf(this.pdfLink)
+      this.loading = false
     },
     error => {
       console.error('Erro ao mesclar PDFs:', error);
     }
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

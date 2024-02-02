@@ -10,7 +10,7 @@ export class PdfStorageService {
 
   constructor(private http: HttpClient) {}
 
-  apiUrl: string = 'http://localhost:3000/api/';
+  apiUrl: string = 'https://followw-assinatura.onrender.com/api/';
 
   private mergedPdfBytes!: ArrayBuffer ;
   private PdfBytesAssinatura!: ArrayBuffer ;

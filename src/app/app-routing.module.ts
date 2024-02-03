@@ -23,6 +23,7 @@ const routes: Routes = [
 {
   path:'error',component:AlertPageComponent
 },
+{ path: '', redirectTo: '/error', pathMatch: 'full' },
 {
   path:'termos-de-uso',component:TermsUseComponent
 },

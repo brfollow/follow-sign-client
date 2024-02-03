@@ -60,15 +60,16 @@ export class TelaDocComponent {
     //metodo que junta os pdfs que foram recebido pela api follow
 
 
-   ;(await this.dadosService.getData()).subscribe(async (dados) => {
+   (await this.dadosService.getData()).subscribe(async (dados) => {
 
-    this.dadosService.isValidHash(dados.status)
+    this.dadosService.isValidStatus(dados.status)
 
     this.user = this.dadosService.mapToUser(dados);
 
     this.sender = this.dadosService.mapToSender(dados);
     this.docModel = await this.dadosService.mapToDoc(dados);
 
+    //pega os links de contratos do json 
 for(let i = 0; i< this.docModel.length; i++){
       this.urls.push(this.docModel[i].pdf_url)
     }

@@ -63,8 +63,11 @@ export class DadosService {
 
 
  setHashUsuario(hashUsuario: string){
+ 
+ 
    this.hashUsuario = hashUsuario
-   localStorage.setItem('hashUsuario', hashUsuario);
+   localStorage.setItem('hashUsuario', hashUsuario); 
+  
  }
 
 
@@ -73,8 +76,9 @@ export class DadosService {
   async getData(): Promise<Observable<any>> {
    
     const hashAtual = this.getHashUsuario()
+  
     this.data = this.http.get<any>(`${this.apiUrl}${hashAtual}`);
-   
+  
       
     return this.data
     
@@ -132,10 +136,10 @@ private formatarNumero(numero: number): string {
 
 
 
-isValidHash(status: string){
+isValidStatus(status: string){
  
   
-  if(status === "success"){
+  if(status == "success"){
 
   }else{
    

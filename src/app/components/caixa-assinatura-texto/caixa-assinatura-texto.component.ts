@@ -61,10 +61,10 @@ export class CaixaAssinaturaTextoComponent {
 
   estadoAssinatura(){
     if(this.assinaturaSalva == ''){
-      console.log(this.statusAssinatura )
+     
       this.statusAssinatura = false
     }else{
-      console.log(this.statusAssinatura )
+     
       this.statusAssinatura = true
     }
   }

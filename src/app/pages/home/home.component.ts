@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/model/userModel';
 import { DadosService } from 'src/app/service/dadosService.service';
 
@@ -13,27 +13,34 @@ export class HomeComponent {
   hashUser: string =''
 
 
-  constructor(private route: ActivatedRoute,private dadosService: DadosService) { 
+  constructor(private route: ActivatedRoute,private dadosService: DadosService,  private router: Router) { 
 
   }
 
   async ngOnInit(): Promise<void> {
     this.hashUser = this.route.snapshot.params['user'];
     
-
-
-    this.dadosService.setHashUsuario(this.hashUser)
-   
-    ;(await this.dadosService.getData()).subscribe(async (dados) => {
- 
     
+    if(this.hashUser ==""){  
+      this.router.navigate(['/error']);
+  
+    }else{
+      
+    this.dadosService.setHashUsuario(this.hashUser)
+    }
 
-      this.userModel= this.dadosService.mapToUser(dados);
+    
+    
+  //   ;(await this.dadosService.getData()).subscribe(async (dados) => {
+ 
+  //   this.dadosService.isValidStatus(dados.status)
+
+      
       
       
        
   
-  });
+  // });
 
 
     

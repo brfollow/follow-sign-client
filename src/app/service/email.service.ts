@@ -31,10 +31,9 @@ export class EmailService {
     emailjs.init('mr07jmLF5hmIJV5WW');
     
     const templateParams = {
-      subject: "Documento assinado",
-      from_name: "Equipe Follow",
+      
       link: data.url_doc,
-      to_email: data.toEmail,
+      patient_email: data.toEmail,
       user_name:data.user_name
       // ... adicione outros parâmetros conforme necessário
     };
@@ -43,7 +42,8 @@ export class EmailService {
         "service_v2jhshq",
         "template_vxkokog", // Substitua pelo ID do seu modelo de e-mail no emailjs
       templateParams,
-    );
+    )
+    ;
 
      
   }

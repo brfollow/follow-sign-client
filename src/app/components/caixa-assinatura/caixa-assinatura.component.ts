@@ -126,9 +126,28 @@ export class CaixaAssinaturaComponent {
 
   downloadDrawing() {
     if (this.paths.length > 0) {
-      const dataURL = this.signatureCanvas.nativeElement.toDataURL('image/png');
+      this.context.fillStyle = '#ffffff'; // Branco
+    this.context.fillRect(0, 0, this.signatureCanvas.nativeElement.width, this.signatureCanvas.nativeElement.height);
 
-      this.assinaturaService.setImageDataURL(dataURL);
+    // Renderizar a assinatura
+    this.paths.forEach(path => {
+      this.context.beginPath();
+      this.context.moveTo(path[0].x, path[0].y);
+
+      path.forEach(point => {
+        this.context.lineTo(point.x, point.y);
+      });
+
+      this.context.stroke();
+    });
+
+    // Obter a imagem como JPEG
+    const dataURL = this.signatureCanvas.nativeElement.toDataURL('image/jpeg', 0.7);
+
+    // Restaurar o estado do canvas
+    this.clearDrawing();
+
+    this.assinaturaService.setImageDataURL(dataURL);
     } else {
       alert('Sem assinatura.');
     }

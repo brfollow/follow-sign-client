@@ -134,7 +134,7 @@ this.enviarLinks()
   gerarImagemTxt() {
 
     html2canvas(this.paragrafo.nativeElement).then((canvas) => {
-      this.imagemGerada = canvas.toDataURL();
+      this.imagemGerada = canvas.toDataURL( 'image/jpeg', 1.0);
 
 
     });
@@ -155,8 +155,8 @@ this.enviarLinks()
   gerarPDF() {
 
 
-    let pdf = new jsPDF('p', 'pt', 'a4');
-
+    let pdf = new jsPDF('p', 'pt', 'a4',true);
+    
     pdf.html(this.conteudoParaPDF.nativeElement, {
 
 
@@ -170,7 +170,7 @@ this.enviarLinks()
         this.pdfStorageService.enviarPDFsParaAPI(this.user?.idUser).subscribe(
 
           response => {
-            // Lide com a resposta da API aqui
+            // Lida com a resposta da API aqui
             //console.log('Resposta da API:', response);
             this.urlDawnloadDoc = response.url
             console.log(response.url)
@@ -216,7 +216,8 @@ this.enviarLinks()
 
 
     const dados = {
-    toEmail: this.user?.emailUser,
+    toEmail:  this.user?.emailUser,
+    
     url_doc: this.urlDawnloadDoc,
     user_name: this.user?.nameUser
     // Adicione outros campos conforme necessário
@@ -238,6 +239,7 @@ enviarLinks(): void {
    
     this.pdfLink = this.pdfStorageService.getMergedPdf()
   }else{
+    
    
     this.loading = true
      this.pdfSubscription = this.pdfStorageService.enviarLinksPDF(this.urls).subscribe(

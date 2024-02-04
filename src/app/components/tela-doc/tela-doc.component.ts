@@ -149,11 +149,6 @@ this.enviarLinks()
     this.gerarPDF()
 
 
-
-
-
-
-
   }
 
   //esse metodo faz o pdf da assinatura e envia os dois pdfs para a api follow assinatura
@@ -177,13 +172,13 @@ this.enviarLinks()
           response => {
             // Lide com a resposta da API aqui
             //console.log('Resposta da API:', response);
-
-
+            this.urlDawnloadDoc = response.url
+            console.log(response.url)
             //enviar o email
-          //   if(this.user?.emailUser){
+            if(this.user?.emailUser){
 
-          //     this.enviarEmail()
-          //  }
+              this.enviarEmail()
+           }
 
 
            //deixa o loading carregando
@@ -216,13 +211,13 @@ this.enviarLinks()
   //Metodo responsavel por enviar o email
 
   enviarEmail() {
-
+///apagar esse metodo de pegar url pelo id
  this.emailService.getUrlPdfAssinatura(this.user?.idUser).subscribe(async (infoUrl) => {
-  this.urlDawnloadDoc = infoUrl.url
+
 
     const dados = {
     toEmail: this.user?.emailUser,
-    url_doc: infoUrl.url,
+    url_doc: this.urlDawnloadDoc,
     user_name: this.user?.nameUser
     // Adicione outros campos conforme necessário
   };

@@ -180,10 +180,10 @@ this.enviarLinks()
 
 
             //enviar o email
-            if(this.user?.emailUser){
+          //   if(this.user?.emailUser){
 
-              this.enviarEmail()
-           }
+          //     this.enviarEmail()
+          //  }
 
 
            //deixa o loading carregando

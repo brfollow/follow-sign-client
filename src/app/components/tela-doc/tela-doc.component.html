@@ -21,7 +21,7 @@
             <a
             [routerLink]="!assinaturaConcluida ? '/assinatura' : null"
             (click)="limparAssinatura()"
-            [ngClass]="{'isSigned': isSigned, 'isNotSigned':!isSigned}"
+            [ngClass]="{'isSigned': isSigned, 'isNotSigned':!isSigned, 'signatureCompleted': assinaturaConcluida}"
 
             >
                 <p *ngIf="!isSigned"
@@ -91,7 +91,7 @@
     <div class="loader"></div>
   </div>
 
-<div style="display: none;">
+<div >
 
     <div #conteudoParaPDF>
 

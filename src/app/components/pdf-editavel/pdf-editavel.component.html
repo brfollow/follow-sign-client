@@ -13,7 +13,7 @@
     <hr class="linhas">
 
     <div class="pdf-body">
-        <h2 *ngFor="let doc of docModel" >{{doc.title}}</h2>
+        <h2 *ngFor="let doc of docModel; let last = last" >{{doc.title}}<span *ngIf="!last">, </span></h2>
         <p>Criado por • {{dataAtual}}</p>
     </div>
     <hr class="linhas">

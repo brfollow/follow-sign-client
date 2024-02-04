@@ -43,7 +43,7 @@ export class CaixaAssinaturaTextoComponent {
 
           this.user = this.dadosService.mapToUser(dados);
       
-         this.assinaturaSalva = this.user?.nameUser + " ("+ this.user?.idUser+ ")" 
+         this.assinaturaSalva = " "+ this.user?.nameUser + " ("+ this.user?.idUser+ ")" 
     });
 
   

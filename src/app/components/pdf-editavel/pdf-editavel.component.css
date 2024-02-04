@@ -1,7 +1,7 @@
 
 .container__pdf{
     padding: 2em;
-    width: 530px;
+    width: 550px;
     background-color: white;
 }
 
@@ -23,7 +23,7 @@
 .pdf-logo p{
     font-size: 10px;
     color: rgb(63, 61, 61);
-    line-height: 20px;
+    line-height: 15px;
 
 }
 .pdf-body{
@@ -124,7 +124,7 @@
 
 .pdf-logs h2{
 
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 1em;
    
 

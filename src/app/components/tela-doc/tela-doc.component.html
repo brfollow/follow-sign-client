@@ -17,25 +17,28 @@
           ></pdf-viewer>
 
         </div>
-        <div class="doc-assinatura" [ngClass]="{'doc-assinatura-sem-borda':botaoDownload}">
-            <a
-            [routerLink]="!assinaturaConcluida ? '/assinatura' : null"
-            (click)="limparAssinatura()"
-            [ngClass]="{'isSigned': isSigned, 'isNotSigned':!isSigned, 'signatureCompleted': assinaturaConcluida}"
+        <div style="display: flex; justify-content: center;">
 
-            >
-                <p *ngIf="!isSigned"
+            <div class="doc-assinatura" [ngClass]="{'doc-assinatura-sem-borda':botaoDownload}">
+                <a
+                [routerLink]="!assinaturaConcluida ? '/assinatura' : null"
+                (click)="limparAssinatura()"
+                [ngClass]="{'isSigned': isSigned, 'isNotSigned':!isSigned, 'signatureCompleted': assinaturaConcluida}"
+    
                 >
-                    Clique aqui para assinar o documento
-                </p>
-
-                <p #paragrafo *ngIf="assinaturaTxt"  id="assianturaTxt">{{ assinaturaTxt }}</p>
-
-
-
-                <img class="assinaturaImg" *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
-            </a>
-
+                    <p *ngIf="!isSigned"
+                    >
+                        Clique aqui para assinar o documento
+                    </p>
+    
+                    <p #paragrafo *ngIf="assinaturaTxt"  id="assianturaTxt">{{ assinaturaTxt }}</p>
+    
+    
+    
+                    <img class="assinaturaImg" *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
+                </a>
+    
+            </div>
         </div>
         <div class="doc-cliente">
 

@@ -12,7 +12,7 @@ const routes: Routes = [
 
 
 {
-  path:'user/:user',component:HomeComponent, title:'assinatura'
+  path:'user/:user',component:HomeComponent, title:'Assinatura'
 },
 {
   path:'doc',component:TelaDocComponent

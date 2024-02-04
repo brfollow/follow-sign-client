@@ -39,7 +39,7 @@
 .doc-assinatura {
 
 
-  width: 100%;
+  width: 90%;
   height: 6em;
 
 }
@@ -153,6 +153,15 @@
   .doc {
     padding: 3em 3em;
     height: 33em;
+
+}
+
+
+.doc-assinatura {
+
+
+  width: 100%;
+  height: 8em;
 
 }
 

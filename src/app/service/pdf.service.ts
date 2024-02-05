@@ -78,9 +78,6 @@ export class PdfStorageService {
     const endpoint = `${this.followApiUrl}sign/contract/${hash}`;
     const body = { url: url };
 
-
-    console.log(hash)
-    console.log(url)
     return this.http.post(endpoint, body);
   }
 

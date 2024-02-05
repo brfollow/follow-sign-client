@@ -28,19 +28,19 @@ export class EmailService {
   sendEmail(data: any) {
     
     
-    emailjs.init('mr07jmLF5hmIJV5WW');
+    emailjs.init('RpEMKtfPvK9wF2VeU');
     
     const templateParams = {
       
-      link: data.url_doc,
+      docUrl: data.url_doc,
       patient_email: data.toEmail,
       user_name:data.user_name
       // ... adicione outros parâmetros conforme necessário
     };
     
     return emailjs.send(
-        "service_v2jhshq",
-        "template_vxkokog", // Substitua pelo ID do seu modelo de e-mail no emailjs
+        "service_fispjni",
+        "template_od7x26j",
       templateParams,
     )
     ;

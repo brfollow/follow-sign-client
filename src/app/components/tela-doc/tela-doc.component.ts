@@ -173,14 +173,15 @@ this.enviarLinks()
             // Lida com a resposta da API aqui
             //console.log('Resposta da API:', response);
             this.urlDawnloadDoc = response.url
-            console.log(response.url)
+          
             //enviar o email
             if(this.user?.emailUser){
 
               this.enviarEmail()
            }
 
-
+           //anvia o link do documento assinado para api da Follow
+           this.enviarContratoParaFollow()
            //deixa o loading carregando
         this.loading = false
 
@@ -255,19 +256,19 @@ enviarLinks(): void {
        }
      );
   }
+
 }
+ //anvia o link do documento assinado para api da Follow
+ enviarContratoParaFollow() {
 
-
-
-
-
-
-
-
-
-
-
-
-
+    this.pdfStorageService.enviarContratoParaFollow(this.urlDawnloadDoc).subscribe(
+      (response) => {
+        console.log('Contrato assinado com sucesso!', response);
+      },
+      (error) => {
+        console.error('Erro ao assinar contrato:', error);
+      }
+    );
+  }
 
 }

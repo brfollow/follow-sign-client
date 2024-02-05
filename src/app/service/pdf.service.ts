@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DadosService } from './dadosService.service';
 
 
 @Injectable({
@@ -8,9 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class PdfStorageService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dadoService:DadosService) {}
 
-  apiUrl: string = 'https://followw-assinatura.onrender.com/api/';
+  private apiUrl: string = 'https://followw-assinatura.onrender.com/api/';
+
+  private followApiUrl = 'https://appfollow.com.br/api/';
 
   private mergedPdfBytes!: ArrayBuffer ;
   private PdfBytesAssinatura!: ArrayBuffer ;
@@ -49,20 +52,16 @@ export class PdfStorageService {
     return this.http.post(`${this.apiUrl}mesclar-pdfs`, { pdfLinks }, { responseType: 'arraybuffer' });
   }
 
-  generatePdfLink(arrayBuffer: ArrayBuffer, fileName: string): string {
-    const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-    return url;
-  }
+  // generatePdfLink(arrayBuffer: ArrayBuffer, fileName: string): string {
+  //   const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+  //   const url = URL.createObjectURL(blob);
+  //   return url;
+  // }
 
-  revokePdfLink(url: string): void {
-    URL.revokeObjectURL(url);
-  }
+  // revokePdfLink(url: string): void {
+  //   URL.revokeObjectURL(url);
+  // }
 
-
-
-
- 
 
   setContratoPdfMerged (bytes: ArrayBuffer): void {
     this.contratoPdfMerged = bytes;
@@ -73,7 +72,17 @@ export class PdfStorageService {
   }
 
 
+  enviarContratoParaFollow(url: string): Observable<any> {
+    const hash = this.dadoService.getHashUsuario()
 
+    const endpoint = `${this.followApiUrl}sign/contract/${hash}`;
+    const body = { url: url };
+
+
+    console.log(hash)
+    console.log(url)
+    return this.http.post(endpoint, body);
+  }
 
 
 

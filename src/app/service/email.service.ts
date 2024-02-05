@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 })
 export class EmailService {
 
-  private apiUrl:string = "https://followw-assinatura.onrender.com/api/"
+  private apiUrl:string = "https://app-follow-assinatura.onrender.com/api/"
 
   urlDawnload:any
 

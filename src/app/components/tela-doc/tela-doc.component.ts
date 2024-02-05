@@ -175,10 +175,10 @@ this.enviarLinks()
             this.urlDawnloadDoc = response.url
           
             //enviar o email
-          //   if(this.user?.emailUser){
+            if(this.user?.emailUser){
 
-          //     this.enviarEmail()
-          //  }
+              this.enviarEmail()
+           }
 
            //anvia o link do documento assinado para api da Follow
            this.enviarContratoParaFollow()

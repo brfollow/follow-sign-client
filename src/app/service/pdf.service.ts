@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DadosService } from './dadosService.service';
-
+import * as JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -102,7 +103,28 @@ export class PdfStorageService {
 
 
 
+  async downloadAndZipPDFs(urls: string[], zipFileName: string) {
+  
+    const zip = new JSZip();
 
+    // Baixar os arquivos PDF e adicioná-los ao arquivo ZIP
+    await Promise.all(urls.map(async (url, index) => {
+      try {
+        const pdfBlob = await this.http.get(url, { responseType: 'blob' }).toPromise();
+        if (pdfBlob) {
+          zip.file(`file${index + 1}.pdf`, pdfBlob);
+        }
+      } catch (error) {
+        console.error(`Erro ao baixar o arquivo PDF da URL ${url}:`, error);
+      }
+    }));
+
+    // Gerar o arquivo ZIP
+    zip.generateAsync({ type: 'blob' }).then((content) => {
+      // Salvar e disponibilizar para download
+      saveAs(content, zipFileName);
+    });
+  }
 
 }
 

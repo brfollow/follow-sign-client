@@ -69,7 +69,6 @@ export class TelaDocComponent {
     this.dadosService.isValidStatus(dados.status)
 
     this.user = this.dadosService.mapToUser(dados);
-
     this.sender = this.dadosService.mapToSender(dados);
     this.docModel = await this.dadosService.mapToDoc(dados);
 
@@ -193,27 +192,20 @@ this.enviarLinks()
 
             this.pdfStorageService.enviarPdfContratos(this.user?.idUser, entidade).subscribe(
             response =>{
-              console.log(response.contratosMesclados)
+             
 
-              
-              // if(this.user?.emailUser){
-              //   console.log('email enviado')
-              //   this.enviarEmail(response.contratosMesclados)
-              // }
+               //enviar o email
+              if(this.user?.emailUser){
+             
+                this.enviarEmail(response.contratosMesclados)
+              }
 
-            // this.enviarContratoParaFollow(response.contratosMesclados)
+              //envia os links dos doc assinados para a follow
+            this.enviarContratoParaFollow(response.contratosMesclados)
             }  
            
             )
 
-            // this.urlDawnloadDoc = response.url
-          
-            //enviar o email
-          
-
-           //anvia o link do documento assinado para api da Follow
-        //  this.enviarContratoParaFollow()
-           //deixa o loading carregando
        this.loading = false
 
         //pop up  de concluido
@@ -244,23 +236,64 @@ this.enviarLinks()
 
   enviarEmail(urlsDocAssinados: any) {
 ///apagar esse metodo de pegar url pelo id
- 
-    const dados:any = {
-    toEmail: "leonardosilva01107@gmail.com",
 
-    user_name: this.user?.nameUser
+    const dados:any = {
+      patient_email: this.user?.emailUser,
+    
+      user_name: this.user?.nameUser
     // Adicione outros campos conforme necessário
   };
 
     // Verifica e adiciona os URLs ao objeto dados
-    if (typeof urlsDocAssinados[0]?.pdf_url === 'string' && urlsDocAssinados[0].pdf_url.trim() !== '') {
-      dados.url_doc = urlsDocAssinados[0].pdf_url;
+  if (typeof urlsDocAssinados[0]?.url === 'string' && urlsDocAssinados[0].url.trim() !== '') {
+    dados.docUrl = urlsDocAssinados[0].url;
+    dados.title = `${urlsDocAssinados[0].title} assinado`;
   }
-  if (typeof urlsDocAssinados[1]?.pdf_url === 'string' && urlsDocAssinados[1].pdf_url.trim() !== '') {
-      dados.url_doc2 = urlsDocAssinados[1].pdf_url;
+  if (typeof urlsDocAssinados[1]?.url === 'string' && urlsDocAssinados[1].url.trim() !== '') {
+    dados.docUrl2 = urlsDocAssinados[1].url;
+    dados.title2 = `${urlsDocAssinados[1].title} assinado`;
+      
   }
+  if (typeof urlsDocAssinados[2]?.url === 'string' && urlsDocAssinados[2].url.trim() !== '') {
+    dados.docUrl = urlsDocAssinados[2].url;
+    dados.title3 = `${urlsDocAssinados[2].title} assinado`;
+  }
+  if (typeof urlsDocAssinados[3]?.url === 'string' && urlsDocAssinados[3].url.trim() !== '') {
+    dados.docUrl2 = urlsDocAssinados[3].url;
+    dados.title4 = `${urlsDocAssinados[3].title} assinado`;
+    
+  }
+  if (typeof urlsDocAssinados[4]?.url === 'string' && urlsDocAssinados[4].url.trim() !== '') {
+    dados.docUrl = urlsDocAssinados[4].url;
+    dados.title5 = `${urlsDocAssinados[4].title} assinado`;
+  }
+  if (typeof urlsDocAssinados[5]?.url === 'string' && urlsDocAssinados[5].url.trim() !== '') {
+    dados.docUrl2 = urlsDocAssinados[5].url;
+    dados.title6 = `${urlsDocAssinados[5].title} assinado`;
 
-  this.emailService.sendEmail(dados)
+  }
+  if (typeof urlsDocAssinados[6]?.url === 'string' && urlsDocAssinados[6].url.trim() !== '') {
+    dados.docUrl = urlsDocAssinados[6].url;
+    dados.title7 = `${urlsDocAssinados[6].title} assinado`;
+  }
+  if (typeof urlsDocAssinados[7]?.url === 'string' && urlsDocAssinados[7].url.trim() !== '') {
+    dados.docUrl2 = urlsDocAssinados[7].url;
+    dados.title8 = `${urlsDocAssinados[7].title} assinado`;
+
+  }
+  if (typeof urlsDocAssinados[8]?.url === 'string' && urlsDocAssinados[8].url.trim() !== '') {
+    dados.docUrl = urlsDocAssinados[8].url;
+    dados.title9 = `${urlsDocAssinados[8].title} assinado`;
+  }
+  if (typeof urlsDocAssinados[9]?.url === 'string' && urlsDocAssinados[9].url.trim() !== '') {
+    dados.docUrl2 = urlsDocAssinados[9].url;
+    dados.title10 = `${urlsDocAssinados[9].title} assinado`;
+
+  }
+  
+
+console.log(dados)
+ // this.emailService.sendEmail(dados)
 }
 
 
@@ -306,6 +339,15 @@ enviarLinks(): void {
         console.error('Erro ao assinar contrato:', error);
       }
     );
+  }
+
+
+  downloadPDFsAsZip() {
+    const url = [
+      "https://storage.googleapis.com/assinatura-follow.appspot.com/25729/documento_assinatura_05caa105c5bbc12a2169902a83d56019663dfc0f.pdf?GoogleAccessId=firebase-adminsdk-j1vlv%40assinatura-follow.iam.gserviceaccount.com&Expires=16725236400&Signature=HT3dTQUL7H0hysA23PDlrPsPOoNMpIo0%2B0SL5uVWU54Bk2IXdWRwBJP9Fb5UK76Wu2yppXbK4g82vi6nMCp9DlXjN0pFJ%2Bv3%2Fgwn34PNsH%2BA33q9%2Foj1QBb0ffSkoUlN1xEobzVvfFgdNjvtND6z61rMVXytNgRQy0WoB7r6OJbYld2HX7%2Bv%2BmBdoA4%2FyM2g82bpAE2aPuSK5b9OoxZwdnVwqu9bGHMfR5SHjkiAo3lObolVm9hvCeAYrYTG69qeFbBDB%2BC8sWbLx3GJQ0PA37%2FtPyJ8djbQvonq00uoQGCczusEj2BSFjSdgZE7HSEKZUJZD0cVJ4NU6F%2BNxE7zdw%3D%3D"
+    ]
+  
+    this.pdfStorageService.downloadAndZipPDFs(url, 'arquivo.zip');
   }
 
 }

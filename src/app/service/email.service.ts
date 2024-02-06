@@ -32,30 +32,30 @@ export class EmailService {
 
 
     
-    const templateParams: any = {
+  //   const templateParams: any = {
       
    
-      patient_email: data.toEmail,
-      user_name:data.user_name
+  //     patient_email: data.toEmail,
+  //     user_name:data.user_name
   
-    };
+  //   };
 
-  if (typeof data.url_doc === 'string' && data.url_doc.trim() !== '') {
-      templateParams.docUrl = data.url_doc;
-  }
-  if (typeof data.url_doc2 === 'string' && data.url_doc2.trim() !== '') {
-      templateParams.docUrl2 = data.url_doc2;
-  }
-  if (typeof data.url_doc3 === 'string' && data.url_doc3.trim() !== '') {
-      templateParams.docUrl3 = data.url_doc3;
-  }
+  // if (typeof data.url_doc === 'string' && data.url_doc.trim() !== '') {
+  //     templateParams.docUrl = data.url_doc;
+  // }
+  // if (typeof data.url_doc2 === 'string' && data.url_doc2.trim() !== '') {
+  //     templateParams.docUrl2 = data.url_doc2;
+  // }
+  // if (typeof data.url_doc3 === 'string' && data.url_doc3.trim() !== '') {
+  //     templateParams.docUrl3 = data.url_doc3;
+  // }
 
 
     
     return emailjs.send(
         "service_fispjni",
         "template_od7x26j",
-      templateParams,
+        data,
     )
     ;
 

@@ -80,7 +80,7 @@
                 [ngClass]="{'active-button': isSigned}"
                 type="button"
                 target="_blank"
-                href="{{urlDawnloadDoc}}"
+                (click)="downloadPDFsAsZip()"
                 >
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAABMklEQVR4nO3ZQWrDMBCF4UlO2YWda3TrkE0XIasECu1NcqSuSrv/g4niOEYuoSAzkt4HgiwU0DxLY2ybiYiIiIgsClgDbRhrqw2w4a612gDdKIDOaoMCQDsAHYGBeoDVBvUA1ANQDxioB1htUA9APQD1gIF6gJUI2AG/wB5YPXsE+rnAIfx3a7kCfkZFvo9DmAsgFN/Pvfm2XHG9isRCiAUQKb63t1xxLeg4KegzvBB9CCDMPU3mfmT/wpT5ELaTAMor/mZma3/N/H44KsUgvhNiyrny/wih3OKfCKH84v8IoZ7iJyG8hFFWwysSzr/mJl8fzr/mJl8fzt/gJF8fCgDtAHQEBuoB5oyaILoLdEveBs/Aq7NxXjIA75IE0JKPJtXDRgO8OR+Nx4c1ERERETFnLpAinSvXvUMZAAAAAElFTkSuQmCC">
                 Baixar documento</a>
@@ -94,7 +94,7 @@
     <div class="loader"></div>
   </div>
 
-<div >
+<div style="display: none;" >
 
     <div #conteudoParaPDF>
 

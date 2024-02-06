@@ -48,6 +48,10 @@ export class TelaDocComponent {
   assinaturaImg: string = this.assinaturaService.getImageDataURL()
   assinaturaTxt: string = ""
 
+  urlDocAssinado:string=''
+  contratos: DocModel[] =[]
+
+
   pdfBytes!: ArrayBuffer ;
 
   constructor(private dadosService: DadosService,
@@ -72,6 +76,8 @@ export class TelaDocComponent {
     //pega os links de contratos do json 
 for(let i = 0; i< this.docModel.length; i++){
       this.urls.push(this.docModel[i].pdf_url)
+    this.contratos.push(this.docModel[i])
+    
     }
 
 this.enviarLinks()
@@ -143,13 +149,15 @@ this.enviarLinks()
 
 
   concluirAssinatura(){
-    this.loading = true
+   this.loading = true
 
       //gera o pdf assinatura
     this.gerarPDF()
 
 
   }
+
+ 
 
   //esse metodo faz o pdf da assinatura e envia os dois pdfs para a api follow assinatura
   gerarPDF() {
@@ -167,23 +175,46 @@ this.enviarLinks()
         this.pdfStorageService.setPdfBytesAssinatura(arrayBuffer);
 
 
-        this.pdfStorageService.enviarPDFsParaAPI(this.user?.idUser).subscribe(
+        this.pdfStorageService.enviarPdfAssinatura(this.user?.idUser).subscribe(
 
           response => {
             // Lida com a resposta da API aqui
             //console.log('Resposta da API:', response);
-            this.urlDawnloadDoc = response.url
+
+            this.urlDocAssinado = response.url
+           console.log(this.contratos)
+            const entidade = {
+              urlAssinatura: response.url,
+              contratos: this.contratos
+            }
+
+            console.log(entidade)
+
+
+            this.pdfStorageService.enviarPdfContratos(this.user?.idUser, entidade).subscribe(
+            response =>{
+              console.log(response.contratosMesclados)
+
+              
+              // if(this.user?.emailUser){
+              //   console.log('email enviado')
+              //   this.enviarEmail(response.contratosMesclados)
+              // }
+
+            // this.enviarContratoParaFollow(response.contratosMesclados)
+            }  
+           
+            )
+
+            // this.urlDawnloadDoc = response.url
           
             //enviar o email
-            if(this.user?.emailUser){
-
-              this.enviarEmail()
-           }
+          
 
            //anvia o link do documento assinado para api da Follow
-           this.enviarContratoParaFollow()
+        //  this.enviarContratoParaFollow()
            //deixa o loading carregando
-        this.loading = false
+       this.loading = false
 
         //pop up  de concluido
         Swal.fire({
@@ -211,23 +242,28 @@ this.enviarLinks()
 
   //Metodo responsavel por enviar o email
 
-  enviarEmail() {
+  enviarEmail(urlsDocAssinados: any) {
 ///apagar esse metodo de pegar url pelo id
- this.emailService.getUrlPdfAssinatura(this.user?.idUser).subscribe(async (infoUrl) => {
+ 
+    const dados:any = {
+    toEmail: "leonardosilva01107@gmail.com",
 
-
-    const dados = {
-    toEmail:  this.user?.emailUser,
-    
-    url_doc: this.urlDawnloadDoc,
     user_name: this.user?.nameUser
     // Adicione outros campos conforme necessário
   };
 
-  this.emailService.sendEmail(dados)
-});
+    // Verifica e adiciona os URLs ao objeto dados
+    if (typeof urlsDocAssinados[0]?.pdf_url === 'string' && urlsDocAssinados[0].pdf_url.trim() !== '') {
+      dados.url_doc = urlsDocAssinados[0].pdf_url;
+  }
+  if (typeof urlsDocAssinados[1]?.pdf_url === 'string' && urlsDocAssinados[1].pdf_url.trim() !== '') {
+      dados.url_doc2 = urlsDocAssinados[1].pdf_url;
+  }
 
+  this.emailService.sendEmail(dados)
 }
+
+
 
 
 
@@ -259,9 +295,10 @@ enviarLinks(): void {
 
 }
  //anvia o link do documento assinado para api da Follow
- enviarContratoParaFollow() {
+ enviarContratoParaFollow(contratosAssinados:any) {
+  
 
-    this.pdfStorageService.enviarContratoParaFollow(this.urlDawnloadDoc).subscribe(
+    this.pdfStorageService.enviarContratoParaFollow(contratosAssinados).subscribe(
       (response) => {
         console.log('Contrato assinado com sucesso!', response);
       },

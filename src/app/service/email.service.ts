@@ -29,14 +29,28 @@ export class EmailService {
     
     
     emailjs.init('RpEMKtfPvK9wF2VeU');
+
+
     
-    const templateParams = {
+    const templateParams: any = {
       
-      docUrl: data.url_doc,
+   
       patient_email: data.toEmail,
       user_name:data.user_name
-      // ... adicione outros parâmetros conforme necessário
+  
     };
+
+  if (typeof data.url_doc === 'string' && data.url_doc.trim() !== '') {
+      templateParams.docUrl = data.url_doc;
+  }
+  if (typeof data.url_doc2 === 'string' && data.url_doc2.trim() !== '') {
+      templateParams.docUrl2 = data.url_doc2;
+  }
+  if (typeof data.url_doc3 === 'string' && data.url_doc3.trim() !== '') {
+      templateParams.docUrl3 = data.url_doc3;
+  }
+
+
     
     return emailjs.send(
         "service_fispjni",

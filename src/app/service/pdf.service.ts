@@ -11,7 +11,7 @@ export class PdfStorageService {
 
   constructor(private http: HttpClient, private dadoService:DadosService) {}
 
-  private apiUrl: string = 'https://app-follow-assinatura.onrender.com/api/';
+  private apiUrl: string = 'http://localhost:3000/api/';
 
   private followApiUrl = 'https://appfollow.com.br/api/';
 
@@ -48,6 +48,22 @@ export class PdfStorageService {
   }
 
 
+  enviarPdfAssinatura(userId: string | undefined): Observable<any> {
+      
+
+    const formData = new FormData();
+    formData.append('pdfFile1', new Blob([this.PdfBytesAssinatura], { type: 'application/pdf' }), 'arquivo1.pdf');
+
+    return this.http.post(`${this.apiUrl}upload-assinatura/${userId}`, formData);
+  }
+
+  enviarPdfContratos(userId: string | undefined, entidade: any): Observable<any>{
+    return this.http.post(`${this.apiUrl}upload-pdfs/${userId}`, entidade)
+  }
+
+
+
+
   enviarLinksPDF(pdfLinks: string[]): Observable<ArrayBuffer> {
     return this.http.post(`${this.apiUrl}mesclar-pdfs`, { pdfLinks }, { responseType: 'arraybuffer' });
   }
@@ -72,11 +88,14 @@ export class PdfStorageService {
   }
 
 
-  enviarContratoParaFollow(url: string): Observable<any> {
+  enviarContratoParaFollow(jsonContratosAssinados: any): Observable<any> {
     const hash = this.dadoService.getHashUsuario()
 
     const endpoint = `${this.followApiUrl}sign/contract/${hash}`;
-    const body = { url: url };
+    const body = { url: jsonContratosAssinados };
+    console.log(hash)
+
+    console.log(body)
 
     return this.http.post(endpoint, body);
   }

@@ -12,7 +12,7 @@ export class PdfStorageService {
 
   constructor(private http: HttpClient, private dadoService:DadosService) {}
 
-  private apiUrl: string = 'http://localhost:3000/api/';
+  private apiUrl: string = 'https://app-follow-assinatura.onrender.com/api/';
 
   private followApiUrl = 'https://appfollow.com.br/api/';
 

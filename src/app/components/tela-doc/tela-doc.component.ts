@@ -293,7 +293,7 @@ this.enviarLinks()
   
 
 console.log(dados)
- // this.emailService.sendEmail(dados)
+  this.emailService.sendEmail(dados)
 }
 
 

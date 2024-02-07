@@ -199,13 +199,13 @@ this.enviarLinks()
              this.urlContratosAssinados= response.contratosMesclados
           
                //enviar o email
-              // if(this.user?.emailUser){
+              if(this.user?.emailUser){
              
-              //   this.enviarEmail(response.contratosMesclados)
-              // }
+                this.enviarEmail(response.contratosMesclados)
+              }
 
-            //   //envia os links dos doc assinados para a follow
-            //  this.enviarContratoParaFollow(response.contratosMesclados)
+              //envia os links dos doc assinados para a follow
+             this.enviarContratoParaFollow(response.contratosMesclados)
             }  
            
             )
@@ -295,8 +295,6 @@ this.enviarLinks()
 
   }
   
-
-console.log(dados)
   this.emailService.sendEmail(dados)
 }
 
@@ -355,9 +353,6 @@ enviarLinks(): void {
       urls.push(this.urlContratosAssinados[i].url)
     
     }
-    console.log(this.urlContratosAssinados);
-console.log(urls);
-
 
     (await this.pdfStorageService.downloadZip(urls)).subscribe(
      
@@ -380,10 +375,5 @@ console.log(urls);
 
   }
   
-    
-
-   
   
-  
-
 }

@@ -12,6 +12,7 @@ import jsPDF from 'jspdf';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { PdfStorageService } from 'src/app/service/pdf.service';
 import { EmailService } from 'src/app/service/email.service';
+import { HttpResponse } from '@angular/common/http';
 
 
 @Component({
@@ -50,6 +51,8 @@ export class TelaDocComponent {
 
   urlDocAssinado:string=''
   contratos: DocModel[] =[]
+
+  urlContratosAssinados:DocModel[]=[]
 
 
   pdfBytes!: ArrayBuffer ;
@@ -181,27 +184,28 @@ this.enviarLinks()
             //console.log('Resposta da API:', response);
 
             this.urlDocAssinado = response.url
-           console.log(this.contratos)
+          
             const entidade = {
               urlAssinatura: response.url,
               contratos: this.contratos
             }
 
-            console.log(entidade)
+           
 
-
+           
             this.pdfStorageService.enviarPdfContratos(this.user?.idUser, entidade).subscribe(
             response =>{
              
-
+             this.urlContratosAssinados= response.contratosMesclados
+          
                //enviar o email
-              if(this.user?.emailUser){
+              // if(this.user?.emailUser){
              
-                this.enviarEmail(response.contratosMesclados)
-              }
+              //   this.enviarEmail(response.contratosMesclados)
+              // }
 
-              //envia os links dos doc assinados para a follow
-            this.enviarContratoParaFollow(response.contratosMesclados)
+            //   //envia os links dos doc assinados para a follow
+            //  this.enviarContratoParaFollow(response.contratosMesclados)
             }  
            
             )
@@ -342,12 +346,44 @@ enviarLinks(): void {
   }
 
 
-  downloadPDFsAsZip() {
-    const url = [
-      "https://storage.googleapis.com/assinatura-follow.appspot.com/25729/documento_assinatura_05caa105c5bbc12a2169902a83d56019663dfc0f.pdf?GoogleAccessId=firebase-adminsdk-j1vlv%40assinatura-follow.iam.gserviceaccount.com&Expires=16725236400&Signature=HT3dTQUL7H0hysA23PDlrPsPOoNMpIo0%2B0SL5uVWU54Bk2IXdWRwBJP9Fb5UK76Wu2yppXbK4g82vi6nMCp9DlXjN0pFJ%2Bv3%2Fgwn34PNsH%2BA33q9%2Foj1QBb0ffSkoUlN1xEobzVvfFgdNjvtND6z61rMVXytNgRQy0WoB7r6OJbYld2HX7%2Bv%2BmBdoA4%2FyM2g82bpAE2aPuSK5b9OoxZwdnVwqu9bGHMfR5SHjkiAo3lObolVm9hvCeAYrYTG69qeFbBDB%2BC8sWbLx3GJQ0PA37%2FtPyJ8djbQvonq00uoQGCczusEj2BSFjSdgZE7HSEKZUJZD0cVJ4NU6F%2BNxE7zdw%3D%3D"
-    ]
-  
-    this.pdfStorageService.downloadAndZipPDFs(url, 'arquivo.zip');
+  async downloadPDFsAsZip() {
+    const urls: string[] = []
+
+ 
+    for(let i = 0; i< this.urlContratosAssinados.length; i++){
+     
+      urls.push(this.urlContratosAssinados[i].url)
+    
+    }
+    console.log(this.urlContratosAssinados);
+console.log(urls);
+
+
+    (await this.pdfStorageService.downloadZip(urls)).subscribe(
+     
+      (response: Blob) => {
+        // Cria um link temporário para baixar o arquivo zip
+        const url = window.URL.createObjectURL(response);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = 'arquivo.zip';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error => {
+        console.error('Erro ao gerar arquivo zip', error);
+        // Manipular erros, se necessário
+      }
+    );
+
+
   }
+  
+    
+
+   
+  
+  
 
 }

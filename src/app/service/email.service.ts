@@ -15,29 +15,29 @@ export class EmailService {
  constructor(private http: HttpClient) {}
 
   getUrlPdfAssinatura(idUser:string | undefined): Observable<any> {
-   
-    
+
+
     this.urlDawnload = this.http.get<any>(`${this.apiUrl}download-pdf/${idUser}`);
-   
-    
+
+
     return this.urlDawnload
-    
+
   }
- 
+
 
   sendEmail(data: any) {
-    
-    
+
+
     emailjs.init('RpEMKtfPvK9wF2VeU');
 
 
-    
+
   //   const templateParams: any = {
-      
-   
+
+
   //     patient_email: data.toEmail,
   //     user_name:data.user_name
-  
+
   //   };
 
   // if (typeof data.url_doc === 'string' && data.url_doc.trim() !== '') {
@@ -51,14 +51,14 @@ export class EmailService {
   // }
 
 
-    
+
     return emailjs.send(
-        "service_fispjni",
+        "service_a786e5n",
         "template_od7x26j",
         data,
     )
     ;
 
-     
+
   }
 }

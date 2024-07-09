@@ -36,6 +36,7 @@
     line-height: 1.4em;
     max-width: 100%;
     overflow-wrap: break-word;
+    word-spacing: 0.1em;
     white-space: normal;
 
 }

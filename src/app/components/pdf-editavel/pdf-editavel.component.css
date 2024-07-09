@@ -28,15 +28,14 @@
 }
 .pdf-body{
     margin: 1em 0;
-    word-wrap: break-word;
 }
 
 .pdf-body h2{
     margin-bottom: 5px;
     font-size: 17px;
-    line-height: 1.2em;
+    line-height: 1.4em;
     max-width: 100%;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     white-space: normal;
 
 }

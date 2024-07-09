@@ -1,7 +1,7 @@
 <div class="container__terms">
     <div class="terms-user-info">
         <h2 class="terms-user-title">
-            Olá, {{user?.nameUser}} ({{user?.idUser}})
+            Olá, {{user?.nameUser}}
         </h2>
         <p class="terms-user-text">
             Você recebeu, os documentos <span *ngFor="let doc of docModel; let last = last">{{doc.title}}<span *ngIf="!last">, </span> </span> para assinar.

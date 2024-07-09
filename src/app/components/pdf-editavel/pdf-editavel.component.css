@@ -28,7 +28,7 @@
 }
 .pdf-body{
     margin: 1em 0;
-
+    word-wrap: break-word;
 }
 
 .pdf-body h2{

@@ -14,7 +14,7 @@
 
     <div class="pdf-body">
         <h2 *ngFor="let doc of docModel; let last = last" >{{doc.title}}<span *ngIf="!last">, </span></h2>
-        <p>Criado por • {{dataAtual}}</p>
+        <p>Criado em • {{dataAtual}}</p>
     </div>
     <hr class="linhas">
 

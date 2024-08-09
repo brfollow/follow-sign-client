@@ -7,29 +7,27 @@ import { PdfEditavelComponent } from './components/pdf-editavel/pdf-editavel.com
 import { AlertPageComponent } from './components/alert-page/alert-page.component';
 
 const routes: Routes = [
-
-
-{
-  path:'user/:user',component:HomeComponent, title:'assinatura'
-},
-{
-  path:'doc',component:TelaDocComponent
-},
-{
-  path:'assinatura',component:TelaAssinaturaComponent
-},
-{
-  path:'error',component:AlertPageComponent
-}
-
-
-
-
-
+  {
+    path: 'user/:user',
+    component: HomeComponent,
+    title: 'assinatura',
+  },
+  {
+    path: 'doc',
+    component: TelaDocComponent,
+  },
+  {
+    path: 'assinatura',
+    component: TelaAssinaturaComponent,
+  },
+  {
+    path: 'error',
+    component: AlertPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

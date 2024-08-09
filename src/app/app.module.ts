@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { AlertPageComponent } from './components/alert-page/alert-page.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer'; 
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     CaixaAssinaturaComponent,
     CaixaAssinaturaTextoComponent,
     AlertPageComponent,
-    
-   
   ],
   imports: [
     BrowserModule,
@@ -38,9 +36,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FormsModule,
     HttpClientModule,
     NgxExtendedPdfViewerModule,
-    PdfViewerModule
+    PdfViewerModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

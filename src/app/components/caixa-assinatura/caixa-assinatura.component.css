@@ -1,81 +1,72 @@
-
 #signature-canvas {
-    border: 1px solid  #ddd;
-    
-    cursor: crosshair;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
+  border: 1px solid #ddd;
+
+  cursor: crosshair;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-
-
-.action-button { 
-    margin-top: 1em;
-    display: flex;
-    flex-direction: row;
+.action-button {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
 }
 
-.action-button a{ 
-    padding: 5px 8px;
-    cursor: pointer;
-    font-size: 15px;
-    background-color: #eff3f6 !important;
-    display: flex;
-    margin-right: 1em;
-    border: 1px solid rgba(27,31,35,.2) !important;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%) !important;
-    align-items: center; 
-    border-radius: 8px;
-    color: #24292e !important;
+.action-button a {
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 15px;
+  background-color: #eff3f6 !important;
+  display: flex;
+  margin-right: 1em;
+  border: 1px solid rgba(27, 31, 35, 0.2) !important;
+  background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%) !important;
+  align-items: center;
+  border-radius: 8px;
+  color: #24292e !important;
 }
 
-
-.action-button a:hover{ 
-    background-position: -0.5em;
-    background-color: #e6ebf1 !important;
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%) !important;
-    border-color: rgba(27,31,35,.35) !important;
+.action-button a:hover {
+  background-position: -0.5em;
+  background-color: #e6ebf1 !important;
+  background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%) !important;
+  border-color: rgba(27, 31, 35, 0.35) !important;
 }
 
-
-.action-button a svg{
-    width: 1.5em;
-    height: 2em;
-   margin-right: 5px;
-
+.action-button a svg {
+  width: 1.5em;
+  height: 2em;
+  margin-right: 5px;
 }
 
-.active{
-    border: 1px solid #2d6dfb;; 
-     background-color: rgb(75, 75, 255);
-     color: white;
- }
- 
- .container-save-button {
-     margin-top: 1.5em;
-     display: flex;
-     justify-content: center;
- }
- .save-button{ 
-    width: 80%;
-    background-color: white;
-    border: 1px solid #2d6dfb;
-    border-radius: 0.25em;
-    padding: 0.5em;
-    color: #2d6dfb;;
-    cursor: default;
-    font-size: 20px;
-    font-weight: bold;
-    transition: 0.5s;
- }
+.active {
+  border: 1px solid #2d6dfb;
+  background-color: rgb(75, 75, 255);
+  color: white;
+}
 
- .save-button-active{ 
-   
-    background-color: #2d6dfb;;
-   
-   
-    color: white;
-    cursor: pointer;
+.container-save-button {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: center;
+}
+.save-button {
+  width: 80%;
+  background-color: white;
+  border: 1px solid #2d6dfb;
+  border-radius: 0.25em;
+  padding: 0.5em;
+  color: #2d6dfb;
+  cursor: default;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.5s;
+}
 
+.save-button-active {
+  background-color: #2d6dfb;
+
+  color: white;
+  cursor: pointer;
 }

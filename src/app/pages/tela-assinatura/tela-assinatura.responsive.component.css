@@ -1,29 +1,23 @@
-@media screen and (min-width: 300px){
-
-    .container__signature {
-        padding: 0.5em 1em;
-    }
-    .container__signature h2 {
-        font-size: 19px;
-        padding: 2.5em 1em;
-    }
+@media screen and (min-width: 300px) {
+  .container__signature {
+    padding: 0.5em 1em;
+  }
+  .container__signature h2 {
+    font-size: 19px;
+    padding: 2.5em 1em;
+  }
 }
 
+@media screen and (min-width: 750px) {
+  .container__signature h2 {
+    font-size: 22px;
 
-@media screen and (min-width: 750px){
-
-    
-    .container__signature h2 {
-        font-size: 22px;
-        
-        padding: 1em 1em;
-    }
+    padding: 1em 1em;
+  }
 }
 
-@media screen and (min-width: 1500px){
-
-    
-    .container__signature {
-        padding: 0.5em 25px;
-    }
+@media screen and (min-width: 1500px) {
+  .container__signature {
+    padding: 0.5em 25px;
+  }
 }

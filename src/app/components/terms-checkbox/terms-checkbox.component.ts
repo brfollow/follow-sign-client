@@ -9,54 +9,40 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-terms-checkbox',
   templateUrl: './terms-checkbox.component.html',
-  styleUrls: ['./terms-checkbox.component.css',
-              './terms-checkbox.responsive.component.css']
+  styleUrls: [
+    './terms-checkbox.component.css',
+    './terms-checkbox.responsive.component.css',
+  ],
 })
 export class TermsCheckboxComponent {
-
-  user: UserModel | undefined ;
+  user: UserModel | undefined;
   sender: SenderModel | undefined;
-  docModel: DocModel[] = []
-  data:any
+  docModel: DocModel[] = [];
+  data: any;
 
+  terms: boolean = false;
 
-  terms: boolean = false
+  constructor(
+    private dadosService: DadosService,
+    private http: HttpClient,
+  ) {}
 
-
-  constructor(private dadosService: DadosService, private http: HttpClient) {}
-
-  TermoAceite(){
-
-    this.terms = !this.terms
-
-
-
+  TermoAceite() {
+    this.terms = !this.terms;
   }
 
   ngOnInit(): void {
-
-      this.dadosService.getData().subscribe(async (dados) => {
-
-      
-        
-
+    this.dadosService.getData().subscribe(
+      async (dados) => {
         this.user = this.dadosService.mapToUser(dados);
-       
-        this.sender = this.dadosService.mapToSender(dados);
-        
-        this.docModel = await this.dadosService.mapToDoc(dados);
-       
 
+        this.sender = this.dadosService.mapToSender(dados);
+
+        this.docModel = await this.dadosService.mapToDoc(dados);
       },
       (error) => {
         console.error('Erro ao obter dados no componente:', error);
-      }
-      
-      );
-
-    
+      },
+    );
   }
-
-
-
 }

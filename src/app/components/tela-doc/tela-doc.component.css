@@ -1,241 +1,196 @@
-.container__doc{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    
-
+.container__doc {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.container__contrato-pdf{
-    width: 100%;
-    height: 22em;
-    overflow-x: hidden;
+.container__contrato-pdf {
+  width: 100%;
+  height: 22em;
+  overflow-x: hidden;
 }
 
+.doc {
+  width: 35%;
+  height: 42em;
 
+  margin-right: 2em;
 
-.doc{
-    width: 35%;
-    height: 42em;
-   
-    margin-right: 2em;
-    
-    background-color: white;
-    border-radius: 5px;
-    border-bottom: 1px solid rgba(0,0,0,.125);
-    box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  background-color: white;
+  border-radius: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
 }
 
-.doc-info{
-    margin-bottom: 2em;
+.doc-info {
+  margin-bottom: 2em;
 }
 
-.doc-info h2{
-    font-size: 22px;
-    margin-bottom: 0.1em;
-
+.doc-info h2 {
+  font-size: 22px;
+  margin-bottom: 0.1em;
 }
 
-.doc-info p{
-    font-size: 17px;
-
-
+.doc-info p {
+  font-size: 17px;
 }
 
-
-.doc-assinatura{
-
-    border: 1px solid #ddd;
-    width: 95%;
-    height: 9em;
-    margin-bottom: 1em;
-    border-radius: 5px;
-    
-
-
+.doc-assinatura {
+  border: 1px solid #ddd;
+  width: 95%;
+  height: 9em;
+  margin-bottom: 1em;
+  border-radius: 5px;
 }
 
-.doc-assinatura-sem-borda{
-    border:none;
+.doc-assinatura-sem-borda {
+  border: none;
 }
 
-.doc-assinatura a{
-    display: flex;
-   
-    font-size: 17px;
-    text-decoration: none;
-    
-    width: 100%;
-    height: 100%;
+.doc-assinatura a {
+  display: flex;
 
+  font-size: 17px;
+  text-decoration: none;
+
+  width: 100%;
+  height: 100%;
 }
 
+.isNotSigned {
+  display: flex;
+  justify-content: flex-start;
 
-.isNotSigned{
-    display: flex;
-    justify-content: flex-start;
-   
-    color: rgb(129, 124, 124);
-
-
+  color: rgb(129, 124, 124);
 }
 
-.isSigned{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    cursor: default;
-
-
-
+.isSigned {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  cursor: default;
 }
 
-.assinaturaImg{
-    width: 100%;
-    height: 100%;
+.assinaturaImg {
+  width: 100%;
+  height: 100%;
 }
 
-#assianturaTxt{
-    font-family: "Alex Brush", cursive;
-    font-size: 40px;
-
-
+#assianturaTxt {
+  font-family: "Alex Brush", cursive;
+  font-size: 40px;
 }
 
-.doc-cliente{
-    text-align: center;
-    margin-bottom: 1em;
+.doc-cliente {
+  text-align: center;
+  margin-bottom: 1em;
 }
 
-.doc-cliente h3{
-    font-size: 17px;
-
+.doc-cliente h3 {
+  font-size: 17px;
 }
-.doc-cliente p{
-    font-size: 17px;
-
+.doc-cliente p {
+  font-size: 17px;
 }
 
+.sender {
+  padding: 1.5em;
+  background-color: white;
+  width: 40%;
+  height: fit-content;
+  border-radius: 5px;
 
-
-.sender{
-   
-   padding: 1.5em;
-   background-color: white;
-   width: 40%;
-   height: fit-content;
-   border-radius: 5px;
-
-   border-bottom: 1px solid rgba(0,0,0,.125);
-   box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
 }
 
-
-
-.sender h2{
-   font-size: 22px;
-   margin-bottom: 1em;
-   font-weight: 400;
- }
-
- .sender span{
-    color: black;
-    font-weight: bold;
+.sender h2 {
+  font-size: 22px;
+  margin-bottom: 1em;
+  font-weight: 400;
 }
 
-
-
-
-.button{
-    background-color: white;
-    border: 1px solid #2d6dfb;
-    width: 100%;
-    padding: 20px ;
-    font-weight: bold;
-    font-size: 22px;
-    color: #2d6dfb;
-    cursor: pointer;
-    border-radius: 10px;
-    margin-bottom: 2em;
-    cursor: default;
+.sender span {
+  color: black;
+  font-weight: bold;
 }
 
-
-
-
-.sender p{
-    font-size: 22px;
-    line-height: 18px;
-    margin-bottom: 1em;
+.button {
+  background-color: white;
+  border: 1px solid #2d6dfb;
+  width: 100%;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 22px;
+  color: #2d6dfb;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-bottom: 2em;
+  cursor: default;
 }
 
-
-
-.doc-enviado{
-    background-color: white;
-    padding: 1em;
-    text-align: center;
-    border-radius: 5px;
-    margin-left: 1em;
-    display: flex;
-    flex-direction: column;
-    width: auto;
-    margin-top: 1em;
-    align-items: center;
-
-    border-bottom: 1px solid rgba(0,0,0,.125);
-    box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
-  }
-  
-  .doc-enviado img{
-    width: 3em;
-    height: 3em;
-    margin-bottom: 1em;
-   
-  }
-  
-  .doc-enviado p{
-    margin-bottom: 0.5em;
-    font-size: 17px;
-    width: 80%;
-   
-  }
-
-    
-  .button-download {
-   
-    width: 90%;
-    
-    margin-bottom: 1em;
-  }
-
-  .button-download a img {
-    width: 2em;
-    height: 2em;
-    margin: 0;
-    margin-right: 0.5em;
-  }
-  
-  
-  .button-download a{
-    background-color: #2d6dfb;
-    padding: 1em;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  .active-button{
-
-    
-    cursor: pointer;
-    background-color: #2d6dfb;
-    color: white;
-
+.sender p {
+  font-size: 22px;
+  line-height: 18px;
+  margin-bottom: 1em;
 }
-  
+
+.doc-enviado {
+  background-color: white;
+  padding: 1em;
+  text-align: center;
+  border-radius: 5px;
+  margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin-top: 1em;
+  align-items: center;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+}
+
+.doc-enviado img {
+  width: 3em;
+  height: 3em;
+  margin-bottom: 1em;
+}
+
+.doc-enviado p {
+  margin-bottom: 0.5em;
+  font-size: 17px;
+  width: 80%;
+}
+
+.button-download {
+  width: 90%;
+
+  margin-bottom: 1em;
+}
+
+.button-download a img {
+  width: 2em;
+  height: 2em;
+  margin: 0;
+  margin-right: 0.5em;
+}
+
+.button-download a {
+  background-color: #2d6dfb;
+  padding: 1em;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.active-button {
+  cursor: pointer;
+  background-color: #2d6dfb;
+  color: white;
+}

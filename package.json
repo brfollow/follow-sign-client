@@ -24,7 +24,8 @@
     "ngx-doc-viewer": "^15.0.1",
     "ngx-extended-pdf-viewer": "^19.0.7",
     "pdf-lib": "^1.17.1",
-    "sweetalert2": "^11.6.13"
+    "sweetalert2": "^11.6.13",
+    "zone.js": "^0.14.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.4",

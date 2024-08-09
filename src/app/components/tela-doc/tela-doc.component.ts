@@ -7,120 +7,91 @@ import { LogModel } from 'src/app/model/LogModel';
 import { AssinaturaService } from 'src/app/service/assinatura.service';
 import { DadosService } from 'src/app/service/dadosService.service';
 import html2canvas from 'html2canvas';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import jsPDF from 'jspdf';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { PdfStorageService } from 'src/app/service/pdf-storage.service';
 
-
 @Component({
   selector: 'app-tela-doc',
   templateUrl: './tela-doc.component.html',
-  styleUrls: ['./tela-doc.component.css',
-  './tela-doc.responsive.component.css']
+  styleUrls: [
+    './tela-doc.component.css',
+    './tela-doc.responsive.component.css',
+  ],
 })
 export class TelaDocComponent {
   @ViewChild('paragrafo') paragrafo!: ElementRef;
   @ViewChild('conteudoParaPDF') conteudoParaPDF!: ElementRef;
 
-  user: UserModel | undefined ;
+  user: UserModel | undefined;
   sender: SenderModel | undefined;
-  docModel:DocModel[]=[];
+  docModel: DocModel[] = [];
 
   log: LogModel | undefined;
 
-  urls = ['../../../assets/termo.pdf',
-
-        '../../../assets/termo.pdf']
+  urls = ['../../../assets/termo.pdf', '../../../assets/termo.pdf'];
 
   isSigned: boolean = false;
-  
+
   botaoDownload: boolean = false;
 
-  assinaturaConcluida: boolean = false
+  assinaturaConcluida: boolean = false;
 
+  assinaturaImg: string = this.assinaturaService.getImageDataURL();
+  assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt();
 
-  assinaturaImg: string = this.assinaturaService.getImageDataURL()
-  assinaturaTxt: string = this.assinaturaService.getAssinaturaTxt()
+  pdfBytes!: Uint8Array;
 
-  pdfBytes!: Uint8Array ; 
-
-  constructor(private dadosService: DadosService, private assinaturaService:AssinaturaService, private pdfStorageService:PdfStorageService) {}
+  constructor(
+    private dadosService: DadosService,
+    private assinaturaService: AssinaturaService,
+    private pdfStorageService: PdfStorageService,
+  ) {}
 
   ngOnInit(): void {
+    this.mergePDFs(this.urls);
+    this.pdfBytes = this.pdfStorageService.getMergedPdf();
 
+    this.dadosService.getData().subscribe(async (dados) => {
+      this.user = this.dadosService.mapToUser(dados);
+      this.sender = this.dadosService.mapToSender(dados);
+      this.docModel = await this.dadosService.mapToDoc(dados);
+    });
 
-    this.mergePDFs(this.urls)
-    this.pdfBytes = this.pdfStorageService.getMergedPdf()
-    
-   this.dadosService.getData().subscribe(async (dados) => {
- 
-    
+    this.verificarAssinatura();
+  }
 
-    this.user = this.dadosService.mapToUser(dados);
-    this.sender = this.dadosService.mapToSender(dados);
-    this.docModel = await this.dadosService.mapToDoc(dados);
-    
-     
+  verificarAssinatura() {
+    if (this.assinaturaImg) {
+      this.isSigned = true;
+      this.assinaturaTxt = '';
+    } else if (this.assinaturaTxt) {
+      this.isSigned = true;
 
-});
-
-
-
- this.verificarAssinatura()
-
-
-    
-}
-
-
-
-
-  verificarAssinatura(){
-
-    if(this.assinaturaImg){
-      this.isSigned = true
-      this.assinaturaTxt = ''
-            
-    }else if(this.assinaturaTxt){
-      this.isSigned = true
-     
-      this.assinaturaImg = ''
-
-      
-    
+      this.assinaturaImg = '';
     }
   }
 
-
-  limparAssinatura(){
-    this.assinaturaService.setImageDataURL('')
-    this.assinaturaService.setAssinaturaTxt('')
- 
-    
+  limparAssinatura() {
+    this.assinaturaService.setImageDataURL('');
+    this.assinaturaService.setAssinaturaTxt('');
   }
 
-  showDawnload(){
-    this.botaoDownload = true
+  showDawnload() {
+    this.botaoDownload = true;
   }
 
-
-
-  imagemGerada: string ='';
-
+  imagemGerada: string = '';
 
   //gerar uma imagem da assinatura que foi feita em txt
   gerarImagemTxt() {
     html2canvas(this.paragrafo.nativeElement).then((canvas) => {
       this.imagemGerada = canvas.toDataURL();
-   
-      
     });
   }
 
-
-
-  concluirAssinatura(){
+  concluirAssinatura() {
     this.dadosService.postDataLog().subscribe(
       (response) => {
         console.log('Log postado com sucesso:', response);
@@ -129,40 +100,33 @@ export class TelaDocComponent {
       (error) => {
         console.error('Erro ao postar o log:', error);
         // Lida com erros aqui, se necessário
-      }
-      );
-    
-  
+      },
+    );
+
     Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Documento Assinado",
+      position: 'center',
+      icon: 'success',
+      title: 'Documento Assinado',
       showConfirmButton: false,
-      timer: 3000
+      timer: 3000,
     });
 
-
-    if(this.assinaturaTxt){
-      this.gerarImagemTxt()
+    if (this.assinaturaTxt) {
+      this.gerarImagemTxt();
     }
-    
-    this.showDawnload()
-    this.assinaturaConcluida = true
+
+    this.showDawnload();
+    this.assinaturaConcluida = true;
   }
 
-
   gerarPDF() {
-
     let pdf = new jsPDF('p', 'pt', 'a4');
 
-
-    pdf.html(this.conteudoParaPDF.nativeElement,{
-      callback:(pdf) =>{
+    pdf.html(this.conteudoParaPDF.nativeElement, {
+      callback: (pdf) => {
         pdf.save('documento.pdf');
-      }
-    })
-
- 
+      },
+    });
   }
 
   async mergePDFs(pdfUrls: string[]): Promise<void> {
@@ -172,7 +136,10 @@ export class TelaDocComponent {
       const pdfBytes = await this.fetchPDF(pdfUrl);
       const pdfDoc = await PDFDocument.load(pdfBytes);
 
-      const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
+      const copiedPages = await mergedPdf.copyPages(
+        pdfDoc,
+        pdfDoc.getPageIndices(),
+      );
       copiedPages.forEach((page) => mergedPdf.addPage(page));
     }
 
@@ -184,8 +151,4 @@ export class TelaDocComponent {
     const response = await fetch(url);
     return new Uint8Array(await response.arrayBuffer());
   }
-
-  
-
-
 }

@@ -1,7 +1,7 @@
 <div class="container__terms">
   <div class="terms-user-info">
-    <h2 class="terms-user-title">
-      Olá, {{ user?.nameUser }} ({{ user?.idUser }})
+    <h2 class="terms-user-title" style="text-transform: capitalize;">
+      Olá, {{ user?.signature?.name }} ({{ user?.idUser }})
     </h2>
     <p class="terms-user-text">
       Você recebeu, documento
@@ -12,8 +12,13 @@
   <div class="terms-sender">
     <p id="remetente">Remetente</p>
     <h3>{{ sender?.senderName }}</h3>
-    <P>{{ sender?.senderEmail }}</P>
-    <p>{{ sender?.senderPhone }}</p>
+  </div>
+
+  <div class="terms-signer">
+    <h3>Assinatura</h3>
+    <p>Assinar documento(s) como: <strong style="text-transform: capitalize;">{{ user?.signature?.type }}</strong></p>
+    <p>Email: <strong>{{ user?.signature?.email }}</strong></p>
+    <p>Telefone: <strong>{{ user?.signature?.phone }}</strong></p>
   </div>
 
   <div class="terms-use">

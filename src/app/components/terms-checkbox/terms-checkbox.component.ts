@@ -35,9 +35,7 @@ export class TermsCheckboxComponent {
     this.dadosService.getData().subscribe(
       async (dados) => {
         this.user = this.dadosService.mapToUser(dados);
-
         this.sender = this.dadosService.mapToSender(dados);
-
         this.docModel = await this.dadosService.mapToDoc(dados);
       },
       (error) => {

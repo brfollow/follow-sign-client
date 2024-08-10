@@ -7,6 +7,7 @@
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
 }
+
 .terms-user-text span {
   font-weight: bold;
 }
@@ -23,10 +24,18 @@
 
 .terms-sender {
   padding: 1em;
-  margin-bottom: 4em;
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.terms-signer {
+  padding: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 #remetente {

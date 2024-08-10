@@ -20,19 +20,6 @@ export class ContractSignatureComponent {
 
   ngOnInit(): void {
     this.hash = this.route.snapshot.params['hash'];
-
     this.dadosService.setHashUsuario(this.hash);
-
-    this.dadosService
-      .getData()
-      .subscribe(async (data) => {
-        if (data?.status === 'error') {
-          // TODO: alertar usuário que o hash não é válido.
-        }
-
-        this.user = this.dadosService.mapToUser(data);
-
-        console.log({ user: this.user });
-      });
   }
 }

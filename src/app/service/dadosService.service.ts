@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { SenderModel } from '../model/senderModel';
-import { UserModel } from '../model/userModel';
-import { DocModel } from '../model/docModel';
-import { LogModel } from '../model/LogModel';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { dados } from '../dataFake/dadosUser';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root',
-})
+import { Observable } from 'rxjs';
+
+import { SenderModel } from '../model/senderModel';
+import { UserModel } from '../model/userModel';
+import { LogModel } from '../model/LogModel';
+
+@Injectable({ providedIn: 'root' })
 export class DadosService {
   data: any;
-  private apiUrl = 'https://appfollow.com.br/api/sign/contract/';
+  // private apiUrl = 'https://appfollow.com.br/api/sign/contract/';
+  private apiUrl = 'http://localhost:3000/api/sign/contract/';
   private hashUsuario: string | null = null;
 
   dataAtual: string = '';
@@ -59,13 +58,11 @@ export class DadosService {
   }
 
   postDataLog(): Observable<any> {
-    console.log('salvando log');
-
     const logData = {
       dados_id: this.data.id,
       data: this.dataAtual,
       hours: this.hora,
-      nameUserLog: ` ${this.data.nameUser} assinou o documento`,
+      nameUserLog: `${this.data.nameUser} assinou o documento`,
       email: this.data.emailUser,
       cpf: this.data.cpfUser,
     };
@@ -81,6 +78,12 @@ export class DadosService {
       cpfUser: user.data.patient_cpf,
       idUser: user.data.patient_id,
       emailUser: user,
+      signature: {
+        name: user.data.contact_name,
+        email: user.data.contact_email,
+        type: user.data.contact_type,
+        phone: user.data.contact_phone,
+      }
     };
   }
 

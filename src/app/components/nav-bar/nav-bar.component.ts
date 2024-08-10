@@ -13,12 +13,12 @@ export class NavBarComponent {
     private router: Router,
   ) {}
 
-  ngOnInit(): void {
-    this.dadosService.getData().subscribe(async (dados) => {
-      this.isValidHash(dados.status);
-      console.log(dados);
-    });
-  }
+  // ngOnInit(): void {
+  //   this.dadosService.getData().subscribe(async (dados) => {
+  //     this.isValidHash(dados.status);
+  //     console.log(dados);
+  //   });
+  // }
 
   isValidHash(status: string) {
     if (status === 'success') {

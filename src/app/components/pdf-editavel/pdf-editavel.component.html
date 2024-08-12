@@ -26,9 +26,9 @@
         </div>
 
         <div class="container-user-info">
-          <h4>{{ user?.nameUser }}</h4>
-          <p>CPF: {{ user?.cpfUser }}</p>
-          <p>Assinou como paciente em {{ dataAtual }}</p>
+          <h4>{{ user?.signature?.name }}</h4>
+          <p>Email: {{ user?.signature?.email }}</p>
+          <p>Assinou como {{user?.signature?.type}} em {{ dataAtual }}</p>
         </div>
       </div>
     </div>

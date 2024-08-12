@@ -1,6 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import html2canvas from 'html2canvas';
+import { Component } from '@angular/core';
 import { DocModel } from 'src/app/model/docModel';
 import { UserModel } from 'src/app/model/userModel';
 import { AssinaturaService } from 'src/app/service/assinatura.service';
@@ -34,17 +32,13 @@ export class CaixaAssinaturaTextoComponent {
   async ngOnInit(): Promise<void> {
     (await this.dadosService.getData()).subscribe((dados) => {
       this.user = this.dadosService.mapToUser(dados);
-
-      this.assinaturaSalva = ' ' + this.user?.nameUser;
+      this.assinaturaSalva = this.user?.signature?.name;
     });
 
     this.estadoAssinatura();
   }
 
   enviandoAssinaturaTxt() {
-    // Lógica para obter ou definir seu texto
-
-    // Armazene o texto no serviço
     this.assinaturaService.setAssinaturaTxt(this.assinaturaSalva);
   }
 

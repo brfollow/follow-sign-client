@@ -71,7 +71,22 @@ export class DadosService {
       cpfUser: user.data.patient_cpf,
       idUser: user.data.patient_id,
       emailUser: user.data.patient_email,
+      signature: {
+        name: user.data.contact_name,
+        email: user.data.contact_email,
+        type: this.mapContactType(user.data.contact_type),
+        phone: user.data.contact_phone,
+      }
     };
+  }
+
+  mapContactType(type: string) {
+    const options: any = {
+      'professional': 'Profissional',
+      'patient': 'Paciente',
+      'witness': 'Testemunha'
+    }
+    return options[type];
   }
 
   // Método para converter dados brutos em instância de Sender
@@ -80,6 +95,7 @@ export class DadosService {
       senderName: sender.data.razao_social,
       senderPhone: sender.data.contact_phone,
       senderEmail: sender.data.contact_email,
+      senderType: sender.data.contact_type,
     };
   }
 

@@ -20,9 +20,6 @@
     font-size: 18px;
   }
 
-  .terms-sender {
-    margin-bottom: 3em;
-  }
   .terms-sender p {
     font-size: 15px;
   }
@@ -75,9 +72,7 @@
   .terms-user-text {
     font-size: 17px;
   }
-  .terms-sender {
-    margin-bottom: 5em;
-  }
+
   .terms-sender p {
     font-size: 15px;
     line-height: 21px;

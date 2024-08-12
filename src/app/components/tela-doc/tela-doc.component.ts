@@ -143,9 +143,6 @@ export class TelaDocComponent {
 
         this.pdfStorageService.enviarPdfAssinatura(this.user?.idUser).subscribe(
           (response) => {
-            // Lida com a resposta da API aqui
-            //console.log('Resposta da API:', response);
-
             this.urlDocAssinado = response.url;
 
             const entidade = {

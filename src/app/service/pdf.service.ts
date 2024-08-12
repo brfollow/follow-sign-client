@@ -14,7 +14,7 @@ export class PdfStorageService {
 
   private apiUrl: string = 'https://app-follow-assinatura.onrender.com/api/';
 
-  private followApiUrl = 'https://appfollow.com.br/api/';
+  private followApiUrl = 'http://localhost:3000/api/';
 
   private mergedPdfBytes!: ArrayBuffer;
   private PdfBytesAssinatura!: ArrayBuffer;
@@ -103,10 +103,7 @@ export class PdfStorageService {
     const hash = this.dadoService.getHashUsuario();
 
     const endpoint = `${this.followApiUrl}sign/contract/${hash}`;
-    const body = { url: jsonContratosAssinados };
-    console.log(hash);
-
-    console.log(body);
+    const body = { urls: jsonContratosAssinados };
 
     return this.http.post(endpoint, body);
   }

@@ -1,108 +1,101 @@
 <div class="container__doc">
-
-    <div class="doc">
-        <div class="doc-info" >
-
-            <pdf-viewer class="container__contrato-pdf"
-            [src]="pdfLink"
-
-            [original-size]="false"
-            [render-text]="true"
-            [fit-to-page]="false"
-            [zoom-scale]="'page-width'"
-            [zoom]="1"
-            [stick-to-page]="false"
-
-
-          ></pdf-viewer>
-
-        </div>
-        <div style="display: flex; justify-content: center;">
-
-            <div class="doc-assinatura" [ngClass]="{'doc-assinatura-sem-borda':botaoDownload}">
-                <a
-                [routerLink]="!assinaturaConcluida ? '/assinatura' : null"
-                (click)="limparAssinatura()"
-                [ngClass]="{'isSigned': isSigned, 'isNotSigned':!isSigned, 'signatureCompleted': assinaturaConcluida}"
-    
-                >
-                    <p *ngIf="!isSigned"
-                    >
-                        Clique aqui para assinar o documento
-                    </p>
-    
-                    <p #paragrafo *ngIf="assinaturaTxt"  id="assianturaTxt">{{ assinaturaTxt }}</p>
-    
-    
-    
-                    <img class="assinaturaImg" *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
-                </a>
-    
-            </div>
-        </div>
-        <div class="doc-cliente">
-
-            <h3>{{user?.nameUser}}</h3>
-            <p>{{user?.cpfUser}}</p>
-
-        </div>
+  <div class="doc">
+    <div class="doc-info">
+      <pdf-viewer
+        class="container__contrato-pdf"
+        [src]="pdfLink"
+        [original-size]="false"
+        [render-text]="true"
+        [fit-to-page]="false"
+        [zoom-scale]="'page-width'"
+        [zoom]="1"
+        [stick-to-page]="false"
+      ></pdf-viewer>
     </div>
-
-
-    <div class="sender"
-    *ngIf="!botaoDownload"
-    >
-        <h2><span>{{sender?.senderName}}</span> enviou um documento para você assinar.</h2>
-        <div class="button-sender" >
-
-            <input class="button"
-                [ngClass]="{'active-button': isSigned}"
-                type="button" value="Assinar e concluir"
-                [disabled]="!isSigned"
-                (click)="concluirAssinatura()"
-                >
-
-        </div>
-        <p>Para concluir o processo de assinatura é necessario inserir as informações solicitadas e clicar no botão "Assinar e Concluir"</p>
-    </div>
-
-
-    <div class="doc-enviado"
-        *ngIf="botaoDownload"
+    <div style="display: flex; justify-content: center">
+      <div
+        class="doc-assinatura"
+        [ngClass]="{ 'doc-assinatura-sem-borda': botaoDownload }"
+      >
+        <a
+          [routerLink]="!assinaturaConcluida ? '/assinatura' : null"
+          (click)="limparAssinatura()"
+          [ngClass]="{
+            isSigned: isSigned,
+            isNotSigned: !isSigned,
+            signatureCompleted: assinaturaConcluida,
+          }"
         >
+          <p *ngIf="!isSigned">Clique aqui para assinar o documento</p>
 
-        <img src="../../../assets/img/img-confirmado.png" alt="">
-        <h2>O documento foi assinado com sucesso</h2>
-        <p>Enviamos sua resposta para {{sender?.senderName}}.</p>
-        <div class="button-download">
+          <p #paragrafo *ngIf="assinaturaTxt" id="assianturaTxt">
+            {{ assinaturaTxt }}
+          </p>
 
-            <a
-                [ngClass]="{'active-button': isSigned}"
-                type="button"
-                target="_blank"
-                (click)="downloadPDFsAsZip()"
-                >
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAABMklEQVR4nO3ZQWrDMBCF4UlO2YWda3TrkE0XIasECu1NcqSuSrv/g4niOEYuoSAzkt4HgiwU0DxLY2ybiYiIiIgsClgDbRhrqw2w4a612gDdKIDOaoMCQDsAHYGBeoDVBvUA1ANQDxioB1htUA9APQD1gIF6gJUI2AG/wB5YPXsE+rnAIfx3a7kCfkZFvo9DmAsgFN/Pvfm2XHG9isRCiAUQKb63t1xxLeg4KegzvBB9CCDMPU3mfmT/wpT5ELaTAMor/mZma3/N/H44KsUgvhNiyrny/wih3OKfCKH84v8IoZ7iJyG8hFFWwysSzr/mJl8fzr/mJl8fzt/gJF8fCgDtAHQEBuoB5oyaILoLdEveBs/Aq7NxXjIA75IE0JKPJtXDRgO8OR+Nx4c1ERERETFnLpAinSvXvUMZAAAAAElFTkSuQmCC">
-                Baixar documento</a>
-
-        </div>
-
+          <img
+            class="assinaturaImg"
+            *ngIf="assinaturaImg"
+            [src]="assinaturaImg"
+            alt="assinatura"
+          />
+        </a>
+      </div>
     </div>
-
-</div>
-<div *ngIf="loading" class="loader-container">
-    <div class="loader"></div>
+    <div class="doc-cliente">
+      <h3>{{ user?.nameUser }}</h3>
+      <p>{{ user?.cpfUser }}</p>
+    </div>
   </div>
 
-<div style="display: none;" >
-
-    <div #conteudoParaPDF>
-
-    <app-pdf-editavel
-
-        assinaturaImg="{{assinaturaImg}}"
-        assinaturaTxt="{{imagemGerada}}"
-        ></app-pdf-editavel>
+  <div class="sender" *ngIf="!botaoDownload">
+    <h2>
+      <span>{{ sender?.senderName }}</span> enviou um documento para você
+      assinar.
+    </h2>
+    <div class="button-sender">
+      <input
+        class="button"
+        [ngClass]="{ 'active-button': isSigned }"
+        type="button"
+        value="Assinar e concluir"
+        [disabled]="!isSigned"
+        (click)="concluirAssinatura()"
+      />
     </div>
+    <p>
+      Para concluir o processo de assinatura é necessario inserir as informações
+      solicitadas e clicar no botão "Assinar e Concluir"
+    </p>
+  </div>
+
+  <div class="doc-enviado" *ngIf="botaoDownload">
+    <img src="../../../assets/img/img-confirmado.png" alt="" />
+    <h2>O documento foi assinado com sucesso</h2>
+    <p>Enviamos sua resposta para {{ sender?.senderName }}.</p>
+    <div class="button-download">
+      <a
+        [ngClass]="{ 'active-button': isSigned }"
+        type="button"
+        target="_blank"
+        (click)="downloadPDFsAsZip()"
+      >
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAABMklEQVR4nO3ZQWrDMBCF4UlO2YWda3TrkE0XIasECu1NcqSuSrv/g4niOEYuoSAzkt4HgiwU0DxLY2ybiYiIiIgsClgDbRhrqw2w4a612gDdKIDOaoMCQDsAHYGBeoDVBvUA1ANQDxioB1htUA9APQD1gIF6gJUI2AG/wB5YPXsE+rnAIfx3a7kCfkZFvo9DmAsgFN/Pvfm2XHG9isRCiAUQKb63t1xxLeg4KegzvBB9CCDMPU3mfmT/wpT5ELaTAMor/mZma3/N/H44KsUgvhNiyrny/wih3OKfCKH84v8IoZ7iJyG8hFFWwysSzr/mJl8fzr/mJl8fzt/gJF8fCgDtAHQEBuoB5oyaILoLdEveBs/Aq7NxXjIA75IE0JKPJtXDRgO8OR+Nx4c1ERERETFnLpAinSvXvUMZAAAAAElFTkSuQmCC"
+        />
+        Baixar documento</a
+      >
+    </div>
+  </div>
+</div>
+<div *ngIf="loading" class="loader-container">
+  <div class="loader"></div>
 </div>
 
+<div style="display: none">
+  <div #conteudoParaPDF>
+    <app-pdf-editavel
+      assinaturaImg="{{ assinaturaImg }}"
+      assinaturaTxt="{{ imagemGerada }}"
+    ></app-pdf-editavel>
+  </div>
+</div>

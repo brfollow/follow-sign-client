@@ -1,19 +1,15 @@
-@media screen and (min-width: 300px){
-    .action-button button {
-    
-        font-size: 16px;
-       
-    }
+@media screen and (min-width: 300px) {
+  .action-button button {
+    font-size: 16px;
+  }
 
-    .save-button  {
-        text-align: center;
-        margin-bottom: 1em;
-        
-    }
+  .save-button {
+    text-align: center;
+    margin-bottom: 1em;
+  }
 
-    .save-button input {
-        width: 70%;
-        font-size: 19px;
-        
-    }
+  .save-button input {
+    width: 70%;
+    font-size: 19px;
+  }
 }

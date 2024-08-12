@@ -9,37 +9,36 @@ import { TermsUseComponent } from './pages/terms-use/terms-use.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
-
-
-{
-  path:'user/:user',component:HomeComponent, title:'Assinatura'
-},
-{
-  path:'doc',component:TelaDocComponent
-},
-{
-  path:'assinatura',component:TelaAssinaturaComponent
-},
-{
-  path:'error',component:AlertPageComponent
-},
-{ path: '', redirectTo: '/error', pathMatch: 'full' },
-{
-  path:'termos-de-uso',component:TermsUseComponent
-},
-{
-  path:'politica-de-privacidade',component:PrivacyPolicyComponent
-}
-
-
-
-
-
-
+  {
+    path: 'user/:user',
+    component: HomeComponent,
+    title: 'Assinatura',
+  },
+  {
+    path: 'doc',
+    component: TelaDocComponent,
+  },
+  {
+    path: 'assinatura',
+    component: TelaAssinaturaComponent,
+  },
+  {
+    path: 'error',
+    component: AlertPageComponent,
+  },
+  { path: '', redirectTo: '/error', pathMatch: 'full' },
+  {
+    path: 'termos-de-uso',
+    component: TermsUseComponent,
+  },
+  {
+    path: 'politica-de-privacidade',
+    component: PrivacyPolicyComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,31 +1,22 @@
 // tela-assinatura.component.ts
-import { Component, ElementRef, HostListener, ViewChild} from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-
-
-
-
-
 
 @Component({
   selector: 'app-tela-assinatura',
   templateUrl: './tela-assinatura.component.html',
-  styleUrls: ['./tela-assinatura.component.css',
-  './tela-assinatura.responsive.component.css'],
+  styleUrls: [
+    './tela-assinatura.component.css',
+    './tela-assinatura.responsive.component.css',
+  ],
 })
-export class TelaAssinaturaComponent{
-
- 
-  modoAssinatura: boolean = true
+export class TelaAssinaturaComponent {
+  modoAssinatura: boolean = true;
   larguraDaTela: number = 0;
   alturaDaTela: number = 0;
 
-
-
-  trocaMode(estadoAtual:boolean){
-    
-    this.modoAssinatura = !estadoAtual 
-   
+  trocaMode(estadoAtual: boolean) {
+    this.modoAssinatura = !estadoAtual;
   }
 
   ngOnInit() {
@@ -41,23 +32,13 @@ export class TelaAssinaturaComponent{
 
   private atualizarTamanhoDaTela() {
     // Obter o tamanho da tela
-    this.larguraDaTela =  window.innerWidth ;
-    if(this.larguraDaTela < 455){
-
-      this.larguraDaTela =  window.innerWidth - 30;
-    }else if(window.innerWidth >= 455 && window.innerWidth <700){
-      this.larguraDaTela = 417.516
+    this.larguraDaTela = window.innerWidth;
+    if (this.larguraDaTela < 455) {
+      this.larguraDaTela = window.innerWidth - 30;
+    } else if (window.innerWidth >= 455 && window.innerWidth < 700) {
+      this.larguraDaTela = 417.516;
+    } else {
+      this.larguraDaTela = 600;
     }
-    else   
-    {
-      this.larguraDaTela = 600
-    }
-    
-
- 
   }
-
- 
-
- 
 }

@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlertPageComponent } from './components/alert-page/alert-page.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { TermsUseComponent } from './pages/terms-use/terms-use.component';
-import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component'; 
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -32,17 +32,15 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
     AlertPageComponent,
     TermsUseComponent,
     PrivacyPolicyComponent,
-    
-   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    PdfViewerModule
+    PdfViewerModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,61 +1,49 @@
-
-
-.container__signature{
-    
-    padding: 2.5em 2em;
-    background-color: white;
-    border-radius: 10px;
-    border-bottom: 1px solid rgba(0,0,0,.125);
-    box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+.container__signature {
+  padding: 2.5em 2em;
+  background-color: white;
+  border-radius: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
 }
 
-.container__signature h2{ 
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 1em;
+.container__signature h2 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 1em;
 }
 
-.icons{
-    display: flex;
-    flex-direction: row;
-    border: 1px solid var(--fc-border-color, #ddd);
-     width: fit-content;
-     border-top-right-radius: 11px;
-     border-top-left-radius: 11px;
-    
-    
+.icons {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--fc-border-color, #ddd);
+  width: fit-content;
+  border-top-right-radius: 11px;
+  border-top-left-radius: 11px;
 }
 
-.icons a{
-    
-    padding: 5px 15px;
-   
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    
-    
-    
+.icons a {
+  padding: 5px 15px;
+
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-self: center;
 }
 
-.icons a img{
-    width: 1.5em;
-    height: 1.5em;
+.icons a img {
+  width: 1.5em;
+  height: 1.5em;
 }
 
-
-.active-rigth-button{
-   border-left: none;
-   background-color: #2d6dfb21;
-   border-top-right-radius: 10px;
-   border: 2px solid #2d6dfb; 
+.active-rigth-button {
+  border-left: none;
+  background-color: #2d6dfb21;
+  border-top-right-radius: 10px;
+  border: 2px solid #2d6dfb;
 }
-.active-left-button{
-    border-right: none;
-    border: 2px solid #2d6dfb; 
-    background-color: #2d6dfb21;
-    border-top-left-radius: 10px;
- }
-
-
+.active-left-button {
+  border-right: none;
+  border: 2px solid #2d6dfb;
+  background-color: #2d6dfb21;
+  border-top-left-radius: 10px;
+}

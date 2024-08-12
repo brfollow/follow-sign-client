@@ -5,14 +5,10 @@ import { DadosService } from 'src/app/service/dadosService.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent {
+  constructor(private dadosService: DadosService) {}
 
-constructor(private dadosService:DadosService){}
-
-hash:string  | null= this.dadosService.getHashUsuario()
-
-
-
+  hash: string | null = this.dadosService.getHashUsuario();
 }

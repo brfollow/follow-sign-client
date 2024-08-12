@@ -9,33 +9,26 @@ import { DadosService } from 'src/app/service/dadosService.service';
 import { format } from 'date-fns';
 import { Data } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-pdf-editavel',
   templateUrl: './pdf-editavel.component.html',
-  styleUrls: ['./pdf-editavel.component.css']
+  styleUrls: ['./pdf-editavel.component.css'],
 })
 export class PdfEditavelComponent implements OnInit {
-
-  dataAtual: string ='';
-  hora:string =''
- 
-
+  dataAtual: string = '';
+  hora: string = '';
 
   user: UserModel | undefined;
   sender: SenderModel | undefined;
-  docModel:DocModel[] = [] ;
+  docModel: DocModel[] = [];
   logs: LogModel[] = [];
-
 
   @Input()
   assinaturaTxt: string = '';
   @Input()
-  assinaturaImg: string= '';
+  assinaturaImg: string = '';
 
-  constructor(private dadosService: DadosService ) {
-
+  constructor(private dadosService: DadosService) {
     const hoje = new Date();
 
     // Obtém o dia, mês e ano
@@ -48,8 +41,6 @@ export class PdfEditavelComponent implements OnInit {
     // Formata a data no formato desejado (dd/mm/yyyy)
     this.dataAtual = `${this.formatarNumero(dia)}/${this.formatarNumero(mes)}/${ano}`;
     this.hora = `${horas}:${minutos}`;
-
-
   }
 
   private formatarNumero(numero: number): string {
@@ -57,41 +48,25 @@ export class PdfEditavelComponent implements OnInit {
     return numero < 10 ? `0${numero}` : `${numero}`;
   }
 
-
   async ngOnInit(): Promise<void> {
-    
     (await this.dadosService.getData()).subscribe(async (dados) => {
-     try{ 
-  
-  
-      this.user = this.dadosService.mapToUser(dados);
-      this.sender = this.dadosService.mapToSender(dados);
-      this.docModel = await this.dadosService.mapToDoc(dados);
-      this.logs = this.dadosService.mapToLogEntry(dados)
-     
-      
-      }catch (error) {
+      try {
+        this.user = this.dadosService.mapToUser(dados);
+        this.sender = this.dadosService.mapToSender(dados);
+        this.docModel = await this.dadosService.mapToDoc(dados);
+        this.logs = this.dadosService.mapToLogEntry(dados);
+      } catch (error) {
         console.error('Erro ao carregar dados no componente:', error);
         // Lida com erros aqui, se necessário
       }
-
-
     });
-
   }
-
-  
 
   obterDataFormatada(data: string) {
     return format(new Date(data), 'dd/MM/yy');
-   
-   
   }
 
   obterHoraFormatada(data: string) {
-   
     return format(new Date(data), 'HH:mm');
   }
-
-
 }

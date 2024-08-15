@@ -12,7 +12,6 @@ import jsPDF from 'jspdf';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { PdfStorageService } from 'src/app/service/pdf.service';
 import { EmailService } from 'src/app/service/email.service';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-tela-doc',
@@ -128,61 +127,52 @@ export class TelaDocComponent {
     this.loading = true;
 
     //gera o pdf assinatura
-    this.gerarPDF();
+    this.gerarPDFNOVO();
   }
 
-  //esse metodo faz o pdf da assinatura e envia os dois pdfs para a api follow assinatura
-  gerarPDF() {
+  gerarPDFNOVO() {
     let pdf = new jsPDF('p', 'pt', [700, 845], true);
 
     pdf.html(this.conteudoParaPDF.nativeElement, {
       callback: async (pdf) => {
         const blob = await pdf.output('blob');
         const arrayBuffer = await new Response(blob).arrayBuffer();
-        this.pdfStorageService.setPdfBytesAssinatura(arrayBuffer);
+        const formData = new FormData();
 
-        this.pdfStorageService.enviarPdfAssinatura(this.user?.idUser).subscribe(
-          (response) => {
-            this.urlDocAssinado = response.url;
+        formData.append(
+          'file',
+          new Blob([arrayBuffer], { type: 'application/pdf' }),
+          'doc_assinatura.pdf',
+        );
 
-            const entidade = {
-              urlAssinatura: response.url,
-              contratos: this.contratos,
-            };
-
-            this.pdfStorageService
-              .enviarPdfContratos(this.user?.idUser, entidade)
-              .subscribe((response) => {
-                this.urlContratosAssinados = response.contratosMesclados;
-
-                //enviar o email
-                if (this.user?.emailUser) {
-                  this.enviarEmail(response.contratosMesclados);
-                }
-
-                //envia os links dos doc assinados para a follow
-                this.enviarContratoParaFollow(response.contratosMesclados);
+        this.pdfStorageService
+          .enviarContratoParaFollow(formData)
+          .subscribe(
+            (response) => {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Documento Assinado',
+                showConfirmButton: false,
+                timer: 3000,
               });
 
-            this.loading = false;
+              // TODO: habilitar o botão de download com a imagem que foi retornada de dentro do serviço para baixar a assinatura;
+              const images = response.data;
 
-            //pop up  de concluido
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Documento Assinado',
-              showConfirmButton: false,
-              timer: 3000,
-            });
-
-            this.showDawnload();
-            this.assinaturaConcluida = true;
-          },
-          (error) => {
-            // Lide com erros aqui
-            console.error('Erro ao enviar PDFs para a API:', error);
-          },
-        );
+              this.showDawnload();
+              this.assinaturaConcluida = true;
+            },
+            (error) => {
+              Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'Erro ao processar assinatura do documento. Tente novamente.',
+                showConfirmButton: false,
+                timer: 3000,
+              });
+            },
+          );
       },
     });
   }
@@ -298,7 +288,7 @@ export class TelaDocComponent {
         );
     }
   }
-  //anvia o link do documento assinado para api da Follow
+
   enviarContratoParaFollow(contratosAssinados: any) {
     this.pdfStorageService
       .enviarContratoParaFollow(contratosAssinados)

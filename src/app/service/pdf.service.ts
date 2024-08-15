@@ -99,13 +99,12 @@ export class PdfStorageService {
     return this.contratoPdfMerged;
   }
 
-  enviarContratoParaFollow(jsonContratosAssinados: any): Observable<any> {
+  enviarContratoParaFollow(formData: FormData): Observable<any> {
     const hash = this.dadoService.getHashUsuario();
 
     const endpoint = `${this.followApiUrl}sign/contract/${hash}`;
-    const body = { urls: jsonContratosAssinados };
 
-    return this.http.post(endpoint, body);
+    return this.http.post(endpoint, formData);
   }
 
   async downloadZip(links: string[]): Promise<Observable<Blob>> {

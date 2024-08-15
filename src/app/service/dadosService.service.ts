@@ -76,16 +76,16 @@ export class DadosService {
         email: user.data.contact_email,
         type: this.mapContactType(user.data.contact_type),
         phone: user.data.contact_phone,
-      }
+      },
     };
   }
 
   mapContactType(type: string) {
     const options: any = {
-      'professional': 'Profissional',
-      'patient': 'Paciente',
-      'witness': 'Testemunha'
-    }
+      professional: 'Profissional',
+      patient: 'Paciente',
+      witness: 'Testemunha',
+    };
     return options[type];
   }
 

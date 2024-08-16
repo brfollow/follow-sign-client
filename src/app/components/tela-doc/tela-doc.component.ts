@@ -31,6 +31,7 @@ export class TelaDocComponent {
   docModel: DocModel[] = [];
   loading: boolean = false;
   log: LogModel | undefined;
+  signedPDF!: string;
 
   urls: string[] = [];
 
@@ -127,10 +128,10 @@ export class TelaDocComponent {
     this.loading = true;
 
     //gera o pdf assinatura
-    this.gerarPDFNOVO();
+    this.generatePDF();
   }
 
-  gerarPDFNOVO() {
+  generatePDF() {
     let pdf = new jsPDF('p', 'pt', [700, 845], true);
 
     pdf.html(this.conteudoParaPDF.nativeElement, {
@@ -152,13 +153,16 @@ export class TelaDocComponent {
               Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Documento Assinado',
+                title: 'Documento Assinado com sucesso',
                 showConfirmButton: false,
                 timer: 3000,
               });
 
+              this.loading = false;
+
               // TODO: habilitar o botão de download com a imagem que foi retornada de dentro do serviço para baixar a assinatura;
-              const images = response.data;
+              const signedPDF = response.data.url;
+              this.signedPDF = signedPDF;
 
               this.showDawnload();
               this.assinaturaConcluida = true;
@@ -179,6 +183,7 @@ export class TelaDocComponent {
 
   //Metodo responsavel por enviar o email
 
+  // TODO: revisar envio de email pós assinatura de documento.
   enviarEmail(urlsDocAssinados: any) {
     ///apagar esse metodo de pegar url pelo id
 
@@ -269,6 +274,8 @@ export class TelaDocComponent {
 
   enviarLinks(): void {
     //no primeiro acesso e salvo o "PDF" arraybuffer no setContratoPdfMerged
+
+    // TODO: substituir o uso desses PDFs pelo RESPONSE que é retornado pelo get-sign-contract-by-hash que já retorna o PDF base assinado pelo S3;
     if (this.pdfStorageService.getContratoPdfMerged()) {
       this.pdfLink = this.pdfStorageService.getMergedPdf();
     } else {
@@ -287,19 +294,6 @@ export class TelaDocComponent {
           },
         );
     }
-  }
-
-  enviarContratoParaFollow(contratosAssinados: any) {
-    this.pdfStorageService
-      .enviarContratoParaFollow(contratosAssinados)
-      .subscribe(
-        (response) => {
-          console.log('Contrato assinado com sucesso!', response);
-        },
-        (error) => {
-          console.error('Erro ao assinar contrato:', error);
-        },
-      );
   }
 
   async downloadPDFsAsZip() {

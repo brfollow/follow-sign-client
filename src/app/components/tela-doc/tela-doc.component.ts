@@ -127,7 +127,6 @@ export class TelaDocComponent {
   concluirAssinatura() {
     this.loading = true;
 
-    //gera o pdf assinatura
     this.generatePDF();
   }
 
@@ -160,7 +159,6 @@ export class TelaDocComponent {
 
               this.loading = false;
 
-              // TODO: habilitar o botão de download com a imagem que foi retornada de dentro do serviço para baixar a assinatura;
               const signedPDF = response.data.url;
               this.signedPDF = signedPDF;
 

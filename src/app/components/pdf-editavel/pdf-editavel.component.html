@@ -3,7 +3,7 @@
     <img src="../assets/img/logo_follow_sistema.png" alt="" />
     <div class="info-log">
       <p>Datas e horários em GMT - 03:00 Brasília</p>
-      <p>Log gerado em {{ dataAtual }}</p>
+      <p>Log gerado em {{ dataAtual }} às {{ horaAtual }}</p>
     </div>
   </div>
   <hr class="linhas" />
@@ -12,7 +12,6 @@
     <h2 *ngFor="let doc of docModel; let last = last">
       {{ doc.title }}<span *ngIf="!last">, </span>
     </h2>
-    <p>Criado em • {{ dataAtual }}</p>
   </div>
   <hr class="linhas" />
 
@@ -28,7 +27,8 @@
         <div class="container-user-info">
           <h4>{{ user?.signature?.name }}</h4>
           <p>Email: {{ user?.signature?.email }}</p>
-          <p>Assinou como {{ user?.signature?.type }} em {{ dataAtual }}</p>
+          <p>Assinou como {{ user?.signature?.type }} em {{ dataAtual }} às {{ horaAtual }}</p>
+          <p>IP do assinante: {{ userIP }}.</p>
         </div>
       </div>
     </div>

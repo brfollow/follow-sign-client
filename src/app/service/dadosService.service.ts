@@ -63,6 +63,12 @@ export class DadosService {
     return this.http.get<any>(`${this.apiUrl}/logs/${idUser}`);
   }
 
+  getUserIp(): Observable<{ ip: string }> {
+    const IPURL = 'https://api.ipify.org?format=json';
+
+    return this.http.get<{ ip: string }>(IPURL);
+  }
+
   // Método para converter dados brutos em instância de User
   mapToUser(user: any): UserModel {
     return {

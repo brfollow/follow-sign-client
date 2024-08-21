@@ -16,6 +16,8 @@ import { Data } from '@angular/router';
 })
 export class PdfEditavelComponent implements OnInit {
   dataAtual: string = '';
+  horaAtual: string = '';
+  userIP: string = '';
   hora: string = '';
 
   user: UserModel | undefined;
@@ -40,7 +42,8 @@ export class PdfEditavelComponent implements OnInit {
 
     // Formata a data no formato desejado (dd/mm/yyyy)
     this.dataAtual = `${this.formatarNumero(dia)}/${this.formatarNumero(mes)}/${ano}`;
-    this.hora = `${horas}:${minutos}`;
+    this.horaAtual = `${this.obterHoraFormatada(hoje.toString())}`
+    this.hora = `${this.formatTime(hoje)}`;
   }
 
   private formatarNumero(numero: number): string {
@@ -49,6 +52,9 @@ export class PdfEditavelComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+
+    this.getUserIp();
+
     (await this.dadosService.getData()).subscribe(async (dados) => {
       try {
         this.user = this.dadosService.mapToUser(dados);
@@ -57,7 +63,6 @@ export class PdfEditavelComponent implements OnInit {
         this.logs = this.dadosService.mapToLogEntry(dados);
       } catch (error) {
         console.error('Erro ao carregar dados no componente:', error);
-        // Lida com erros aqui, se necessário
       }
     });
   }
@@ -68,5 +73,23 @@ export class PdfEditavelComponent implements OnInit {
 
   obterHoraFormatada(data: string) {
     return format(new Date(data), 'HH:mm');
+  }
+
+  formatTime(date: Date) {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
+  async getUserIp() {
+    this.dadosService.getUserIp().subscribe(
+      (success) => {
+        this.userIP = success.ip;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

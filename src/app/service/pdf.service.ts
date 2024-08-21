@@ -14,7 +14,7 @@ export class PdfStorageService {
 
   private apiUrl: string = 'https://app-follow-assinatura.onrender.com/api/';
 
-  private followApiUrl = 'http://localhost:3000/api/';
+  private followApiUrl = 'https://appfollow.com.br/api/';
 
   private mergedPdfBytes!: ArrayBuffer;
   private PdfBytesAssinatura!: ArrayBuffer;

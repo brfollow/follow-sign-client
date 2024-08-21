@@ -1,240 +1,163 @@
 @media screen and (min-width: 300px) {
-  .container__doc{
-
+  .container__doc {
     flex-direction: column;
     padding: 1em;
+  }
 
+  .container__contrato-pdf {
+    height: 18em;
+  }
+
+  .doc-cliente p {
+    font-size: 16px;
+  }
+
+  #assianturaTxt {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .doc {
+    width: 92%;
+    height: 30em;
+    margin-right: 0;
+    padding: 1em 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em;
+  }
+
+  .doc-assinatura {
+    width: 90%;
+    height: 6em;
+  }
+
+  .doc-assinatura a p {
+    font-size: 18px;
+    padding: 13px;
+  }
+
+  .sender {
+    margin-top: 1em;
+    width: auto;
+  }
+
+  .sender h2 {
+    font-size: 17px;
+  }
+
+  .button {
+    padding: 17px;
+
+    font-size: 18px;
+  }
+
+  .sender p {
+    font-size: 16px;
+  }
+  .sender {
+    width: auto;
+  }
 }
 
-.container__contrato-pdf{
-
-  height: 18em;
-
-}
-
-
-.doc-cliente p{
-  font-size: 16px;
-}
-
-#assianturaTxt {
-
-  font-size: 30px;
-  text-align: center;
-}
-
-.doc {
-  width: 92%;
-  height: 30em;
-  margin-right: 0;
-  padding: 1em 0;
-  display: flex;
-  flex-direction: column;
-  padding: 1em 1em;
-
-}
-
-
-
-.doc-assinatura {
-
-
-  width: 90%;
-  height: 6em;
-
-}
-
-
-.doc-assinatura a p{
-  font-size: 18px;
-  padding: 13px;
-}
-
-.sender {
-  margin-top: 1em;
-  width: auto;
-
-}
-
-.sender h2{
-  font-size: 17px;
-
-}
-
-.button {
-
-  padding: 17px;
-
-  font-size: 18px;
-
-}
-
-
-
-.sender p {
-  font-size: 16px;
-
-}
-.sender {
-
-  width:auto;
-
-}
-
-
-
-}
-
-
-
-@media screen and (min-width: 500px){
-
-.container__doc {
-
-  align-items: center;
-
-}
-  .doc{
+@media screen and (min-width: 500px) {
+  .container__doc {
+    align-items: center;
+  }
+  .doc {
     width: 31em;
+  }
 
+  .sender {
+    width: 27em;
+  }
+
+  .doc-enviado {
+    width: 27em;
+  }
 }
-
-
-.sender{
-  width:27em;
-}
-
-.doc-enviado{
-  width:27em;
-}
-}
-
 
 @media screen and (min-width: 750px) {
+  .container__doc {
+    flex-direction: row;
+    padding: 1em;
+  }
+  .container__doc {
+    align-items: flex-start;
+  }
 
-.container__doc{
+  .sender {
+    margin-left: 1em;
+    margin-top: 0;
+  }
+  .sender p {
+    margin-bottom: 0;
+  }
 
-  flex-direction: row;
-  padding: 1em;
+  .button {
+    margin-bottom: 1em;
+  }
 
-}
-.container__doc {
-  align-items: flex-start;
-}
-
-.sender {
-  margin-left: 1em;
-  margin-top: 0;
-}
-.sender p {
-
-  margin-bottom: 0;
-}
-
-.button {
-
-  margin-bottom: 1em;
-
-}
-
-.doc-enviado{
-
-  margin-top: 0;
-
+  .doc-enviado {
+    margin-top: 0;
+  }
 }
 
-
-}
-
-
-@media screen and (min-width: 1000px)
-{
-
+@media screen and (min-width: 1000px) {
   .doc {
     padding: 3em 3em;
     height: 33em;
-
-}
-
-
-.doc-assinatura {
-
-
-  width: 100%;
-  height: 8em;
-
-}
-
-
-}
-
-
-@media screen and (min-width: 1500px){
-
-  .container__contrato-pdf{
-
-    height: 21em;
-
   }
 
-
-
-.doc {
-  padding: 3em 3em;
-  height: 35em;
-
+  .doc-assinatura {
+    width: 100%;
+    height: 8em;
+  }
 }
 
+@media screen and (min-width: 1500px) {
+  .container__contrato-pdf {
+    height: 21em;
+  }
 
-.doc-cliente {
+  .doc {
+    padding: 3em 3em;
+    height: 35em;
+  }
 
-  margin-bottom: 0;
+  .doc-cliente {
+    margin-bottom: 0;
+  }
+
+  .doc-assinatura {
+    height: 8em;
+  }
+
+  .sender {
+    width: 30%;
+  }
+  .sender p {
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 1em;
+  }
+
+  .sender h2 {
+    font-size: 22px;
+  }
+
+  .doc-enviado {
+    padding: 2em;
+    width: 30em;
+  }
+
+  .doc-enviado h2 {
+    font-size: 20px;
+    margin-bottom: 0.7em;
+  }
+
+  .button-download {
+    width: 95%;
+    margin-bottom: 4em;
+  }
 }
-
-
-.doc-assinatura {
-
-  height: 8em;
-}
-
-.sender{
-
-  width: 30%;
-}
-.sender p {
-  font-size: 15px;
-  line-height: 22px;
-  margin-bottom: 1em;
-}
-
-.sender h2 {
-  font-size: 22px;
-}
-
-
-.doc-enviado{
-
-  padding: 2em;
-  width: 30em;
-
-}
-
-.doc-enviado h2{
-  font-size: 20px;
-  margin-bottom: 0.7em;
-}
-
-.button-download{
-  width: 95%;
-   margin-bottom: 4em;
-}
-
-
-
-
-
-
-
-}
-
-

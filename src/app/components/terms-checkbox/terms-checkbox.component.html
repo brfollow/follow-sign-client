@@ -1,47 +1,67 @@
 <div class="container__terms">
-    <div class="terms-user-info">
-        <h2 class="terms-user-title">
-            Olá, {{user?.nameUser}}
-        </h2>
-        <p class="terms-user-text">
-            Você recebeu, os documentos <span *ngFor="let doc of docModel; let last = last">{{doc.title}}<span *ngIf="!last">, </span> </span> para assinar.
+  <div class="terms-user-info">
+    <h2 class="terms-user-title">Olá, {{ user?.nameUser }}</h2>
+    <p class="terms-user-text">
+      Você recebeu, os documentos
+      <span *ngFor="let doc of docModel; let last = last"
+        >{{ doc.title }}<span *ngIf="!last">, </span>
+      </span>
+      para assinar.
+    </p>
+  </div>
 
-        </p>
+  <div class="terms-sender">
+    <p id="remetente">Remetente</p>
+    <h3>{{ sender?.senderName }}</h3>
+  </div>
 
+  <div class="terms-signer">
+    <h3>Assinatura</h3>
+    <p>
+      Assinar documento(s) como:
+      <strong style="text-transform: capitalize">{{
+        user?.signature?.type
+      }}</strong>
+    </p>
+    <p>
+      Email: <strong>{{ user?.signature?.email }}</strong>
+    </p>
+    <p>
+      Telefone: <strong>{{ user?.signature?.phone }}</strong>
+    </p>
+  </div>
+
+  <div class="terms-use">
+    <div class="terms-use-links">
+      <a
+        href="https://www.appfollow.com.br/politica-de-privacidade"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Termos de uso</a
+      >
+      <a
+        href="https://www.appfollow.com.br/politica-de-privacidade"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Politica de Privacidade</a
+      >
     </div>
 
-    <div class="terms-sender">
-        <p id="remetente">Remetente</p>
-        <h3>{{sender?.senderName}}</h3>
-        <P>{{sender?.senderEmail}}</P>
-        <p>{{sender?.senderPhone}}</p>
+    <div class="terms-use-checkbox">
+      <div class="toggle">
+        <input type="checkbox" id="foo" (click)="TermoAceite()" />
+        <label for="foo"></label>
+      </div>
+      <p>Declaro que li e estou de acordo com os documentos citados acima</p>
     </div>
 
-    <div class="terms-use">
-        <div class="terms-use-links">
-
-            <a href="https://www.appfollow.com.br/politica-de-privacidade" target="_blank" rel="noopener noreferrer">Termos de uso</a>
-            <a href="https://www.appfollow.com.br/politica-de-privacidade" target="_blank" rel="noopener noreferrer">Politica de Privacidade</a>
-
-        </div>
-
-        <div class="terms-use-checkbox">
-            <div class="toggle">
-                <input type="checkbox" id="foo" (click)="TermoAceite()">
-                <label for="foo"></label>
-            </div>
-            <p>Declaro que li e estou de acordo com os documentos citados acima</p>
-        </div>
-
-        <input
-            [ngClass]="{'active-button': terms}"
-            [disabled]="!terms"
-            routerLink="/doc"
-            class="button"
-            type="button"
-            value="Rever e Assinar documento">
-
-
-    </div>
-
+    <input
+      [ngClass]="{ 'active-button': terms }"
+      [disabled]="!terms"
+      routerLink="/doc"
+      class="button"
+      type="button"
+      value="Rever e Assinar documento"
+    />
+  </div>
 </div>

@@ -1,158 +1,128 @@
-
-.container__pdf{
-    padding: 3em;
-    width: 590px;
-    background-color: white;
+.container__pdf {
+  padding: 3em;
+  width: 590px;
+  background-color: white;
 }
 
 .pdf-logo {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-between;
-   margin-bottom: 1em;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
 }
 
-.pdf-logo img{
-    width: 5em;
-    height: 1.5em;
-
+.pdf-logo img {
+  width: 5em;
+  height: 1.5em;
 }
 
-.pdf-logo p{
-    font-size: 10px;
-    color: rgb(63, 61, 61);
-    line-height: 15px;
-
+.pdf-logo p {
+  font-size: 10px;
+  color: rgb(63, 61, 61);
+  line-height: 15px;
 }
-.pdf-body{
-    margin: 1em 0;
-}
-
-.pdf-body h2{
-    margin-bottom: 5px;
-    font-size: 17px;
-    line-height: 1.4em;
-    max-width: 100%;
-    overflow-wrap: break-word;
-    word-spacing: 0.1em;
-    white-space: normal;
-
-}
-.pdf-body p{
-    margin-top: 0.8em;
-    font-size: 12px;
-
-
+.pdf-body {
+  margin: 1em 0;
 }
 
-.pdf-info-assinatura{
-    margin: 1em 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.pdf-body h2 {
+  margin-bottom: 5px;
+  font-size: 17px;
+  line-height: 1.4em;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-spacing: 0.1em;
+  white-space: normal;
+}
+.pdf-body p {
+  margin-top: 0.8em;
+  font-size: 12px;
+}
+
+.pdf-info-assinatura {
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .info-user {
-    width: 60%;
-
+  width: 60%;
 }
 
-.info-user h2{
-    font-size: 20px;
-    margin-bottom: 0.5em; 
-
+.info-user h2 {
+  font-size: 20px;
+  margin-bottom: 0.5em;
 }
-.user-signature{
-    width: 40%;
-    text-align: center;
-}
-
-.user-signature img{
-    width: 100%; 
-    height: 8em;
-   
+.user-signature {
+  width: 40%;
+  text-align: center;
 }
 
-
-#user-signature-txt{
-    width: 100%; 
-    height: auto;
+.user-signature img {
+  width: 100%;
+  height: 8em;
 }
 
-.container-user-icon{
-    display: flex;
-    flex-direction: row;
-    
+#user-signature-txt {
+  width: 100%;
+  height: auto;
 }
 
-.icon-confirado img{
-    width: 2em;
-    height: 2em;
-    margin-right: 10px;
-    margin-top: 5px;
-}
-.container-user-info{
-    line-height: 20px;
-
+.container-user-icon {
+  display: flex;
+  flex-direction: row;
 }
 
-.container-user-info h4{
-
-    font-size: 15px;
-    margin-bottom: 10px;
-
+.icon-confirado img {
+  width: 2em;
+  height: 2em;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.container-user-info {
+  line-height: 20px;
 }
 
-.container-user-info p{
-
-    font-size: 12px;
-    color: rgb(63, 61, 61);
-
+.container-user-info h4 {
+  font-size: 15px;
+  margin-bottom: 10px;
 }
 
-.linhas{
-    border: 0.1px solid #ddd;
-  
-}
-.pdf-logs{
-
-    margin: 1em 0;
-
-}
-.pdf-logs div p span { 
-    font-weight: bold;
+.container-user-info p {
+  font-size: 12px;
+  color: rgb(63, 61, 61);
 }
 
-.pdf-logs h2{
-
-    font-size: 17px;
-    margin-bottom: 1em;
-   
-
+.linhas {
+  border: 0.1px solid #ddd;
+}
+.pdf-logs {
+  margin: 1em 0;
+}
+.pdf-logs div p span {
+  font-weight: bold;
 }
 
-
-.logs{
-    display: flex;
-    flex-direction: row;
-    margin-left: 1em;
-    margin-bottom: 1em;
+.pdf-logs h2 {
+  font-size: 17px;
+  margin-bottom: 1em;
 }
 
-.data{
-    margin-right: 2em;
-    font-size: 11px;
-    color: rgb(145, 144, 144);
+.logs {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1em;
+  margin-bottom: 1em;
 }
 
-.assinante{
-    font-size: 11px;
+.data {
+  margin-right: 2em;
+  font-size: 11px;
+  color: rgb(145, 144, 144);
 }
 
-
-
-
-
-
+.assinante {
+  font-size: 11px;
+}

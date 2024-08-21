@@ -1,32 +1,30 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DadosService } from './dadosService.service';
-import * as JSZip from 'jszip';
-import { saveAs } from 'file-saver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PdfStorageService {
-
-  constructor(private http: HttpClient, private dadoService:DadosService) {}
+  constructor(
+    private http: HttpClient,
+    private dadoService: DadosService,
+  ) {}
 
   private apiUrl: string = 'https://app-follow-assinatura.onrender.com/api/';
 
   private followApiUrl = 'https://appfollow.com.br/api/';
 
-  private mergedPdfBytes!: ArrayBuffer ;
-  private PdfBytesAssinatura!: ArrayBuffer ;
-  private contratoPdfMerged!: ArrayBuffer ;
-
-
+  private mergedPdfBytes!: ArrayBuffer;
+  private PdfBytesAssinatura!: ArrayBuffer;
+  private contratoPdfMerged!: ArrayBuffer;
 
   setMergedPdf(bytes: ArrayBuffer): void {
     this.mergedPdfBytes = bytes;
   }
 
-  getMergedPdf(): ArrayBuffer  {
+  getMergedPdf(): ArrayBuffer {
     return this.mergedPdfBytes;
   }
 
@@ -34,39 +32,53 @@ export class PdfStorageService {
     this.PdfBytesAssinatura = bytes;
   }
 
-  getPdfBytesAssinatura(): ArrayBuffer{
+  getPdfBytesAssinatura(): ArrayBuffer {
     return this.PdfBytesAssinatura;
   }
 
   enviarPDFsParaAPI(userId: string | undefined): Observable<any> {
-      
-
     const formData = new FormData();
-    formData.append('pdfFile1', new Blob([this.mergedPdfBytes], { type: 'application/pdf' }), 'arquivo1.pdf');
-    formData.append('pdfFile2', new Blob([this.PdfBytesAssinatura], { type: 'application/pdf' }), 'arquivo2.pdf');
+    formData.append(
+      'pdfFile1',
+      new Blob([this.mergedPdfBytes], { type: 'application/pdf' }),
+      'arquivo1.pdf',
+    );
+    formData.append(
+      'pdfFile2',
+      new Blob([this.PdfBytesAssinatura], { type: 'application/pdf' }),
+      'arquivo2.pdf',
+    );
 
     return this.http.post(`${this.apiUrl}upload-pdfs/${userId}`, formData);
   }
 
-
   enviarPdfAssinatura(userId: string | undefined): Observable<any> {
-      
-
     const formData = new FormData();
-    formData.append('pdfFile1', new Blob([this.PdfBytesAssinatura], { type: 'application/pdf' }), 'arquivo1.pdf');
+    formData.append(
+      'pdfFile1',
+      new Blob([this.PdfBytesAssinatura], { type: 'application/pdf' }),
+      'arquivo1.pdf',
+    );
 
-    return this.http.post(`${this.apiUrl}upload-assinatura/${userId}`, formData);
+    return this.http.post(
+      `${this.apiUrl}upload-assinatura/${userId}`,
+      formData,
+    );
   }
 
-  enviarPdfContratos(userId: string | undefined, entidade: any): Observable<any>{
-    return this.http.post(`${this.apiUrl}upload-pdfs/${userId}`, entidade)
+  enviarPdfContratos(
+    userId: string | undefined,
+    entidade: any,
+  ): Observable<any> {
+    return this.http.post(`${this.apiUrl}upload-pdfs/${userId}`, entidade);
   }
-
-
-
 
   enviarLinksPDF(pdfLinks: string[]): Observable<ArrayBuffer> {
-    return this.http.post(`${this.apiUrl}mesclar-pdfs`, { pdfLinks }, { responseType: 'arraybuffer' });
+    return this.http.post(
+      `${this.apiUrl}mesclar-pdfs`,
+      { pdfLinks },
+      { responseType: 'arraybuffer' },
+    );
   }
 
   // generatePdfLink(arrayBuffer: ArrayBuffer, fileName: string): string {
@@ -79,44 +91,28 @@ export class PdfStorageService {
   //   URL.revokeObjectURL(url);
   // }
 
-
-  setContratoPdfMerged (bytes: ArrayBuffer): void {
+  setContratoPdfMerged(bytes: ArrayBuffer): void {
     this.contratoPdfMerged = bytes;
   }
 
-  getContratoPdfMerged(): ArrayBuffer  {
+  getContratoPdfMerged(): ArrayBuffer {
     return this.contratoPdfMerged;
   }
 
-
-  enviarContratoParaFollow(jsonContratosAssinados: any): Observable<any> {
-    const hash = this.dadoService.getHashUsuario()
+  enviarContratoParaFollow(formData: FormData): Observable<any> {
+    const hash = this.dadoService.getHashUsuario();
 
     const endpoint = `${this.followApiUrl}sign/contract/${hash}`;
-    const body = { url: jsonContratosAssinados };
-    console.log(hash)
 
-    console.log(body)
-
-    return this.http.post(endpoint, body);
+    return this.http.post(endpoint, formData);
   }
-
-
-
-
 
   async downloadZip(links: string[]): Promise<Observable<Blob>> {
     const body = { urls: links };
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'blob' as 'json' // Define o tipo de resposta como Blob
+      responseType: 'blob' as 'json', // Define o tipo de resposta como Blob
     };
     return this.http.post<Blob>(`${this.apiUrl}zip-files`, body, httpOptions);
   }
 }
-
-
-
-     
-
-

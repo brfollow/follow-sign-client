@@ -1,71 +1,66 @@
-
-
-
-
-<div class="container__pdf"  >
-    <div class="pdf-logo">
-        <img src="../assets/img/logo_follow_sistema.png" alt="">
-        <div class="info-log">
-            <p>Datas e horários em GMT - 03:00 Brasília</p>
-            <p>Log gerado em {{dataAtual}}</p>
-        </div>
+<div class="container__pdf">
+  <div class="pdf-logo">
+    <img src="../assets/img/logo_follow_sistema.png" alt="" />
+    <div class="info-log">
+      <p>Datas e horários em GMT - 03:00 Brasília</p>
+      <p>Log gerado em {{ dataAtual }} às {{ horaAtual }}</p>
     </div>
-    <hr class="linhas">
+  </div>
+  <hr class="linhas" />
 
-    <div class="pdf-body">
-        <h2 *ngFor="let doc of docModel; let last = last" >{{doc.title}}<span *ngIf="!last">, </span></h2>
-        <p>Criado em • {{dataAtual}}</p>
+  <div class="pdf-body">
+    <h2 *ngFor="let doc of docModel; let last = last">
+      {{ doc.title }}<span *ngIf="!last">, </span>
+    </h2>
+  </div>
+  <hr class="linhas" />
+
+  <div class="pdf-info-assinatura">
+    <div class="info-user">
+      <h2>Assinaturas</h2>
+
+      <div class="container-user-icon">
+        <div class="icon-confirado">
+          <img src="../../../assets/img/img-confirmado.png" alt="" />
+        </div>
+
+        <div class="container-user-info">
+          <h4>{{ user?.signature?.name }}</h4>
+          <p>Email: {{ user?.signature?.email }}</p>
+          <p>Assinou como {{ user?.signature?.type }} em {{ dataAtual }} às {{ horaAtual }}</p>
+          <p>IP do assinante: {{ userIP }}.</p>
+        </div>
+      </div>
     </div>
-    <hr class="linhas">
 
-    <div class="pdf-info-assinatura">
-        <div class="info-user">
-
-            <h2>Assinaturas</h2>
-
-            <div class="container-user-icon">
-                <div class="icon-confirado">
-                    <img src="../../../assets/img/img-confirmado.png" alt="">
-                </div>
-
-                <div class="container-user-info">
-                    <h4>{{user?.nameUser}}</h4>
-                    <p>CPF: {{user?.cpfUser}}</p>
-                    <p>Assinou como paciente em {{dataAtual}}</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="user-signature">
-          
-            <img id="user-signature-txt" *ngIf="assinaturaTxt" [src]="assinaturaTxt" alt="assinatura">
-            <img *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura">
-        </div>
-
+    <div class="user-signature">
+      <img
+        id="user-signature-txt"
+        *ngIf="assinaturaTxt"
+        [src]="assinaturaTxt"
+        alt="assinatura"
+      />
+      <img *ngIf="assinaturaImg" [src]="assinaturaImg" alt="assinatura" />
     </div>
-    <hr class="linhas">
-    <div class="pdf-logs" *ngIf="logs.length != 0">
-        <h2>Logs do documento</h2>
-        <div
-        >
-          <div *ngFor="let log of logs" class="logs">
-            <div class="data" >
-                <p>{{obterDataFormatada(log.created_at)}} </p>
-                <p>{{obterHoraFormatada(log.created_at)}}</p>
-            </div>
-
-            <div class="assinante">
-                <p>{{log.user_name}} <span>{{log.action}}</span></p>
-                <p>{{log.user_email}} - {{log.user_cpf}}</p>
-            </div>
+  </div>
+  <hr class="linhas" />
+  <div class="pdf-logs" *ngIf="logs.length != 0">
+    <h2>Logs do documento</h2>
+    <div>
+      <div *ngFor="let log of logs" class="logs">
+        <div class="data">
+          <p>{{ obterDataFormatada(log.created_at) }}</p>
+          <p>{{ obterHoraFormatada(log.created_at) }}</p>
         </div>
 
-
+        <div class="assinante">
+          <p>
+            {{ log.user_name }} <span>{{ log.action }}</span>
+          </p>
+          <p>{{ log.user_email }} - {{ log.user_cpf }}</p>
         </div>
+      </div>
     </div>
-    <hr class="linhas">
+  </div>
+  <hr class="linhas" />
 </div>
-
-
-

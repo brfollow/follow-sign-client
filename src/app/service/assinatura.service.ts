@@ -1,55 +1,31 @@
 import { Injectable } from '@angular/core';
 
-
 import { BehaviorSubject } from 'rxjs';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AssinaturaService {
+  constructor() {}
 
-  constructor() { }
-
- 
-
-
-  private assinaturaImg: string = ''
-  private assinaturaTxt: string = ''
-
-
+  private assinaturaImg: string = '';
+  private assinaturaTxt: string = '';
 
   setImageDataURL(dataURL: string) {
-   
-    
     this.assinaturaImg = dataURL;
- 
-   
   }
 
   getImageDataURL() {
-
-   return this.assinaturaImg; 
-
-   
+    return this.assinaturaImg;
   }
 
-
   setAssinaturaTxt(txt: string) {
-
     this.assinaturaTxt = txt;
-   
-   
   }
 
   getAssinaturaTxt() {
-
-   return this.assinaturaTxt; 
-
-   
+    return this.assinaturaTxt;
   }
-
-
 
   private conteudoParaPDFSource = new BehaviorSubject<string>('');
   conteudoParaPDF$ = this.conteudoParaPDFSource.asObservable();
@@ -66,8 +42,4 @@ export class AssinaturaService {
   obterPDFTemporario(): string | null {
     return this.pdfTemporario;
   }
-
-
-
-
 }

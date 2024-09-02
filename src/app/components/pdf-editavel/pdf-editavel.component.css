@@ -31,9 +31,10 @@
   font-size: 17px;
   line-height: 1.4em;
   max-width: 100%;
-  overflow-wrap: break-word;
-  word-spacing: 0.1em;
+  word-wrap: break-word;
+  word-spacing: 0.2em;
   white-space: normal;
+  hyphens: auto;
 }
 .pdf-body p {
   margin-top: 0.8em;

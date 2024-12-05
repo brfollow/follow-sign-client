@@ -13,7 +13,8 @@ import { LogModel } from '../model/LogModel';
 })
 export class DadosService {
   data: any;
-  private apiUrl = 'https://appfollow.com.br/api/sign/contract/'; 
+  private apiUrl = 'https://appfollow.com.br/api/sign/contract/';
+
   private hashUsuario: string | null = null;
 
   dataAtual: string = '';

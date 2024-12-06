@@ -53,6 +53,7 @@ export class TelaDocComponent {
 
   pdfBytes!: ArrayBuffer;
 
+
   constructor(
     private dadosService: DadosService,
     private assinaturaService: AssinaturaService,
@@ -145,6 +146,21 @@ export class TelaDocComponent {
           'doc_assinatura.pdf',
         );
 
+        const existingPdfBytes = this.pdfStorageService.getContratoPdfMerged();
+        const signedPdfBytes = arrayBuffer;
+
+        const pdfDoc = await PDFDocument.load(existingPdfBytes);
+        const signedPdfDoc = await PDFDocument.load(signedPdfBytes);
+
+        const pages = await pdfDoc.copyPages(signedPdfDoc, signedPdfDoc.getPageIndices());
+        pages.forEach(page => pdfDoc.addPage(page));
+
+        const mergedPdfBytes = await pdfDoc.save();
+
+        // Download the merged PDF
+        const mergedBlob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
+        const mergedUrl = window.URL.createObjectURL(mergedBlob);
+
         this.pdfStorageService
           .enviarContratoParaFollow(formData)
           .subscribe(
@@ -159,8 +175,8 @@ export class TelaDocComponent {
 
               this.loading = false;
 
-              const signedPDF = response.data.url;
-              this.signedPDF = signedPDF;
+              // const signedPDF = response.data.url; url returned from api;
+              this.signedPDF = mergedUrl;
 
               this.showDawnload();
               this.assinaturaConcluida = true;
@@ -179,9 +195,6 @@ export class TelaDocComponent {
     });
   }
 
-  //Metodo responsavel por enviar o email
-
-  // TODO: revisar envio de email pós assinatura de documento.
   enviarEmail(urlsDocAssinados: any) {
     ///apagar esse metodo de pegar url pelo id
 
